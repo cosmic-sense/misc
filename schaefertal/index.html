@@ -124,7 +124,7 @@ layout: default
 
 	
     var geojsonCircleOptions = {
-        radius: 1000,
+        radius: 100,
         color: "orange",
         weight: 1,
         opacity: 1,
@@ -135,9 +135,8 @@ layout: default
     $.getJSON("schaefertal_crns.geojson", function(data) {
 	    gaugescircles = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
-		    return L.circle(latlng, geojsonMarkerOptions);
+		    return L.circle(latlng, geojsonCircleOptions);
 		},
-		onEachFeature: onEachGauge
             }).addTo(map);
     });
 	
