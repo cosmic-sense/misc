@@ -9,7 +9,6 @@ layout: default
 	
 <head>
 	
-	<title>Choropleth Tutorial - Leaflet</title>
 
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,7 +72,7 @@ layout: default
 
 	info.update = function (props) {
 		this._div.innerHTML = '<h4>Available and planned sensor network</h4>' +  (props ?
-			'<b>' + props.name + '</b><br />' + props.density + ' people / mi<sup>2</sup>'
+			'<b>' + props.id + '</b>'
 			: 'Hover over a sensor');
 	};
 
@@ -94,6 +93,7 @@ layout: default
   		layer.setStyle({
           weight: 4
   		});
+	    info.update(layer.feature.properties);
   	}
 
     function resetHighlightGauge(e) {
