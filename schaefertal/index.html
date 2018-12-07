@@ -191,7 +191,6 @@ title: Schäfertal catchment
         });
     }
 
-
     $.getJSON("schaefertal_crns.geojson", function(data) {
     var gaugesjson = L.geoJSON(data, {
         pointToLayer: function (feature, latlng) {
@@ -199,6 +198,8 @@ title: Schäfertal catchment
         },
         onEachFeature: onEachGauge
     }).addTo(map);
+	    )};
+
 
 
 </script>
