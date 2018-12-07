@@ -99,6 +99,7 @@ layout: default
     function resetHighlightGauge(e) {
       var layer = e.target;
       gaugesjson.resetStyle(e.target);
+      info.update();
       }
 
     function onEachGauge(feature, layer) {
