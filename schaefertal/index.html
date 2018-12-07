@@ -119,11 +119,26 @@ layout: default
 		    return L.circleMarker(latlng, geojsonMarkerOptions);
 		},
 		onEachFeature: onEachGauge
-    }).addTo(map);
+            }).addTo(map);
     });
 
-
-
+	
+    var geojsonCircleOptions = {
+        radius: 100,
+        color: "orange",
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.8
+    };
+    $.getJSON("schaefertal_crns.geojson", function(data) {
+	    gaugesjson = L.geoJSON(data, {
+		pointToLayer: function (feature, latlng) {
+		    return L.circle(latlng, geojsonMarkerOptions);
+		},
+		onEachFeature: onEachGauge
+            }).addTo(map);
+    });
+	
 </script>
 
 
