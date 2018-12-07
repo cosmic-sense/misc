@@ -160,6 +160,47 @@ title: Schäfertal catchment
 
 	legend.addTo(map);
 
+    var geojsonMarkerOptions = {
+        radius: 6,
+        fillColor: "grey",
+        color: "black",
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.8
+    };
+
+    function highlightGauge(e) {
+  		var layer = e.target;
+
+  		layer.setStyle({
+          weight: 4
+  		});
+  	}
+
+    function resetHighlightGauge(e) {
+      var layer = e.target;
+      gaugesjson.resetStyle(e.target);
+      }
+
+    function onEachGauge(feature, layer) {
+        layer.bindPopup('<p>Hello world!<br />This is a nice popup.</p>');
+        //layer.bindPopup("<iframe srcdoc='"+feature.properties.name+"' height='300px' width='300px'</iframe>")
+        layer.on({
+            mouseover: highlightGauge,
+            mouseout: resetHighlightGauge
+        });
+    }
+
+
+    $.getJSON("schaefertal_crns.geojson", function(data) {
+    var gaugesjson = L.geoJSON(data, {
+        pointToLayer: function (feature, latlng) {
+            return L.circleMarker(latlng, geojsonMarkerOptions);
+        },
+        onEachFeature: onEachGauge
+    }).addTo(map);
+
+
 </script>
 
 
