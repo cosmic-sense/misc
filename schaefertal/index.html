@@ -130,8 +130,10 @@ layout: default
         opacity: 1,
         fillOpacity: 0.8
     };
+	
+    var gaugescircles;
     $.getJSON("schaefertal_crns.geojson", function(data) {
-	    gaugesjson = L.geoJSON(data, {
+	    gaugescircles = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
 		    return L.circle(latlng, geojsonMarkerOptions);
 		},
