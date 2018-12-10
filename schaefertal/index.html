@@ -44,7 +44,7 @@ layout: default
 <script type="text/javascript">
 	
   var map = L.map('map',
-                  {center: [51.65182, 11.041],
+                  {center: [51.652, 11.041],
                    zoom: 14,
                    layers: [],
                    worldCopyJump: false,
@@ -78,6 +78,18 @@ layout: default
 
 	info.addTo(map);
 
+    var myStyle = {
+    	"color": "#ff7800",
+    	"weight": 4,
+    	"opacity": 0.65
+    };
+    var catchjson;
+    $.getJSON("schaefertal_catchment.geojson", function(data) {
+	    catchjson = L.geoJSON(data, {
+		style: myStyle
+		}).addTo(map);
+    });
+	
     var geojsonMarkerOptions = {
         radius: 4,
         fillColor: "orange",
@@ -139,18 +151,7 @@ layout: default
 		},
             }).addTo(map);
     });
-	
-    var myStyle = {
-    	"color": "#ff7800",
-    	"weight": 5,
-    	"opacity": 0.65
-    };
-    var catchjson;
-    $.getJSON("schaefertal_catchment.geojson", function(data) {
-	    catchjson = L.geoJSON(data, {
-		style: myStyle
-		}).addTo(map);
-    });
+
 	
 </script>
 
