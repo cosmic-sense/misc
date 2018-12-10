@@ -38,7 +38,7 @@ layout: default
   border-radius: 50%;
   width: 10px;
   height: 10px;
-  margin-top: 8px;
+  margin-top: 5px;
 }
 	</style>
 </head>
@@ -100,7 +100,7 @@ layout: default
 	
     var geojsonMarkerOptions = {
         radius: 5,
-        fillColor: "orange",
+        fillColor: "ff7800",
         color: "black",
         weight: 1,
         opacity: 1,
@@ -161,11 +161,11 @@ layout: default
     });
 	
 function getColor(d) {
-        return d === 'CRNS (installed)'  ? "orange" :
+        return d === 'CRNS (installed)'  ? "ff7800" :
                d === 'CRNS (planned)'  ? "blue" :
                d === 'FDR (installed)' ? "#4daf4a" :
                d === 'SoilNet (installed)' ? "#984ea3" :
-                            "#ff7f00";
+                            "grey";
     }
 
     function style(feature) {
