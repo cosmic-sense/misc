@@ -44,7 +44,7 @@ layout: default
 <script type="text/javascript">
 	
   var map = L.map('map',
-                  {center: [51.655, 11.048],
+                  {center: [51.655, 11.05],
                    zoom: 14,
                    layers: [],
                    worldCopyJump: false,
@@ -172,7 +172,7 @@ function getColor(d) {
         };
     }
 	
-var legend = L.control({position: 'bottomleft'});
+var legend = L.control({position: 'bottomright'});
     legend.onAdd = function (map) {
 
     var div = L.DomUtil.create('div', 'info legend');
@@ -181,10 +181,13 @@ var legend = L.control({position: 'bottomleft'});
 
     for (var i = 0; i < categories.length; i++) {
 
-            div.innerHTML += 
-            labels.push(
-                '<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
-            (categories[i] ? categories[i] : '+'));
+//            div.innerHTML += 
+//            labels.push(
+//                '<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
+//            (categories[i] ? categories[i] : '+'));
+	    div.innerHTML +=
+		'<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
+		 (categories[i] ? categories[i] + '<br>' : '+');
 
         }
         div.innerHTML = labels.join('<br>');
