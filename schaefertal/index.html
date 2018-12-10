@@ -152,6 +152,26 @@ layout: default
             }).addTo(map);
     });
 	
+function getColor(d) {
+        return d === 'Road Surface'  ? "#de2d26" :
+               d === 'Signage'  ? "#377eb8" :
+               d === 'Line Markings' ? "#4daf4a" :
+               d === 'Roadside Hazards' ? "#984ea3" :
+                            "#ff7f00";
+    }
+
+    function style(feature) {
+        return {
+            weight: 1.5,
+            opacity: 1,
+            fillOpacity: 1,
+            radius: 6,
+            fillColor: getColor(feature.properties.TypeOfIssue),
+            color: "grey"
+
+        };
+    }
+	
 var legend = L.control({position: 'bottomleft'});
     legend.onAdd = function (map) {
 
