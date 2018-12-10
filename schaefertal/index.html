@@ -99,7 +99,7 @@ layout: default
     });
 	
     var geojsonMarkerOptions = {
-        radius: 4,
+        radius: 5,
         fillColor: "orange",
         color: "black",
         weight: 1,
@@ -161,10 +161,10 @@ layout: default
     });
 	
 function getColor(d) {
-        return d === 'Road Surface'  ? "#de2d26" :
-               d === 'Signage'  ? "#377eb8" :
-               d === 'Line Markings' ? "#4daf4a" :
-               d === 'Roadside Hazards' ? "#984ea3" :
+        return d === 'CRNS (installed)'  ? "orange" :
+               d === 'CRNS (planned)'  ? "blue" :
+               d === 'FDR (installed)' ? "#4daf4a" :
+               d === 'SoilNet (installed)' ? "#984ea3" :
                             "#ff7f00";
     }
 
@@ -185,7 +185,7 @@ var legend = L.control({position: 'bottomright'});
 
     var div = L.DomUtil.create('div', 'info legend');
     labels = ['<strong>Categories</strong>'],
-    categories = ['Road Surface','Signage','Line Markings','Roadside Hazards','Other'];
+    categories = ['CRNS (installed)','CRNS (planned)','FDR (installed)','SoilNet (installed)','Other'];
 
     for (var i = 0; i < categories.length; i++) {
 
