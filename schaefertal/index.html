@@ -138,7 +138,7 @@ layout: default
     $.getJSON("schaefertal_crns.geojson", function(data) {
 	    gaugesjson = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
-		    return L.circleMarker(latlng, pointstyler);
+		    return L.circleMarker(latlng, pointstyler(feature));
 		},
 		onEachFeature: onEachGauge
             }).addTo(map);
