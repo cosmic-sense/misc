@@ -1,11 +1,17 @@
-{"type": "FeatureCollection", "name": "CRNS Schaefertal", "crs": {"type": "name", "properties": {"name": "urn:ogc:def:crs:OGC:1.3:CRS84"}}, "features": [
-  {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.04868,51.6549]}, 
-   "properties": {"id": 1184, "status": "installed"}}, 
-  {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.052579,51.655094]}, 
-   "properties": {"id": 1183, "status": "installed"}}, 
-  {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.041,51.65182]}, 
-   "properties": {"id": 1182, "status": "installed"}},
-  {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.04318,51.65734]}, 
-   "properties": {"id": 1181, "status": "installed"}},
-  {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.04439,51.65442]}, 
-   "properties": {"id": 1181, "status": "planned"}}]}
+{
+"type": "FeatureCollection",
+"name": "CRNS Schaefertal",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": 9999, "status": "CRNS (planned)" }, "geometry": { "type": "Point", "coordinates": [ 11.044819162725824, 51.653623901912866 ] } },
+{ "type": "Feature", "properties": { "id": 9999, "status": "CRNS (planned)" }, "geometry": { "type": "Point", "coordinates": [ 11.036033396519663, 51.65295204920298 ] } },
+{ "type": "Feature", "properties": { "id": 9999, "status": "CRNS (planned)" }, "geometry": { "type": "Point", "coordinates": [ 11.025025348273118, 51.653158773113709 ] } },
+{ "type": "Feature", "properties": { "id": 9999, "status": "CRNS (planned)" }, "geometry": { "type": "Point", "coordinates": [ 11.029314869420832, 51.651660024760893 ] } },
+{ "type": "Feature", "properties": { "id": 9999, "status": "CRNS (planned)" }, "geometry": { "type": "Point", "coordinates": [ 11.038875850292245, 51.65579450297556 ] } },
+{ "type": "Feature", "properties": { "id": 1181, "status": "CRNS (installed)" }, "geometry": { "type": "Point", "coordinates": [ 11.04318, 51.65734 ] } },
+{ "type": "Feature", "properties": { "id": 1182, "status": "CRNS (installed)" }, "geometry": { "type": "Point", "coordinates": [ 11.041, 51.65182 ] } },
+{ "type": "Feature", "properties": { "id": 1183, "status": "CRNS (installed)" }, "geometry": { "type": "Point", "coordinates": [ 11.052579, 51.655094 ] } },
+{ "type": "Feature", "properties": { "id": 1184, "status": "CRNS (installed)" }, "geometry": { "type": "Point", "coordinates": [ 11.04868, 51.6549 ] } },
+{ "type": "Feature", "properties": { "id": 9999, "status": "CRNS (planned)" }, "geometry": { "type": "Point", "coordinates": [ 11.032312366126465, 51.655277693198727 ] } }
+]
+}
