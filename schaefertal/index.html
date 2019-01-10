@@ -90,6 +90,7 @@ layout: default
     	"weight": 4,
     	"opacity": 0.65
     };
+	
     var catchjson;
     $.getJSON("schaefertal_catchment.geojson", function(data) {
 	    catchjson = L.geoJSON(data, {
@@ -105,6 +106,8 @@ layout: default
         opacity: 1,
         fillOpacity: 0.8
     };
+ 
+    function pointstyler(feature) {return(geojsonMarkerOptions);}
 
     function highlightGauge(e) {
   		var layer = e.target;
@@ -135,7 +138,7 @@ layout: default
     $.getJSON("schaefertal_crns.geojson", function(data) {
 	    gaugesjson = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
-		    return L.circleMarker(latlng, geojsonMarkerOptions);
+		    return L.circleMarker(latlng, pointstyler);
 		},
 		onEachFeature: onEachGauge
             }).addTo(map);
@@ -149,6 +152,18 @@ layout: default
         opacity: 1,
         fill: false
     };
+	
+	function style(feature) {
+		return {
+			weight: 1,
+			opacity: 1,
+			color: '#666',
+			dashArray: '',
+			fillOpacity: 0.7,
+			fillColor: '#666')
+		};
+	}
+	
 	
     var gaugescircles;
     $.getJSON("schaefertal_crns.geojson", function(data) {
