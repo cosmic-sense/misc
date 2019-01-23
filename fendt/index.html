@@ -79,7 +79,7 @@ layout: default
 
 	info.update = function (props) {
 		this._div.innerHTML = '<h4>Available and planned sensor network</h4>' +  (props ?
-			'<b>' + props.id + '</b>'
+			'<b> ID: ' + props.Id + '</b>'
 			: 'Hover over a sensor');
 	};
 
@@ -95,6 +95,26 @@ layout: default
     $.getJSON("fendt_catchment.geojson", function(data) {
 	    catchjson = L.geoJSON(data, {
 		style: myStyle
+		}).addTo(map);
+    });
+
+		var ownersStyle = {
+    	"color": "red",
+    	"weight": 0.5,
+    	"fill": false
+    };
+
+		var owners1json;
+    $.getJSON("owners1.geojson", function(data) {
+	    catchjson = L.geoJSON(data, {
+		style: ownersStyle
+		}).addTo(map);
+    });
+
+		var owners2json;
+    $.getJSON("owners2.geojson", function(data) {
+	    catchjson = L.geoJSON(data, {
+		style: ownersStyle
 		}).addTo(map);
     });
 
@@ -170,18 +190,9 @@ layout: default
             }).addTo(map);
     });
 
-
-    var geojsonCircleOptions = {
-        radius: 200,
-        color: "orange",
-        weight: 1,
-        opacity: 1,
-        fill: false
-    };
-
 		function circlestyler(feature) {
 			return {
-				radius: 200,
+				radius: 150,
         color: getColor(feature.properties.status),
         weight: 1,
         opacity: 1,
