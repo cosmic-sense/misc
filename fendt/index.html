@@ -79,7 +79,20 @@ layout: default
 
 	info.update = function (props) {
 		this._div.innerHTML = '<h4>Available and planned sensor network</h4>' +  (props ?
-			'<b> ID: ' + props.Id + '</b>'
+		'<b> ID:</b> ' + props.Id + '<br>' +
+		'<b> Institution:</b> ' +props.inst    + '<br>'+
+		'<b> Logger ID:</b> ' +props.loggerid    + '<br>'+
+		'<b> Type:</b> '        +props.type  + '<br>'+
+		'<b> Bare counter:</b> '+props.bare  + '<br>'+
+		'<b> Battery:</b> '+props.battery  + '<br>'+
+		'<b> Solar panel:</b> '+props.solarpanel  + '<br>'+
+		'<b> Modem:</b> '+props.modem  + '<br>'+
+		'<b> Mast:</b> '+props.mast  + '<br>'+
+		'<b> Base / foundation:</b> '+props.base  + '<br>'+
+		'<b> Date of installation:</b> '+props.startdate  + '<br>'+
+		'<b> Date of deinstallation:</b> '+props.enddate  + '<br>'+
+		'<b> Planned location:</b> ' + props.lat0 + ', ' + props.lon0 + '<br>'+
+		'<b> Final location:</b> ' + props.lat1 + ', ' + props.lon1 + '<br>'
 			: 'Hover over a sensor');
 	};
 
