@@ -54,6 +54,7 @@ If applicable: `[stationid]_[variable].[extension]`
 | spatial vector data | Shapefile (.shp) or geojson | ... |
 
    
+
 ### Spatial reference
 
 WGS-84 (EPSG code: 4326)
@@ -78,6 +79,7 @@ For any time series, metadata have to specify whether the data represents instan
 | neutron counts | counts / interval | timestamp denotes end of interval |
 
    
+
 ## Meta data
 If you are wondering which metadata to provide, let only one question guide you: **Will others, on the basis of that metadata, be able to use my data?** The set of metadata we suggest in the following is far from exhaustive and will certainly not cover every use case. Feel free to enhance that minimum set by any documentation you consider helpful.
 For every file (or folder, if applicable), a minimum information on meta data needs to be specified. The selection has loosely been inspired by the DCMI (http://www.dublincore.org/documents/dces/), seeking a compromise between completeness and effort.
