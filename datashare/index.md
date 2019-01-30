@@ -39,7 +39,9 @@ The additional folder `docs` contains further technical documents; the folder `m
 
 ## Conventions
 
-For ease of use, we recommend the following standards for exchanging scientific data:
+As pointed out above, you can upload to `inbox` without the need to follow conventions. In that case, still remember to specify the [minimal set of metadata](#Metadata).
+
+For the `homogenised` directory, though, we aim for the following conventions (*subject to discussion!!*):
 
 ### File names
 If applicable: `[stationid]_[variable].[extension]`
