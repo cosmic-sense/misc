@@ -39,7 +39,7 @@ The additional folder `docs` contains further technical documents; the folder `m
 
 ## Conventions
 
-As pointed out above, you can upload to `inbox` without the need to follow conventions. In that case, still remember to specify the [minimal set of metadata](#Metadata).
+As pointed out above, you can upload to `inbox` without the need to follow conventions. In that case, still remember to specify the [minimal set of metadata](#Meta-data).
 
 For the `homogenised` directory, though, we aim for the following conventions (*subject to discussion!!*):
 
