@@ -11,7 +11,7 @@ Within CosmicSense, efficient data exchange a) facilitates cooperation, b) enabl
 
 This document is an attempt to suggest conventions for a file-based data exchange. It seeks a compromise between reasonable effort for the data provider and re-usability for the data user.
 
-Feel free to discuss the details, e.g. by adding comments (`Ctrl+Alt+M`).
+Feel free to discuss the details, e.g. by [raising an issue](https://github.com/cosmic-sense/misc/issues).
 
 ## Access the share space
 
