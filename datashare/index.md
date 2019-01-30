@@ -48,7 +48,7 @@ If applicable: `[stationid]_[variable].[extension]`
 
 | **Data type** | **Format (extension)** | **Details** |
 | :------------ | :--------------------- | :---------- |
-| time series, tables | csv-like (.txt) | ... |
+| time series, tables | csv-like (.txt) | tab-delimited, "." as decimal sep, "NA" for no data |
 | static grids   | GeoTIFF | ... |
 | space-time grids | to be specified (e.g. NetCDF acc. to CF-Conventions) | ... |
 | spatial vector data | Shapefile (.shp) or geojson | ... |
