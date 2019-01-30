@@ -13,13 +13,13 @@ This document is an attempt to suggest conventions for a file-based data exchang
 
 Feel free to discuss the details, e.g. by [raising an issue](https://github.com/cosmic-sense/misc/issues).
 
-## Access the share space
+## Access the shared space
 
 We use the EUDAT / European Open Science Cloud (EOSC) [B2DROP](https://b2drop.eudat.eu) service for data sharing. There, we created a directory `cosmicsense` which will hold the shared data. You can access the directory in one of the following ways:
 
 - Use the **web interface** via this link share: https://b2drop.eudat.eu/s/YsfPDGkrNCRNH5W (password has been send to you)
 
-- **Log into the EUDAT system** (*preferred*). Send us your user name, so we can share the directory with you. That way, you will be able to add the directory to your local file system via [WebDAV](https://eudat.eu/services/userdoc/b2drop#UserDocumentation-B2DROPUsage-WebDavclient). **How to log in?** You can either use your institutional account (preferred, but does not always work) or you can register a new account at https://b2access.eudat.eu.
+- **Log into the EUDAT system** (*preferred*). Send us your user name, so we can share the directory with you. That way, you will be able to add the directory to your local file system via [WebDAV](https://eudat.eu/services/userdoc/b2drop#UserDocumentation-B2DROPUsage-WebDavclient). **How to log in?** You can either use your institutional / Github / ORCID account (preferred, but does not always work) or you can register a new account at https://b2access.eudat.eu.
 
 ## Directory structure and concept
 
@@ -62,9 +62,9 @@ If applicable: `[stationid]_[variable].[extension]`
 WGS-84 (EPSG code: 4326)
 
 ### Temporal reference
-Specify date / time according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) in UTC (example: `2019-01-23` for date, `2019-01-23T06:42:14Z` for datetime)
+Specify date / time according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) in UTC (i.e. UTC+1 (standard winter time) minus 1 hour; example: `2019-01-23` for date, `2019-01-23T06:42:14Z` for datetime)
 
-For any time series, metadata have to specify whether the data represents instantaneous or time-integrated/averaged values, and, for the latter, the length of the interval, and whether the time stamp represents the start or the end of that interval.
+For any time series, [metadata](#Meta-data) have to specify whether the data represents instantaneous or time-integrated/averaged values, and, for the latter, the length of the interval, and whether the time stamp represents the start or the end of that interval.
 
 ### Variables and units
 
@@ -89,7 +89,7 @@ The set of metadata we suggest in the following is far from exhaustive and will 
 
 For every file (or folder, if applicable), a minimum information on meta data needs to be specified. The selection has loosely been inspired by the DCMI (http://www.dublincore.org/documents/dces/), seeking a compromise between completeness and effort.
 
-Please use the template `docs/meta_data_template.json`. Place the template into the same folder as the respective file and rename it to `[file_name]_meta.txt`. For multiple similar files in (possibly multiple) subdirectories, this file may also be placed in the parent folder, only. Please specify the information (if applicable), unless they are unambigiously specified otherwise (e.g by projection files for GIS data).
+Please use the template `docs/meta_data_template.json`. Place the template into the same folder as the respective file and rename it to `[file_name]_meta.json`. For multiple similar files in (possibly multiple) subdirectories, this file may also be placed in the parent folder, only. Please specify the information (if applicable), unless they are unambigiously specified otherwise (e.g by projection files for GIS data).
 
 ```
 {
