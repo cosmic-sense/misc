@@ -103,19 +103,19 @@ Please use the template `docs/meta_data_template.json`. Place the template into 
    },
    
    "SpaceTimeCoverage": {
-      "StartDate": "For timeseries, the start of the series in YYYY-MM-DD",
-      "EndDate": "For timeseries, the end of the series in YYYY-MM-DD",
-      "RegionName": "An informative name of the region, e.g. Schaefertal, Fendt, Germany, ...",
-      "BBox": "Optional, specification of spatial bounding box in lat/lon" 
+      "StartDate": "For timeseries: the start of the series in YYYY-MM-DD",
+      "EndDate": "For timeseries: the end of the series in YYYY-MM-DD",
+      "RegionName": "An informative name of the region: e.g. Schaefertal, Fendt, Germany, ...",
+      "BBox": "Optional: meaningful specification of spatial bounding box in lat/lon" 
    },
    
    "Source": {
-      "Name": "Optional, the name of the person who created the data",
-      "Institution": "Optional, the institution who created the data",
-      "LinkToOriginalSource": "Optional, link to the original data set or its documentation"
+      "Name": "Optional: the name of the person who created the data",
+      "Institution": "Optional: the institution who created the data",
+      "LinkToOriginalSource": "Optional: link to the original data set or its documentation"
    },
    
-   "Units": "Specification of physical units of the data, if applicable.",
+   "Units": "If applicable: specification of physical units of the data",
    
    "SpatialReferenceSystem": {
       "Name": "For geospatial data, a brief common name of the spatial reference system (SRS), e.g. WGS 84",
@@ -126,6 +126,8 @@ Please use the template `docs/meta_data_template.json`. Place the template into 
       "TimeZone": "For time series, standard time zone notation, e.g. UTC or UTC+x",
       "IntervalLength": "For time series, the length of the accumulation/averaging interval (in seconds); use 0 for instantaneous data such as FDR observations",
       "TimestampAtEndOfInterval": "For time series, specify (Truie/False) if timestamps refer to the end of the accumulation/averaging interval (as opposed to the beginning)."
-   }
+   },
+   
+   "Remarks": "Optional: add any further remarks or comments you consider important."
 }
 ```
