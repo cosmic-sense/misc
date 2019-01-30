@@ -118,15 +118,14 @@ Please use the template `docs/meta_data_template.json`. Place the template into 
    "Units": "Specification of physical units of the data, if applicable.",
    
    "SpatialReferenceSystem": {
-      "Name": "For geospatial data, a brief name of the spatial reference system (SRS), e.g. WGS 84",
+      "Name": "For geospatial data, a brief common name of the spatial reference system (SRS), e.g. WGS 84",
       "EPSG": "The EPSG code of the SRS, e.g. 4326 for WGS 84" 
    },
    
    "TemporalReferenceSystem": {
-      "Subject": "Temporal reference system, in case of time series or intermittent data. Specify time zone as 'UTC+x'; IntervalLength in seconds; in case of instantaneous observations set IntervalLength to 0.",
-      "TimeZone": "Standard time zone notation, e.g. UTC or UTC+x",
-      "IntervalLength": "For time series, the length of accumulation/averaging interval (in seconds), use 0 for instantaneous data such as FDR observations",
-      "TimeIsEndOfInterval": "For time series, specify if timestamps refer to the end of the accumulation/averaging interval."
+      "TimeZone": "For time series, standard time zone notation, e.g. UTC or UTC+x",
+      "IntervalLength": "For time series, the length of the accumulation/averaging interval (in seconds); use 0 for instantaneous data such as FDR observations",
+      "TimestampAtEndOfInterval": "For time series, specify (Truie/False) if timestamps refer to the end of the accumulation/averaging interval (as opposed to the beginning)."
    }
 }
 ```
