@@ -87,12 +87,9 @@ The set of metadata we suggest in the following is far from exhaustive and will 
 
 For every file (or folder, if applicable), a minimum information on meta data needs to be specified. The selection has loosely been inspired by the DCMI (http://www.dublincore.org/documents/dces/), seeking a compromise between completeness and effort.
 
-Please use the template `docs/meta_data_template.json`. Please provide all required information (if applicable), unless specified otherwise (e.g by projection files for GIS data):
+Please use the template `docs/meta_data_template.json`. Place the template into the same folder as the respective file and rename it to `[file_name]_meta.txt`. For multiple similar files in (possibly multiple) subdirectories, this file may also be placed in the parent folder, only. Please specify the information (if applicable), unless they are unambigiously specified otherwise (e.g by projection files for GIS data).
 
 ```
-# meta-data documentation file
-# place this template into the same folder as the respective file and rename it to [file_name]_meta.txt
-# for multiple similar files in (multiple) folders, this file may also be placed in the same (parent) folder.
 {
    "Provider": {
       "Subject": "Contact of the person that uploaded the data."
@@ -101,11 +98,11 @@ Please use the template `docs/meta_data_template.json`. Please provide all requi
       "Email": ""
    },
    "Coverage": {
-      "Subject": "Spatial and temporal coverage of the overall dataset; RegionName can e.g. be a site name such as 'Schaefertal' or 'Fendt'; BBox is a list of [left, right, bottom, top]"
+      "Subject": "Spatial and temporal coverage of the overall dataset; RegionName can e.g. be a site name such as 'Schaefertal' or 'Fendt'; BBox is a list of [lon left, lon right, lat bottom, lat top]"
       "StartTime": "YYYY-MM-DD",
       "EndTime": "YYYY-MM-DD",
       "RegionName": "",
-      "BBox": [] 
+      "BBox": [9999, 9999, 9999, 9999] 
    },
    "Source": {
       "Subject": "Source of the original data set."
@@ -118,23 +115,19 @@ Please use the template `docs/meta_data_template.json`. Please provide all requi
       "Description": ""
    },
    "Units": {
-      "Subject": "List of units used in the actual data, if any.",
-      "Units": ["", "", ...]
-   },
-   "Units": {
-      "Subject": "List of units used in the actual data, if any.",
+      "Subject": "List of units used in the actual data, if any. Can also be only one unit.",
       "Units": ["", "", ...]
    },
    "SpatialReference": {
-      "Subject": "Spatial reference system, in case of geospatial data, as short name and EPSG code as integer",
+      "Subject": "Spatial reference system, in case of geospatial data, specified as short name and EPSG code as integer",
       "Name": "",
-      "EPSG": integer 
+      "EPSG": 9999 
    }
    "TemporalReference": {
       "Subject": "Temporal reference system, in case of time series or intermittent data. Specify time zone as 'UTC+x'; IntervalLength in seconds; in case of instantaneous observations set IntervalLength to 0.",
-      "TimeZone": "",
-      "IntervalLength": integer,
-      "TimeIsEndOfInterval": True or False
+      "TimeZone": "UTC",
+      "IntervalLength": 9999,
+      "TimeIsEndOfInterval": True
    }
 }
 ```
