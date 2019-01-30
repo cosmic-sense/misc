@@ -93,43 +93,40 @@ Please use the template `docs/meta_data_template.json`. Place the template into 
 
 ```
 {
+   "Description": "Brief, but meaningful description, e.g. 'Rain gauge observations at Fendt site'",
+   
    "Provider": {
-      "Subject": "Contact of the person that uploaded the data."
-      "Name": "",
-      "Institution": "",
-      "Email": ""
+      "Name": "The name of the person who uploaded the data",
+      "Institution": "The name of his/her institution",
+      "Email": "His/her E-Mail address",
+      "Comment": "Optional, for further comments..." 
    },
-   "Coverage": {
-      "Subject": "Spatial and temporal coverage of the overall dataset; RegionName can e.g. be a site name such as 'Schaefertal' or 'Fendt'; BBox is a list of [lon left, lon right, lat bottom, lat top]"
-      "StartTime": "YYYY-MM-DD",
-      "EndTime": "YYYY-MM-DD",
-      "RegionName": "",
-      "BBox": [9999, 9999, 9999, 9999] 
+   
+   "SpaceTimeCoverage": {
+      "StartDate": "For timeseries, the start of the series in YYYY-MM-DD",
+      "EndDate": "For timeseries, the end of the series in YYYY-MM-DD",
+      "RegionName": "An informative name of the region, e.g. Schaefertal, Fendt, Germany, ...",
+      "BBox": "Optional, specification of spatial bounding box in lat/lon" 
    },
+   
    "Source": {
-      "Subject": "Source of the original data set."
-      "Name": "",
-      "Institution": "",
-      "LinkToOriginalSource": ""
+      "Name": "Optional, the name of the person who created the data",
+      "Institution": "Optional, the institution who created the data",
+      "LinkToOriginalSource": "Optional, link to the original data set or its documentation"
    },
-   "Description": {
-      "Subject": "Brief, but meaningful description of the data set, e.g. 'Precipitation time series collected in Wüstebach catchment'",
-      "Description": ""
+   
+   "Units": "Specification of physical units of the data, if applicable.",
+   
+   "SpatialReferenceSystem": {
+      "Name": "For geospatial data, a brief name of the spatial reference system (SRS), e.g. WGS 84",
+      "EPSG": "The EPSG code of the SRS, e.g. 4326 for WGS 84" 
    },
-   "Units": {
-      "Subject": "List of units used in the actual data, if any. Can also be only one unit.",
-      "Units": ["", "", ...]
-   },
-   "SpatialReference": {
-      "Subject": "Spatial reference system, in case of geospatial data, specified as short name and EPSG code as integer",
-      "Name": "",
-      "EPSG": 9999 
-   }
-   "TemporalReference": {
+   
+   "TemporalReferenceSystem": {
       "Subject": "Temporal reference system, in case of time series or intermittent data. Specify time zone as 'UTC+x'; IntervalLength in seconds; in case of instantaneous observations set IntervalLength to 0.",
-      "TimeZone": "UTC",
-      "IntervalLength": 9999,
-      "TimeIsEndOfInterval": True
+      "TimeZone": "Standard time zone notation, e.g. UTC or UTC+x",
+      "IntervalLength": "For time series, the length of accumulation/averaging interval (in seconds), use 0 for instantaneous data such as FDR observations",
+      "TimeIsEndOfInterval": "For time series, specify if timestamps refer to the end of the accumulation/averaging interval."
    }
 }
 ```
