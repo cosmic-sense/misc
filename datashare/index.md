@@ -81,7 +81,7 @@ For any time series, [metadata](#Meta-data) have to specify whether the data rep
 | neutron counts | counts / interval | timestamp denotes end of interval |
 
 <br>
-
+<a name="Meta-data"></a>
 ## Meta data
 If you are wondering which metadata to provide, let only one question guide you: **Will others, on the basis of that metadata, be able to use my data?**
 
@@ -124,10 +124,10 @@ Please use the template `docs/meta_data_template.json`. Place the template into 
    
    "TemporalReferenceSystem": {
       "TimeZone": "For time series, standard time zone notation, e.g. UTC or UTC+x",
-      "IntervalLength": "For time series, the length of the accumulation/averaging interval (in seconds); use 0 for instantaneous data such as FDR observations",
-      "TimestampAtEndOfInterval": "For time series, specify (Truie/False) if timestamps refer to the end of the accumulation/averaging interval (as opposed to the beginning)."
+      "IntervalLength": "For time series, the length of the accumulation/averaging interval (in seconds); use 0 for instantaneous data such as manual FDR observations",
+      "TimestampAtEndOfInterval": "For time series, "True": timestamps refer to the end of the accumulation/averaging interval; "False": timestamps refer to the beginning of the accumulation/averaging interval."
    },
    
-   "Remarks": "Optional: add any further remarks or comments you consider important."
+   "Remarks": "Optional: add any further remarks or comments you consider important (e.g. references to further accompanying explanatory files)."
 }
 ```
