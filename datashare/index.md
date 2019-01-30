@@ -47,8 +47,8 @@ If applicable: `[stationid]_[variable].[extension]`
 ### File formats
 | Data type      | Format (extension) | Details |
 | -------------- | ------------------ | ------- |
-| time series and tabular data | ASCII / csv-like (.txt)       | tab-limited, “.” as decimal separator, “NA” denoting no data, first line contains field names, first column contains date in ISO-format (see temporal reference) |
-| static grids   | GeoTIFF        |
+| time series and tabular data | ASCII / csv-like (.txt) | tab-limited, “.” as decimal separator, “NA” denoting no data, first line contains field names, first column contains date in ISO-format (see temporal reference) |
+| static grids   | GeoTIFF            | ... |
 | space-time grids | to be specified (e.g. NetCDF acc. to CF-Conventions) | ... |
 | spatial vector data | Shapefile (.shp) or geojson | ... |
 
