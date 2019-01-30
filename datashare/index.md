@@ -53,7 +53,7 @@ If applicable: `[stationid]_[variable].[extension]`
 | space-time grids | to be specified (e.g. NetCDF acc. to CF-Conventions) | ... |
 | spatial vector data | Shapefile (.shp) or geojson | ... |
 
-   
+<br>
 
 ### Spatial reference
 
@@ -78,32 +78,63 @@ For any time series, metadata have to specify whether the data represents instan
 | ground water level | m a.s.l. | ... |
 | neutron counts | counts / interval | timestamp denotes end of interval |
 
-   
+<br>
 
 ## Meta data
-If you are wondering which metadata to provide, let only one question guide you: **Will others, on the basis of that metadata, be able to use my data?** The set of metadata we suggest in the following is far from exhaustive and will certainly not cover every use case. Feel free to enhance that minimum set by any documentation you consider helpful.
+If you are wondering which metadata to provide, let only one question guide you: **Will others, on the basis of that metadata, be able to use my data?**
+
+The set of metadata we suggest in the following is far from exhaustive and will certainly not cover every use case. Feel free to enhance that minimum set by any documentation you consider helpful.
+
 For every file (or folder, if applicable), a minimum information on meta data needs to be specified. The selection has loosely been inspired by the DCMI (http://www.dublincore.org/documents/dces/), seeking a compromise between completeness and effort.
 
-Please use the template `docs/meta_data_template.txt`. Please provide all required information (if applicable), unless specified otherwise (e.g by projection files for GIS data):
+Please use the template `docs/meta_data_template.json`. Please provide all required information (if applicable), unless specified otherwise (e.g by projection files for GIS data):
 
 ```
 # meta-data documentation file
 # place this template into the same folder as the respective file and rename it to [file_name]_meta.txt
 # for multiple similar files in (multiple) folders, this file may also be placed in the same (parent) folder.
-
-contributor: [name and email-adress of uploading person]
-
-coverage: [short description of spatial and/or temporal coverage of file, e.g. "Schäfertal, 2010-2016"]
-
-creator: [original author of data]
-
-description: [brief description of content, e.g. "Precipitation time series collected in Wüstebach catchment"]
-
-units: [units used in data files, if any]
-
-spatial_reference: [spatial projection code by EPSG code, unless given by projection file]
-
-temporal_reference: [time zone used, eg. "UTC+1", "CEST"]
-
-timestamp_representation: [for time series only: does the timestamp specify the beginning or end of the measurement? [beginning/end]] 
+{
+   "Provider": {
+      "Subject": "Contact of the person that uploaded the data."
+      "Name": "",
+      "Institution": "",
+      "Email": ""
+   },
+   "Coverage": {
+      "Subject": "Spatial and temporal coverage of the overall dataset; RegionName can e.g. be a site name such as 'Schaefertal' or 'Fendt'; BBox is a list of [left, right, bottom, top]"
+      "StartTime": "YYYY-MM-DD",
+      "EndTime": "YYYY-MM-DD",
+      "RegionName": "",
+      "BBox": [] 
+   },
+   "Source": {
+      "Subject": "Source of the original data set."
+      "Name": "",
+      "Institution": "",
+      "LinkToOriginalSource": ""
+   },
+   "Description": {
+      "Subject": "Brief, but meaningful description of the data set, e.g. 'Precipitation time series collected in Wüstebach catchment'",
+      "Description": ""
+   },
+   "Units": {
+      "Subject": "List of units used in the actual data, if any.",
+      "Units": ["", "", ...]
+   },
+   "Units": {
+      "Subject": "List of units used in the actual data, if any.",
+      "Units": ["", "", ...]
+   },
+   "SpatialReference": {
+      "Subject": "Spatial reference system, in case of geospatial data, as short name and EPSG code as integer",
+      "Name": "",
+      "EPSG": integer 
+   }
+   "TemporalReference": {
+      "Subject": "Temporal reference system, in case of time series or intermittent data. Specify time zone as 'UTC+x'; IntervalLength in seconds; in case of instantaneous observations set IntervalLength to 0.",
+      "TimeZone": "",
+      "IntervalLength": integer,
+      "TimeIsEndOfInterval": True or False
+   }
+}
 ```
