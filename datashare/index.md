@@ -63,41 +63,18 @@ Specify date / time according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_86
 For any time series, metadata have to specify whether the data represents instantaneous or time-integrated/averaged values, and, for the latter, the length of the interval, and whether the time stamp represents the start or the end of that interval.
 
 ### Variables and units
-Variable
-Unit
-remarks
-temperature
-°C
 
-
-soil moisture
-[m3/m3]
-volumetric water content
-lat, lon
-dd.dddd°
-decimal degrees
-barometric pressure
-mbar
-
-
-relative humidity
-[-]
-
-
-precipitation
-mm
-timestamp denotes end of interval
-streamflow
-m³/s
-
-
-ground water level
-m a.s.l.
-
-
-neutron counts
-counts / interval
-timestamp denotes end of interval
+|   Variable  | Unit | Remarks |
+| ----------- | ---- | ------- |
+| temperature | degC | ... |
+| soil moisture | [m3/m3] | volumetric water content |
+| lat, lon | decimal degrees | ... |
+| barometric pressure | mbar | ... |
+| relative humidity | [-] | ... |
+| precipitation | mm | timestamp denotes end of interval |
+| streamflow | m³/s | ... |
+| ground water level | m a.s.l. | ... |
+| neutron counts | counts / interval | timestamp denotes end of interval |
 
 
 ## Meta data
