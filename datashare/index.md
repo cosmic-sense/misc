@@ -23,9 +23,9 @@ We use the EUDAT / European Open Science Cloud (EOSC) [B2DROP](https://b2drop.eu
 
 ## Directory structure and concept
 
-The data exchange is based on a shared file system (“cloud”). In this cloud, two data directories exist - `inbox` and `homogenized`. 
+The data exchange is based on a shared file system (“cloud”). In this cloud, two data directories exist - `inbox` and `homogenised`. 
 
-`inbox` is the prime destination for any data upload. If the data comply to the conventions, or once they have been adjusted accordingly, they will be moved to `homogenized`. *Please do not upload any data directly to homogenized unless you are certain that your data comply!*
+`inbox` is the prime destination for any data upload. If the data comply to the conventions, or once they have been adjusted accordingly, they will be moved to `homogenised`. *Please do not upload any data directly to* `homogenised` *unless you are certain that your data comply!*
 
 Within both folders, the data are organised hierarchically:
 
