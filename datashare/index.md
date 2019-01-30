@@ -17,7 +17,7 @@ Feel free to discuss the details, e.g. by [raising an issue](https://github.com/
 
 We use the EUDAT / European Open Science Cloud (EOSC) [B2DROP](https://b2drop.eudat.eu) service for data sharing. There, we created a directory `cosmicsense` which will hold the shared data. You can access the directory in one of the following ways:
 
-- Use the **web interface** via this link share: https://b2drop.eudat.eu/s/YsfPDGkrNCRNH5W (password has been send to you)
+- Use the **web interface** via this [link] (https://b2drop.eudat.eu/s/YsfPDGkrNCRNH5W) (password has been send to you)
 
 - **Log into the EUDAT system** (*preferred*). Send us your user name, so we can share the directory with you. That way, you will be able to add the directory to your local file system via [WebDAV](https://eudat.eu/services/userdoc/b2drop#UserDocumentation-B2DROPUsage-WebDavclient). **How to log in?** You can either use your institutional / Github / ORCID account (preferred, but does not always work) or you can register a new account at https://b2access.eudat.eu.
 
@@ -87,7 +87,7 @@ If you are wondering which metadata to provide, let only one question guide you:
 
 The set of metadata we suggest in the following is far from exhaustive and will certainly not cover every use case. Feel free to enhance that minimum set by any documentation you consider helpful.
 
-For every file (or folder, if applicable), a minimum information on meta data needs to be specified. The selection has loosely been inspired by the DCMI (http://www.dublincore.org/documents/dces/), seeking a compromise between completeness and effort.
+For every file (or folder, if applicable), a minimum information on meta data needs to be specified. The selection has loosely been inspired by the [DCMI] (http://www.dublincore.org/documents/dces/), seeking a compromise between completeness and effort.
 
 Please use the template `docs/meta_data_template.json`. Place the template into the same folder as the respective file and rename it to `[file_name]_meta.json`. For multiple similar files in (possibly multiple) subdirectories, this file may also be placed in the parent folder, only. Please specify the information (if applicable), unless they are unambigiously specified otherwise (e.g by projection files for GIS data).
 
