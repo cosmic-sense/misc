@@ -47,7 +47,6 @@ If applicable: `[stationid]_[variable].[extension]`
 ### File formats
 | Data type      | Format (extension) | Details |
 | -------------- | ------------------ | ------- |
-
 | time series, tables | csv-like (.txt) | ... |
 | static grids   | GeoTIFF | ... |
 | space-time grids | to be specified (e.g. NetCDF acc. to CF-Conventions) | ... |
@@ -65,9 +64,8 @@ For any time series, metadata have to specify whether the data represents instan
 
 ### Variables and units
 
-|   Variable  | Unit | Remarks |
+|   **Variable**  | **Unit** | **Remarks** |
 | ----------- | ---- | ------- |
-
 | temperature | degC | ... |
 | soil moisture | [m3/m3] | volumetric water content |
 | lat, lon | decimal degrees | ... |
