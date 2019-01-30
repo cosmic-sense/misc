@@ -45,8 +45,9 @@ For ease of use, we recommend the following standards for exchanging scientific 
 If applicable: `[stationid]_[variable].[extension]`
 
 ### File formats
-| Data type      | Format (extension) | Details |
-| -------------- | ------------------ | ------- |
+
+| **Data type** | **Format (extension)** | **Details** |
+| --------- | ------------------ | ------- |
 | time series, tables | csv-like (.txt) | ... |
 | static grids   | GeoTIFF | ... |
 | space-time grids | to be specified (e.g. NetCDF acc. to CF-Conventions) | ... |
