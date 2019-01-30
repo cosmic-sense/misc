@@ -1,6 +1,6 @@
 ---
 layout: default
-title: cosmic-sites
+title: cosmic pages
 ---
 
 # Data Sharing in Cosmic Sense
