@@ -131,3 +131,18 @@ Please use the template `docs/meta_data_template.json`. Place the template into 
    "Remarks": "Optional: add any further remarks or comments you consider important (e.g. references to further accompanying explanatory files)."
 }
 ```
+
+<a name="qc"></a>
+## Quality control and commenting
+
+The data uploaded to `inbox` can be evaluated / commented on / tagged by using [b2note](https://eudat.eu/catalogue/B2NOTE) functionality: 
+In the [web interface](https://b2drop.eudat.eu), click on the "shared" icon right of a file or folder. In the panel on the right, you can now assign tags or add comments.
+
+To facilitate searching, automatic retrieval of comments and generation of overviews, a set of tags should be used. These are listed in `docs/qc_tags.txt`:
+```
+"missing"	followed by further explanation in the comments, lists missing part of data or meta-data thereof
+"corrupted"	add file name(s) that cannot be read to comments
+"unclear"	add issue that needs to be clarified to comments
+"ok"	indicating that the data are formally ready to be transferred to "homogenized". Tags indicating problems that have been solved by then should be removed.
+"homogenized"	indicating that (a homogenized version of) the data have been copied to "homogenized".
+```
