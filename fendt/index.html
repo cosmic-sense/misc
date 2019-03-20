@@ -41,12 +41,20 @@ title: cosmic pages
   height: 10px;
   margin-top: 5px;
 }
+.legend .smallcircle {
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  margin-top: 5px;
+	margin-left: 2px;
+}
 	</style>
 </head>
 <body>
 
-<p> Please note that the "planned" locations of CRNS sensors are still arbitrarily set for illustrative purposes only. 
-	Planning of CRNS locations is an ongoing process. Once locations are fixed, the maps will be updated accordingly. </p>
+<p> Except for the KIT location in the North-West, no probes have been installed, yet.
+	The Easternmost location is not yet confirmed. Attributes and locations will be
+updated before the beginning of the JFC.</p>
 
 <div id='map'></div>
 
@@ -105,13 +113,6 @@ title: cosmic pages
     	"opacity": 0.65
     };
 
-    var catchjson;
-    $.getJSON("fendt_catchment.geojson", function(data) {
-	    catchjson = L.geoJSON(data, {
-		style: myStyle
-		}).addTo(map);
-    });
-
 		var ownersStyle = {
     	"color": "red",
     	"weight": 0.5,
@@ -125,16 +126,24 @@ title: cosmic pages
     	"fill": "red",
     };
 
+		var catchjson;
+    $.getJSON("fendt_catchment.geojson", function(data) {
+	    json = L.geoJSON(data, {
+		style: myStyle
+		}).addTo(map);
+    });
+
+
 		var owners1json;
     $.getJSON("owners1.geojson", function(data) {
-	    catchjson = L.geoJSON(data, {
+	    json = L.geoJSON(data, {
 		style: ownersStyle
 		}).addTo(map);
     });
 
 		var owners2json;
     $.getJSON("owners2.geojson", function(data) {
-	    catchjson = L.geoJSON(data, {
+	    json = L.geoJSON(data, {
 		style: ownersStyle
 		}).addTo(map);
     });
@@ -146,24 +155,31 @@ title: cosmic pages
 		}).addTo(map);
     });
 
-
-    var geojsonMarkerOptions = {
-        radius: 5,
-        fillColor: "#ff7800",
-        color: "black",
-        weight: 1,
-        opacity: 1,
-        fillOpacity: 0.8
+		var soilnetStyle = {
+			radius: 3,
+			fillColor: "black",
+			color: false,
+			weight: 1,
+			opacity: 1,
+			fillOpacity: 0.8
     };
+
+    var soilnetjson;
+		$.getJSON("soilnet.geojson", function(data) {
+	    soilnetjson = L.geoJSON(data, {
+         pointToLayer: function (feature, latlng) {
+		        return L.circleMarker(latlng, soilnetStyle);
+					}}).addTo(map);
+			    });
 
 		function pointstyler(feature) {
 			return {
-	        radius: 8,
+	        radius: 7,
 	        fillColor: getColor(feature.properties.Inst),
-	        color: "black",
+	        color: false,
 	        weight: 1,
 	        opacity: 1,
-	        fillOpacity: 0.8
+	        fillOpacity: 1
 	    };
 		}
 
@@ -274,6 +290,8 @@ var legend = L.control({position: 'bottomright'});
 //		 (categories[i] ? categories[i] + '<br>' : '+');
 
         }
+				labels.push(
+						'<i class="smallcircle" style="background:black" ></i> SoilNet');
         div.innerHTML = labels.join('<br>');
     return div;
     };
