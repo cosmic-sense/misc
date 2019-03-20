@@ -79,21 +79,18 @@ title: cosmic-sites
 	};
 
 	info.update = function (props) {
-		this._div.innerHTML = '<h4>Available and planned sensor network</h4>' +  (props ?
+		this._div.innerHTML = '<h4>Massive Coverage CRNS Network</h4>' +  (props ?
 		'<b> ID:</b> ' + props.Id + '<br>' +
-		'<b> Institution:</b> ' +props.inst    + '<br>'+
+		'<b> Institution:</b> ' +props.Inst    + '<br>'+
 		'<b> Logger ID:</b> ' +props.loggerid    + '<br>'+
-		'<b> Type:</b> '        +props.type  + '<br>'+
-		'<b> Bare counter:</b> '+props.bare  + '<br>'+
-		'<b> Battery:</b> '+props.battery  + '<br>'+
-		'<b> Solar panel:</b> '+props.solarpanel  + '<br>'+
-		'<b> Modem:</b> '+props.modem  + '<br>'+
-		'<b> Mast:</b> '+props.mast  + '<br>'+
-		'<b> Base / foundation:</b> '+props.base  + '<br>'+
-		'<b> Date of installation:</b> '+props.startdate  + '<br>'+
-		'<b> Date of deinstallation:</b> '+props.enddate  + '<br>'+
-		'<b> Planned location:</b> ' + props.lat0 + ', ' + props.lon0 + '<br>'+
-		'<b> Final location:</b> ' + props.lat1 + ', ' + props.lon1 + '<br>'
+		'<b> Type:</b> '        +props.Type  + '<br>'+
+		'<b> Bare counter:</b> '+props.Bare  + '<br>'+
+		'<b> Modem:</b> '+props.Modem  + '<br>'+
+		'<b> Planned location:</b> ' + props.lat0 + ', ' + props.lon0 + '<br>' +
+		'<b> Date of installation:</b> '+ props.startdate  + '<br>'+
+		'<b> Comments:</b> '+ props.Comment  + '<br>'
+//		'<b> Date of deinstallation:</b> '+props.enddate  + '<br>'+
+//		'<b> Actual location:</b> ' + props.lat1 + ', ' + props.lon1 + '<br>'
 			: 'Hover over a sensor');
 	};
 
@@ -115,7 +112,14 @@ title: cosmic-sites
 		var ownersStyle = {
     	"color": "red",
     	"weight": 0.5,
-    	"fill": false
+    	"fill": false,
+			"opacity": 0.65
+    };
+
+		var nogoStyle = {
+    	"color": "red",
+    	"weight": 0,
+    	"fill": "red",
     };
 
 		var owners1json;
@@ -132,6 +136,14 @@ title: cosmic-sites
 		}).addTo(map);
     });
 
+		var nogo2json;
+    $.getJSON("nogo.geojson", function(data) {
+	    json = L.geoJSON(data, {
+		style: nogoStyle
+		}).addTo(map);
+    });
+
+
     var geojsonMarkerOptions = {
         radius: 5,
         fillColor: "#ff7800",
@@ -143,8 +155,8 @@ title: cosmic-sites
 
 		function pointstyler(feature) {
 			return {
-	        radius: 5,
-	        fillColor: getColor(feature.properties.status),
+	        radius: 8,
+	        fillColor: getColor(feature.properties.Inst),
 	        color: "black",
 	        weight: 1,
 	        opacity: 1,
@@ -173,19 +185,15 @@ title: cosmic-sites
         //layer.bindPopup('<p>Hello world!<br />This is a nice popup.</p>');
         layer.bindPopup("<iframe srcdoc='"+
            "ID: "          +feature.properties.Id    + "<br>"+
-					 "Institution: " +feature.properties.inst    + "<br>"+
-					 "Logger ID: " +feature.properties.loggerid    + "<br>"+
-					 "Type: "        +feature.properties.type  + "<br>"+
-					 "Bare counter: "+feature.properties.bare  + "<br>"+
-					 "Battery: "+feature.properties.battery  + "<br>"+
-					 "Solar panel: "+feature.properties.solarpanel  + "<br>"+
-					 "Modem: "+feature.properties.modem  + "<br>"+
-					 "Mast: "+feature.properties.mast  + "<br>"+
-					 "Base / foundation: "+feature.properties.base  + "<br>"+
+					 "Institution: " +feature.properties.Inst    + "<br>"+
+					 "Type: "        +feature.properties.Type  + "<br>"+
+					 "Bare counter: "+feature.properties.Bare  + "<br>"+
+					 "Modem: "+feature.properties.Modem  + "<br>"+
 					 "Date of installation: "+feature.properties.startdate  + "<br>"+
-					 "Date of deinstallation: "+feature.properties.enddate  + "<br>"+
+//					 "Date of deinstallation: "+feature.properties.enddate  + "<br>"+
 					 "Planned location: " + feature.properties.lat0 + ", " + feature.properties.lon0 + "<br>"+
-					 "Final location: " + feature.properties.lat1 + ", " + feature.properties.lon1 +
+//					 "Actual location: " + feature.properties.lat1 + ", " + feature.properties.lon1 +
+					 "Comments: " + feature.properties.Comments + "<br>"+
 					 "' height='300px' width='300px'</iframe>")
         layer.on({
             mouseover: highlightGauge,
@@ -195,7 +203,7 @@ title: cosmic-sites
 
     var gaugesjson;
 
-    $.getJSON("fendt_crns.geojson", function(data) {
+    $.getJSON("fendt_crns2.geojson", function(data) {
 	    gaugesjson = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
 		    return L.circleMarker(latlng, pointstyler(feature));
@@ -206,8 +214,8 @@ title: cosmic-sites
 
 		function circlestyler(feature) {
 			return {
-				radius: 150,
-        color: getColor(feature.properties.status),
+				radius: 100,
+        color: "white",//getColor(feature.properties.Inst),
         weight: 1,
         opacity: 1,
         fill: false
@@ -215,7 +223,7 @@ title: cosmic-sites
 		}
 
     var gaugescircles;
-    $.getJSON("fendt_crns.geojson", function(data) {
+    $.getJSON("fendt_crns2.geojson", function(data) {
 	    gaugescircles = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
 		    return L.circle(latlng, circlestyler(feature));
@@ -224,10 +232,12 @@ title: cosmic-sites
     });
 
 function getColor(d) {
-        return d === 'CRNS (installed)'  ? "#ff7800" :
-               d === 'CRNS (planned)'  ? "#33ffbd" :
-               d === 'FDR' ? "#4daf4a" :
-               d === 'SoilNet' ? "#984ea3" :
+        return d === 'FZJ' ? "#c0392b" :
+               d === 'GFZ' ? "#9b59b6" :
+               d === 'HZM' ? "#2980b9" :
+               d === 'KIT' ? "#1abc9c" :
+               d === 'UP'  ? "#f7dc6f" :
+               d === 'UFZ' ? "#e67e22" :
                             "grey";
     }
 
@@ -247,8 +257,8 @@ var legend = L.control({position: 'bottomright'});
     legend.onAdd = function (map) {
 
     var div = L.DomUtil.create('div', 'info legend');
-    labels = ['<strong>Categories</strong>'],
-    categories = ['CRNS (installed)','CRNS (planned)','FDR (installed)','SoilNet (installed)','Other'];
+    labels = ['<strong>CRNS Locations</strong>'],
+    categories = ['FZJ','GFZ','HZM','KIT','UP','UFZ'];
 
     for (var i = 0; i < categories.length; i++) {
 
