@@ -202,7 +202,7 @@ updated before the beginning of the JFC.</p>
 
     function onEachGauge(feature, layer) {
         //layer.bindPopup('<p>Hello world!<br />This is a nice popup.</p>');
-        layer.bindPopup("<iframe srcdoc='"+
+        layer.bindPopup("<iframe srcdoc='<p>"+
            "ID: "          +feature.properties.Id    + "<br>"+
 					 "Institution: " +feature.properties.Inst    + "<br>"+
 					 "Type: "        +feature.properties.Type  + "<br>"+
@@ -213,7 +213,7 @@ updated before the beginning of the JFC.</p>
 					 "Planned location: " + feature.properties.lat0 + ", " + feature.properties.lon0 + "<br>"+
 //					 "Actual location: " + feature.properties.lat1 + ", " + feature.properties.lon1 +
 					 "Comments: " + feature.properties.Comments + "<br>"+
-					 "' height='300px' width='300px'</iframe>")
+					 "</p>' height='300px' width='250px'</iframe>")
         layer.on({
             mouseover: highlightGauge,
             mouseout: resetHighlightGauge
