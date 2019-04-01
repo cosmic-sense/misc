@@ -93,11 +93,11 @@ updated before the beginning of the JFC.</p>
 		this._div.innerHTML = '<h4>Massive Coverage CRNS Network</h4>' +  (props ?
 		'<b> ID:</b> ' + props.Id + '<br>' +
 		'<b> Institution:</b> ' +props.Inst    + '<br>'+
-		'<b> Logger ID:</b> ' +props.loggerid    + '<br>'+
+//		'<b> Logger ID:</b> ' +props.loggerid    + '<br>'+
 		'<b> Type:</b> '        +props.Type  + '<br>'+
 		'<b> Bare counter:</b> '+props.Bare  + '<br>'+
 		'<b> Modem:</b> '+props.Modem  + '<br>'+
-		'<b> Planned location:</b> ' + props.lat0 + ', ' + props.lon0 + '<br>' +
+		'<b> Planned location:</b> ' + props.ycoord + ', ' + props.xcoord + '<br>' +
 		'<b> Date of installation:</b> '+ props.startdate  + '<br>'+
 		'<b> Comments:</b> '+ props.Comment  + '<br>'
 //		'<b> Date of deinstallation:</b> '+props.enddate  + '<br>'+
@@ -210,7 +210,7 @@ updated before the beginning of the JFC.</p>
 					 "Modem: "+feature.properties.Modem  + "<br>"+
 					 "Date of installation: "+feature.properties.startdate  + "<br>"+
 //					 "Date of deinstallation: "+feature.properties.enddate  + "<br>"+
-					 "Planned location: " + feature.properties.lat0 + ", " + feature.properties.lon0 + "<br>"+
+					 "Planned location: " + feature.properties.ycoord + ", " + feature.properties.xcoord + "<br>"+
 //					 "Actual location: " + feature.properties.lat1 + ", " + feature.properties.lon1 +
 					 "Comments: " + feature.properties.Comments + "<br>"+
 					 "</p>' height='300px' width='250px'</iframe>")
@@ -222,7 +222,7 @@ updated before the beginning of the JFC.</p>
 
     var gaugesjson;
 
-    $.getJSON("fendt_crns2.geojson", function(data) {
+    $.getJSON("fendt_crns_20190401.geojson", function(data) {
 	    gaugesjson = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
 		    return L.circleMarker(latlng, pointstyler(feature));
