@@ -221,7 +221,7 @@ title: cosmic pages
 
     var gaugesjson;
 
-    $.getJSON("fendt_crns_20190401.geojson", function(data) {
+    $.getJSON("fendt_crns_20190418.geojson", function(data) {
 	    gaugesjson = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
 		    return L.circleMarker(latlng, pointstyler(feature));
