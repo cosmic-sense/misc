@@ -48,6 +48,16 @@ title: cosmic pages
   margin-top: 5px;
 	margin-left: 2px;
 }
+
+/* remove label background elements */
+.leaflet-tooltip.my-labels {
+  background-color: transparent;
+  border: transparent;
+  box-shadow: none;
+  font-weight: bold;
+  font-size: 15px;
+	color: white;
+  }
 	</style>
 </head>
 <body>
@@ -173,7 +183,7 @@ title: cosmic pages
 
 		function pointstyler(feature) {
 			return {
-	        radius: 7,
+	        radius: 10,
 	        fillColor: getColor(feature.properties.Inst),
 	        color: false,
 	        weight: 1,
@@ -224,7 +234,8 @@ title: cosmic pages
     $.getJSON("fendt_crns_20190418.geojson", function(data) {
 	    gaugesjson = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
-		    return L.circleMarker(latlng, pointstyler(feature));
+			  label = String(feature.properties.Id)
+		    return L.circleMarker(latlng, pointstyler(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
 		},
 		onEachFeature: onEachGauge
             }).addTo(map);
@@ -254,7 +265,7 @@ function getColor(d) {
                d === 'GFZ' ? "#9b59b6" :
                d === 'HZM' ? "#2980b9" :
                d === 'KIT' ? "#1abc9c" :
-               d === 'UP'  ? "#f7dc6f" :
+               d === 'UP'  ? "#2F4F4F" :
                d === 'UFZ' ? "#e67e22" :
                             "grey";
     }
