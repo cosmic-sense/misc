@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="fendt_crns_20190418" id="fendt_crns_20190418">
+	<SimpleField name="Id" type="float"></SimpleField>
+	<SimpleField name="Inst" type="string"></SimpleField>
+	<SimpleField name="Type" type="string"></SimpleField>
+	<SimpleField name="Modem" type="int"></SimpleField>
+	<SimpleField name="Bare" type="int"></SimpleField>
+	<SimpleField name="ProfPrity" type="int"></SimpleField>
+	<SimpleField name="Comment" type="string"></SimpleField>
+	<SimpleField name="xcoord" type="float"></SimpleField>
+	<SimpleField name="ycoord" type="float"></SimpleField>
+</Schema>
+<Folder><name>fendt_crns_20190418</name>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#fendt_crns_20190418">
+		<SimpleData name="Id">12</SimpleData>
+		<SimpleData name="Inst">UFZ</SimpleData>
+		<SimpleData name="Type">Styx N.</SimpleData>
+		<SimpleData name="Modem">1</SimpleData>
+		<SimpleData name="Bare">0</SimpleData>
+		<SimpleData name="ProfPrity">2</SimpleData>
+		<SimpleData name="Comment">Close to road</SimpleData>
+		<SimpleData name="xcoord">11.062977615215299</SimpleData>
+		<SimpleData name="ycoord">47.830061401574000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>11.0629776152153,47.830061401574</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#fendt_crns_20190418">
+		<SimpleData name="Id">13</SimpleData>
+		<SimpleData name="Inst">UFZ</SimpleData>
+		<SimpleData name="Type">Styx N.</SimpleData>
+		<SimpleData name="Modem">1</SimpleData>
+		<SimpleData name="Bare">0</SimpleData>
+		<SimpleData name="ProfPrity">3</SimpleData>
+		<SimpleData name="Comment">Close to road, wet</SimpleData>
+		<SimpleData name="xcoord">11.065946376012544</SimpleData>
+		<SimpleData name="ycoord">47.830395479926644</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>11.0659463760125,47.8303954799266</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#fendt_crns_20190418">
+		<SimpleData name="Id">11</SimpleData>
+		<SimpleData name="Inst">UFZ</SimpleData>
+		<SimpleData name="Type">Styx N.</SimpleData>
+		<SimpleData name="Modem">1</SimpleData>
+		<SimpleData name="Bare">0</SimpleData>
+		<SimpleData name="ProfPrity">3</SimpleData>
+		<SimpleData name="Comment">Close to road</SimpleData>
+		<SimpleData name="xcoord">11.059178873369266</SimpleData>
+		<SimpleData name="ycoord">47.825753304663642</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>11.0591788733693,47.8257533046636</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#fendt_crns_20190418">
+		<SimpleData name="Id">22</SimpleData>
+		<SimpleData name="Inst">GFZ</SimpleData>
+		<SimpleData name="Type">CRS 2000-B</SimpleData>
+		<SimpleData name="Modem">1</SimpleData>
+		<SimpleData name="Bare">0</SimpleData>
+		<SimpleData name="ProfPrity">3</SimpleData>
+		<SimpleData name="Comment">Forest, distant from road</SimpleData>
+		<SimpleData name="xcoord">11.066233616902556</SimpleData>
+		<SimpleData name="ycoord">47.826442179115539</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>11.0662336169026,47.8264421791155</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#fendt_crns_20190418">
+		<SimpleData name="Id">14</SimpleData>
+		<SimpleData name="Inst">UFZ</SimpleData>
+		<SimpleData name="Type">CRS 2000</SimpleData>
+		<SimpleData name="Modem">1</SimpleData>
+		<SimpleData name="Bare">0</SimpleData>
+		<SimpleData name="ProfPrity">3</SimpleData>
+		<SimpleData name="Comment">Forest, distant from road</SimpleData>
+		<SimpleData name="xcoord">11.069144088796795</SimpleData>
+		<SimpleData name="ycoord">47.831611430467881</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>11.0691440887968,47.8316114304679</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#fendt_crns_20190418">
+		<SimpleData name="Id">23</SimpleData>
+		<SimpleData name="Inst">HZM</SimpleData>
+		<SimpleData name="Type">CRS 2000-B</SimpleData>
+		<SimpleData name="Modem">0</SimpleData>
+		<SimpleData name="Bare">0</SimpleData>
+		<SimpleData name="ProfPrity">2</SimpleData>
+		<SimpleData name="Comment">Rather close to road, wet</SimpleData>
+		<SimpleData name="xcoord">11.066134296855655</SimpleData>
+		<SimpleData name="ycoord">47.832410733362806</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>11.0661342968557,47.8324107333628</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#fendt_crns_20190418">
+		<SimpleData name="Id">21</SimpleData>
+		<SimpleData name="Inst">GFZ</SimpleData>
+		<SimpleData name="Type">CRS 2000-B</SimpleData>
+		<SimpleData name="Modem">1</SimpleData>
+		<SimpleData name="Bare">0</SimpleData>
+		<SimpleData name="ProfPrity">2</SimpleData>
+		<SimpleData name="Comment">Distant from road</SimpleData>
+		<SimpleData name="xcoord">11.063773032361956</SimpleData>
+		<SimpleData name="ycoord">47.824389046703288</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>11.063773032362,47.8243890467033</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#fendt_crns_20190418">
+		<SimpleData name="Id">18</SimpleData>
+		<SimpleData name="Inst">FZJ</SimpleData>
+		<SimpleData name="Type">CRS 1000</SimpleData>
+		<SimpleData name="Modem">1</SimpleData>
+		<SimpleData name="Bare">1</SimpleData>
+		<SimpleData name="ProfPrity">3</SimpleData>
+		<SimpleData name="Comment">Distant from road</SimpleData>
+		<SimpleData name="xcoord">11.063200150779277</SimpleData>
+		<SimpleData name="ycoord">47.831561719253649</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>11.0632001507793,47.8315617192536</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#fendt_crns_20190418">
+		<SimpleData name="Id">17</SimpleData>
+		<SimpleData name="Inst">FZJ</SimpleData>
+		<SimpleData name="Type">CRS 2000-B</SimpleData>
+		<SimpleData name="Modem">1</SimpleData>
+		<SimpleData name="Bare">1</SimpleData>
+		<SimpleData name="ProfPrity">0</SimpleData>
+		<SimpleData name="Comment">Close to road</SimpleData>
+		<SimpleData name="xcoord">11.062118696490664</SimpleData>
+		<SimpleData name="ycoord">47.833148985175534</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>11.0621186964907,47.8331489851755</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#fendt_crns_20190418">
+		<SimpleData name="Id">2</SimpleData>
+		<SimpleData name="Inst">UP</SimpleData>
+		<SimpleData name="Type">CRS 1000</SimpleData>
+		<SimpleData name="Modem">1</SimpleData>
+		<SimpleData name="Bare">0</SimpleData>
+		<SimpleData name="ProfPrity">3</SimpleData>
+		<SimpleData name="Comment">Distant from road</SimpleData>
+		<SimpleData name="xcoord">11.061650928218020</SimpleData>
+		<SimpleData name="ycoord">47.826619695920556</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>11.061650928218,47.8266196959206</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#fendt_crns_20190418">
+		<SimpleData name="Id">16</SimpleData>
+		<SimpleData name="Inst">FZJ</SimpleData>
+		<SimpleData name="Type">CRS 2000-B</SimpleData>
+		<SimpleData name="Modem">1</SimpleData>
+		<SimpleData name="Bare">1</SimpleData>
+		<SimpleData name="ProfPrity">3</SimpleData>
+		<SimpleData name="Comment">Close to road</SimpleData>
+		<SimpleData name="xcoord">11.069451845388079</SimpleData>
+		<SimpleData name="ycoord">47.826164254550228</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>11.0694518453881,47.8261642545502</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#fendt_crns_20190418">
+		<SimpleData name="Id">7</SimpleData>
+		<SimpleData name="Inst">KIT</SimpleData>
+		<SimpleData name="Type">CRS 1000-B</SimpleData>
+		<SimpleData name="Modem">1</SimpleData>
+		<SimpleData name="Bare">0</SimpleData>
+		<SimpleData name="ProfPrity">3</SimpleData>
+		<SimpleData name="Comment">Distant from road</SimpleData>
+		<SimpleData name="xcoord">11.059934822536636</SimpleData>
+		<SimpleData name="ycoord">47.828237166643206</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>11.0599348225366,47.8282371666432</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#fendt_crns_20190418">
+		<SimpleData name="Id">1</SimpleData>
+		<SimpleData name="Inst">UP</SimpleData>
+		<SimpleData name="Type">CRS 2000-B</SimpleData>
+		<SimpleData name="Modem">1</SimpleData>
+		<SimpleData name="Bare">1</SimpleData>
+		<SimpleData name="ProfPrity">3</SimpleData>
+		<SimpleData name="Comment">Scanning, edge of the forest</SimpleData>
+		<SimpleData name="xcoord">11.064395354918370</SimpleData>
+		<SimpleData name="ycoord">47.825463976033085</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>11.0643953549184,47.8254639760331</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#fendt_crns_20190418">
+		<SimpleData name="Id">5</SimpleData>
+		<SimpleData name="Inst">KIT</SimpleData>
+		<SimpleData name="Type">CRS 1000-B</SimpleData>
+		<SimpleData name="Modem">1</SimpleData>
+		<SimpleData name="Bare">0</SimpleData>
+		<SimpleData name="ProfPrity">3</SimpleData>
+		<SimpleData name="Comment">Distant from road</SimpleData>
+		<SimpleData name="xcoord">11.063310158966255</SimpleData>
+		<SimpleData name="ycoord">47.828751739142604</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>11.0633101589663,47.8287517391426</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#fendt_crns_20190418">
+		<SimpleData name="Id">3</SimpleData>
+		<SimpleData name="Inst">UP</SimpleData>
+		<SimpleData name="Type">CRS 1000</SimpleData>
+		<SimpleData name="Modem">1</SimpleData>
+		<SimpleData name="Bare">1</SimpleData>
+		<SimpleData name="ProfPrity">3</SimpleData>
+		<SimpleData name="Comment">Distant from road</SimpleData>
+		<SimpleData name="xcoord">11.059518500678051</SimpleData>
+		<SimpleData name="ycoord">47.831691186212524</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>11.0595185006781,47.8316911862125</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#fendt_crns_20190418">
+		<SimpleData name="Id">24</SimpleData>
+		<SimpleData name="Inst">HZM</SimpleData>
+		<SimpleData name="Type">CRS 2000-B</SimpleData>
+		<SimpleData name="Modem">0</SimpleData>
+		<SimpleData name="Bare">0</SimpleData>
+		<SimpleData name="ProfPrity">3</SimpleData>
+		<SimpleData name="Comment">Close to road</SimpleData>
+		<SimpleData name="xcoord">11.060255294881102</SimpleData>
+		<SimpleData name="ycoord">47.830563403088014</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>11.0602552948811,47.830563403088</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#fendt_crns_20190418">
+		<SimpleData name="Id">9</SimpleData>
+		<SimpleData name="Inst">UFZ</SimpleData>
+		<SimpleData name="Type">Styx N.</SimpleData>
+		<SimpleData name="Modem">1</SimpleData>
+		<SimpleData name="Bare">0</SimpleData>
+		<SimpleData name="ProfPrity">1</SimpleData>
+		<SimpleData name="Comment">Close to road and hangar</SimpleData>
+		<SimpleData name="xcoord">11.066630833422236</SimpleData>
+		<SimpleData name="ycoord">47.828878793388704</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>11.0666308334222,47.8288787933887</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#fendt_crns_20190418">
+		<SimpleData name="Id">6</SimpleData>
+		<SimpleData name="Inst">KIT</SimpleData>
+		<SimpleData name="Type">CRS 1000-B</SimpleData>
+		<SimpleData name="Modem">1</SimpleData>
+		<SimpleData name="Bare">0</SimpleData>
+		<SimpleData name="ProfPrity">3</SimpleData>
+		<SimpleData name="Comment">Close to farm track</SimpleData>
+		<SimpleData name="xcoord">11.063771827382185</SimpleData>
+		<SimpleData name="ycoord">47.822465262057541</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>11.0637718273822,47.8224652620575</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#fendt_crns_20190418">
+		<SimpleData name="Id">10</SimpleData>
+		<SimpleData name="Inst">UFZ</SimpleData>
+		<SimpleData name="Type">Styx N.</SimpleData>
+		<SimpleData name="Modem">1</SimpleData>
+		<SimpleData name="Bare">0</SimpleData>
+		<SimpleData name="ProfPrity">0</SimpleData>
+		<SimpleData name="Comment">Close to road</SimpleData>
+		<SimpleData name="xcoord">11.070374197545510</SimpleData>
+		<SimpleData name="ycoord">47.829381151360884</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>11.0703741975455,47.8293811513609</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#fendt_crns_20190418">
+		<SimpleData name="Id">4</SimpleData>
+		<SimpleData name="Inst">UP</SimpleData>
+		<SimpleData name="Type">Lab C</SimpleData>
+		<SimpleData name="Modem">1</SimpleData>
+		<SimpleData name="Bare">0</SimpleData>
+		<SimpleData name="ProfPrity">3</SimpleData>
+		<SimpleData name="Comment">Close to road</SimpleData>
+		<SimpleData name="xcoord">11.061515053521921</SimpleData>
+		<SimpleData name="ycoord">47.823852889212695</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>11.0615150535219,47.8238528892127</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#fendt_crns_20190418">
+		<SimpleData name="Id">8</SimpleData>
+		<SimpleData name="Inst">KIT</SimpleData>
+		<SimpleData name="Type">CRS 2000-B</SimpleData>
+		<SimpleData name="Modem">1</SimpleData>
+		<SimpleData name="Bare">1</SimpleData>
+		<SimpleData name="ProfPrity">0</SimpleData>
+		<SimpleData name="Comment">Already in place, distant from road</SimpleData>
+		<SimpleData name="xcoord">11.060495646373722</SimpleData>
+		<SimpleData name="ycoord">47.832478182072101</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>11.0604956463737,47.8324781820721</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#fendt_crns_20190418">
+		<SimpleData name="Id">19</SimpleData>
+		<SimpleData name="Inst">FZJ</SimpleData>
+		<SimpleData name="Type">CRS-2000-B</SimpleData>
+		<SimpleData name="Modem">1</SimpleData>
+		<SimpleData name="Bare">0</SimpleData>
+		<SimpleData name="ProfPrity">1</SimpleData>
+		<SimpleData name="Comment">Forest, with track to road</SimpleData>
+		<SimpleData name="xcoord">11.068530172573816</SimpleData>
+		<SimpleData name="ycoord">47.828126626365965</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>11.0685301725738,47.828126626366</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#fendt_crns_20190418">
+		<SimpleData name="Id">25</SimpleData>
+		<SimpleData name="Inst">KIT</SimpleData>
+		<SimpleData name="Type">CRS 1000-B</SimpleData>
+		<SimpleData name="Modem">1</SimpleData>
+		<SimpleData name="Bare">0</SimpleData>
+		<SimpleData name="ProfPrity">0</SimpleData>
+		<SimpleData name="Comment">Increases density inside SoilNet</SimpleData>
+		<SimpleData name="xcoord">11.059747841992486</SimpleData>
+		<SimpleData name="ycoord">47.832236837774751</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>11.0597478419925,47.8322368377748</coordinates></Point>
+  </Placemark>
+</Folder>
+</Document></kml>
