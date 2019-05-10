@@ -73,7 +73,11 @@ title: cosmic pages
 
 <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
-<script type="text/javascript" src='http://jlord.us/sheetsee.js/js/sheetsee.js'></script>
+<!-- script type="text/javascript" src='http://jlord.us/sheetsee.js/js/sheetsee.js'></script //-->
+<!-- script type="text/javascript" src='https://cosmic-sense.github.io/misc/js/sheetsee.js'></script //-->
+<script type="text/javascript" src='../js/sheetsee.js'></script>
+
+
 
 
 <script type="text/javascript">
@@ -194,12 +198,12 @@ title: cosmic pages
 
 		function pointstyler(feature) {
 			return {
-	        radius: 10,
+	        radius: 5,
 	        fillColor: "grey", //getColor(feature.properties.Inst),
 	        color: false,
 	        weight: 1,
 	        opacity: 1,
-	        fillOpacity: 1
+	        fillOpacity: 0.8
 	    };
 		}
 
@@ -251,7 +255,9 @@ title: cosmic pages
             }).addTo(map);
     });
 
-		function circlestyler(feature) {
+   /*		
+   
+	function circlestyler(feature) {
 			return {
 				radius: 100,
         color: "white",//getColor(feature.properties.Inst),
@@ -261,7 +267,7 @@ title: cosmic pages
 	    };
 		}
 
-    /*
+ 
     var gaugescircles;
     $.getJSON("fendt_crns_20190418.geojson", function(data) {
 	    gaugescircles = L.geoJSON(data, {
@@ -389,7 +395,7 @@ var legend = L.control({position: 'bottomright'});
     legend.onAdd = function (map) {
 
     var div = L.DomUtil.create('div', 'info legend');
-    labels = ['<strong>CRNS Locations</strong>'],
+    labels = ['<strong>Forest sample plots</strong>'],
     categories = ['oak', 'beech', 'fir', 'pine', 'spruce', 'elder' ];
 	
     for (var i = 0; i < categories.length; i++) {
@@ -404,14 +410,15 @@ var legend = L.control({position: 'bottomright'});
 
         }
 				labels.push(
-						'<i class="smallcircle" style="background:black" ></i> SoilNet');
-				labels.push(
-						'<i class="largecircle" style="background:black" ></i> CRNS-Probes');
+						'<i class="smallcircle" style="background:black" ></i> CRNS-Probes');
+				
         div.innerHTML = labels.join('<br>');
     return div;
     };
     legend.addTo(map);
 
+
+	
 
 </script>
 
