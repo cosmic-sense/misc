@@ -61,18 +61,20 @@ title: cosmic pages
 	</style>
 </head>
 <body>
+
 <a href="https://cosmic-sense.github.io/misc/fendt/index.html"> Instrumentation </a><br>
 <a href="https://cosmic-sense.github.io/misc/fendt/forest.html"> Biomass in Forests </a><br>
 <a href="https://cosmic-sense.github.io/misc/fendt/theta_instant.html"> Instantaneous SM </a><br>
-
-<p> Permission for all potential locations have now been granted. 
-Installation of probes in progress...
-Attributes and locations should be updated on completion...
+<p> State of biomass-mapping in forest...
+<a href="https://docs.google.com/spreadsheets/d/1wvKDDDxSzxDyqmcPecvjHvDbBlpdj2IfbE_zTowrMYA/edit#gid=0">Enter new plots here</a>
 </p>
 
 <div id='map'></div>
 
 <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+<script type="text/javascript" src='http://jlord.us/sheetsee.js/js/sheetsee.js'></script>
+
 
 <script type="text/javascript">
 
@@ -178,6 +180,7 @@ Attributes and locations should be updated on completion...
 			fillOpacity: 0.8
     };
 
+/*
     var soilnetjson;
 		$.getJSON("soilnet.geojson", function(data) {
 	    soilnetjson = L.geoJSON(data, {
@@ -185,11 +188,14 @@ Attributes and locations should be updated on completion...
 		        return L.circleMarker(latlng, soilnetStyle);
 					}}).addTo(map);
 			    });
+*/
+
+   
 
 		function pointstyler(feature) {
 			return {
 	        radius: 10,
-	        fillColor: getColor(feature.properties.Inst),
+	        fillColor: "grey", //getColor(feature.properties.Inst),
 	        color: false,
 	        weight: 1,
 	        opacity: 1,
@@ -215,7 +221,6 @@ Attributes and locations should be updated on completion...
       }
 
     function onEachGauge(feature, layer) {
-        //layer.bindPopup('<p>Hello world!<br />This is a nice popup.</p>');
         layer.bindPopup("<iframe srcdoc='<p>"+
            "ID: "          +feature.properties.Id    + "<br>"+
 					 "Institution: " +feature.properties.Inst    + "<br>"+
@@ -229,8 +234,8 @@ Attributes and locations should be updated on completion...
 					 "Comments: " + feature.properties.Comment + "<br>"+
 					 "</p>' height='300px' width='250px'</iframe>")
         layer.on({
-            mouseover: highlightGauge,
-            mouseout: resetHighlightGauge
+   //         mouseover: highlightGauge,
+   //         mouseout: resetHighlightGauge
         });
     }
 
@@ -241,7 +246,7 @@ Attributes and locations should be updated on completion...
 		pointToLayer: function (feature, latlng) {
 			  label = String(feature.properties.Id)
 		    return L.circleMarker(latlng, pointstyler(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
-		},
+		} ,
 		onEachFeature: onEachGauge
             }).addTo(map);
     });
@@ -256,6 +261,7 @@ Attributes and locations should be updated on completion...
 	    };
 		}
 
+    /*
     var gaugescircles;
     $.getJSON("fendt_crns_20190418.geojson", function(data) {
 	    gaugescircles = L.geoJSON(data, {
@@ -264,41 +270,133 @@ Attributes and locations should be updated on completion...
 		},
             }).addTo(map);
     });
+	*/
 
-function getColor(d) {
-        return d === 'FZJ' ? "#c0392b" :
-               d === 'GFZ' ? "#9b59b6" :
-               d === 'HZM' ? "#2980b9" :
-               d === 'KIT' ? "#1abc9c" :
-               d === 'UP'  ? "#2F4F4F" :
-               d === 'UFZ' ? "#e67e22" :
-                            "grey";
-    }
 
-    function style(feature) {
+    /*
+	function style(feature) {
         return {
             weight: 1.5,
             opacity: 1,
             fillOpacity: 1,
             radius: 6,
-            fillColor: getColor(feature.properties.TypeOfIssue),
+            fillColor: "grey",
             color: "grey"
 
         };
     }
+	*/
+	
+//create geojson from Google-spreadsheet
+	var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1wvKDDDxSzxDyqmcPecvjHvDbBlpdj2IfbE_zTowrMYA/edit#gid=0'; //URL of Google Spreadsheet 
+																							//don't forget to make public, see http://jlord.us/sheetsee.js/docs/basics.html, "Publishing Your Spreadsheet"
+	var mygeojson; //strangely, this object does not seem to work outside the following function
+	var forestplots;
+
+function getColor_forest(d) {
+        return d === 'oak' ? "#c0392b" :
+               d === 'beech' ? "#9b59b6" :
+               d === 'fir' ? "#2980b9" :
+               d === 'pine' ? "#1abc9c" :
+               d === 'spruce'  ? "#2F4F4F" :
+               d === 'elder' ? "#e67e22" :
+                            "#bbbbbb";
+    }
+
+ 
+function getBorder_forest(d) {
+        return d === 'yes' ? "black" :
+               d === 'no' ? false :
+                        false;
+    }
+
+ 
+
+	function pointstyler_forest(feature) {
+			return {
+	        radius: 15, //getSize_forest(feature.opts.detailed_survey),
+	        fillColor: getColor_forest(feature.opts.species), //"grey",
+	        color:  getBorder_forest(feature.opts.detailed_survey), //false,
+	        weight: 1,
+	        opacity: 1,
+	        fillOpacity: 1
+	    };
+		}
+	
+	function circlestyler_forest(feature) {
+			return {
+				radius: feature.opts.diameter/2,
+        color: "white",
+        weight: 1,
+        opacity: 1,
+        fill: false
+	    };
+		}	
+
+    function onEachForest(feature, layer) {
+        layer.bindPopup("<iframe srcdoc='<p>"+
+           "ID: "          +feature.opts.id    + "<br>"+
+					 "diameter: " +feature.opts.diameter    + "<br>"+
+					 "contributor: "        +feature.opts.contributor  + "<br>"+
+					 "date: "+feature.opts.date  + "<br>"+
+					 "species: "+feature.opts.species  + "<br>"+
+					 "detailed_survey: "+feature.opts.detailed_survey  + "<br>"+
+					 "remarks: "+feature.opts.remarks  + "<br>"+
+					 "</p>' height='300px' width='250px'</iframe>")
+        layer.on({
+   //         mouseover: highlightGauge,
+   //         mouseout: resetHighlightGauge
+        });
+    }
+
+				
+
+	function init() {
+	Tabletop.init( { key: publicSpreadsheetUrl,
+					 callback: showInfo,
+					 simpleSheet: true } );
+	}
+
+	function showInfo(data, tabletop) {
+		//alert('Successfully processed!')
+		//    console.log(data);
+		mygeojson = Sheetsee.createGeoJSON(data);
+		
+		//plot circles denoting diameter
+		gaugescircles = L.geoJSON(mygeojson, {
+		pointToLayer: function (feature, latlng) {
+		    return L.circle(latlng, circlestyler_forest(feature));
+		},
+            }).addTo(map);
+		
+		//plot points
+		forestplots = L.geoJSON(mygeojson, {
+		pointToLayer: function (feature, latlng) {
+			 label = String(feature.opts.id);
+		    return L.circleMarker(latlng, pointstyler_forest(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
+		} ,
+		onEachFeature: onEachForest
+            }).addTo(map);
+	}
+	window.addEventListener('DOMContentLoaded', init);	
+	
+	
+		
+		
+	
 
 var legend = L.control({position: 'bottomright'});
     legend.onAdd = function (map) {
 
     var div = L.DomUtil.create('div', 'info legend');
     labels = ['<strong>CRNS Locations</strong>'],
-    categories = ['FZJ','GFZ','HZM','KIT','UP','UFZ'];
-
+    categories = ['oak', 'beech', 'fir', 'pine', 'spruce', 'elder' ];
+	
     for (var i = 0; i < categories.length; i++) {
 
             div.innerHTML +=
             labels.push(
-                '<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
+                '<i class="circle" style="background:' + getColor_forest(categories[i]) + '"></i> ' +
             (categories[i] ? categories[i] : '+'));
 //	    div.innerHTML +=
 //		'<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
@@ -307,6 +405,8 @@ var legend = L.control({position: 'bottomright'});
         }
 				labels.push(
 						'<i class="smallcircle" style="background:black" ></i> SoilNet');
+				labels.push(
+						'<i class="largecircle" style="background:black" ></i> CRNS-Probes');
         div.innerHTML = labels.join('<br>');
     return div;
     };
