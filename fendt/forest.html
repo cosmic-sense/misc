@@ -68,6 +68,11 @@ title: cosmic pages
 <p> State of biomass-mapping in forest...
 <a href="https://docs.google.com/spreadsheets/d/1wvKDDDxSzxDyqmcPecvjHvDbBlpdj2IfbE_zTowrMYA/edit#gid=0">Enter new plots here</a>
 </p>
+<p>
+Current pos:<input type="text" value="NA" id="curr_coords">
+<button onclick="locate()">Update</button>
+<button onclick="copy2clip()">Copy2Clipboard</button>
+</p>
 
 <div id='map'></div>
 
@@ -418,7 +423,56 @@ var legend = L.control({position: 'bottomright'});
     legend.addTo(map);
 
 
+//add current user position	
+   // placeholders for the L.marker and L.circle representing user's current position and accuracy    
+    var current_position, current_accuracy;
 	
+    function onLocationFound(e) {
+      // if position defined, then remove the existing position marker and accuracy circle from the map
+      if (current_position) {
+          map.removeLayer(current_position);
+          map.removeLayer(current_accuracy);
+      }
+
+      var radius = e.accuracy / 2;
+
+      current_position = L.marker(e.latlng).addTo(map)
+        .bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+      current_accuracy = L.circle(e.latlng, radius).addTo(map);
+	  //coords_div.innerHTML = e.latlng; //update display
+	  coords_str = e.latlng.lat+"\t"+e.latlng.lng
+    }
+
+    function onLocationError(e) {
+      alert(e.message);
+    }
+
+    map.on('locationfound', onLocationFound);
+    map.on('locationerror', onLocationError);
+
+    // wrap map.locate in a function    
+    function locate() {
+	  document.getElementById("curr_coords").value = "refreshing...";
+      map.locate({setView: false, maxZoom: 16});
+	  var copyText = document.getElementById("curr_coords");
+    }
+
+    //// call locate every 3 seconds... forever
+    //setInterval(locate, 3000);
+  
+function copy2clip()
+{  
+  var copyText = document.getElementById("curr_coords");
+  
+	   /* Select the text field */
+	  copyText.select();
+	  /* Copy the text inside the text field */
+	  document.execCommand("copy");
+
+	  /* Alert the copied text */
+	  alert("Coords copied to clipboard: \'" + copyText.value+"\'");
+}	
 
 </script>
 
