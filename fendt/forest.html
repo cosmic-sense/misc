@@ -442,6 +442,7 @@ var legend = L.control({position: 'bottomright'});
       current_accuracy = L.circle(e.latlng, radius).addTo(map);
 	  //coords_div.innerHTML = e.latlng; //update display
 	  coords_str = e.latlng.lat+"\t"+e.latlng.lng
+	  document.getElementById("curr_coords").value = coords_str;
     }
 
     function onLocationError(e) {
