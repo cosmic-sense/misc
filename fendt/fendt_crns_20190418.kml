@@ -162,10 +162,10 @@
 		<SimpleData name="Bare">1</SimpleData>
 		<SimpleData name="ProfPrity">3</SimpleData>
 		<SimpleData name="Comment">Close to road</SimpleData>
-		<SimpleData name="xcoord">11.069451845388079</SimpleData>
-		<SimpleData name="ycoord">47.826164254550228</SimpleData>
+		<SimpleData name="xcoord">11.068470000000000</SimpleData>
+		<SimpleData name="ycoord">47.826009999999997</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>11.0694518453881,47.8261642545502</coordinates></Point>
+      <Point><coordinates>11.0684663287715,47.8260070727244</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#fendt_crns_20190418">
