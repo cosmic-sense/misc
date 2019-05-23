@@ -71,6 +71,7 @@ title: cosmic pages
 <p>
 Current pos:<input type="text" value="NA" id="curr_coords">
 <button onclick="locate()">Update</button>
+<input type="checkbox" name="auto_upd" id= "auto_upd" value="1" onclick="toggle_auto_upd()">
 <button onclick="copy2clip()">Copy2Clipboard</button>
 </p>
 
@@ -460,7 +461,8 @@ var legend = L.control({position: 'bottomright'});
     }
 
     //// call locate every 3 seconds... forever
-    setInterval(locate, 3000);
+ //var AutoUpd_hd=setInterval(locate, 3000); //automatically update position
+    
   
 function copy2clip()
 {  
@@ -474,6 +476,20 @@ function copy2clip()
 	  /* Alert the copied text */
 	  alert("Coords copied to clipboard: \'" + copyText.value+"\'");
 }	
+
+
+
+
+function toggle_auto_upd()
+{
+
+	c=document.getElementById('auto_upd');
+    if (c.checked) 
+		AutoUpd_hd=setInterval(locate, 3000); //automatically update position
+	else
+		clearInterval(AutoUpd_hd);
+
+}
 
 </script>
 
