@@ -1,0 +1,478 @@
+---
+layout: default
+title: cosmic pages
+---
+<!DOCTYPE html>
+<html>
+<div class="blurb">
+	<h1>JFC Site at Fendt</h1>
+</div><!-- /.blurb -->
+
+<head>
+
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
+
+
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+		#map {
+			width: 100%;
+			height: 900px;
+		}
+	</style>
+
+	<style>
+		#map { width: 100%; height: 900px; }
+.info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
+.legend .circle {
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  margin-top: 5px;
+}
+.legend .smallcircle {
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  margin-top: 5px;
+	margin-left: 2px;
+}
+
+/* remove label background elements */
+.leaflet-tooltip.my-labels {
+  background-color: transparent;
+  border: transparent;
+  box-shadow: none;
+  font-weight: bold;
+  font-size: 15px;
+	color: white;
+  }
+	</style>
+</head>
+<body>
+
+<a href="https://cosmic-sense.github.io/misc/fendt/index.html"> Instrumentation </a><br>
+<a href="https://cosmic-sense.github.io/misc/fendt/forest.html"> Biomass in Forests </a><br>
+<a href="https://cosmic-sense.github.io/misc/fendt/theta_instant.html"> Instantaneous SM </a><br>
+<p> State of soil-moisture-mapping
+<a href="https://docs.google.com/spreadsheets/d/1o6jmBm064FfnHwkcdE1FuCrE6YQlTzZxNaTEGLb0FYc/edit#gid=0" target="_blank">Enter new plots here</a>
+</p>
+<p>
+Current pos:<input type="text" value="NA" id="curr_coords">
+<button onclick="locate()">Update</button>
+<input type="checkbox" name="auto_upd" id= "auto_upd" value="1" onclick="toggle_auto_upd()">
+<button onclick="copy2clip()">Copy2Clipboard</button>
+</p>
+
+<div id='map'></div>
+
+<script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+<!-- script type="text/javascript" src='http://jlord.us/sheetsee.js/js/sheetsee.js'></script //-->
+<!-- script type="text/javascript" src='https://cosmic-sense.github.io/misc/js/sheetsee.js'></script //-->
+<script type="text/javascript" src='../js/sheetsee.js'></script>
+
+
+
+
+<script type="text/javascript">
+
+				  
+	var OpenStreetMap_DE = L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+		});
+					 
+		var osm = L.tileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+		});
+
+		var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+			attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+		});
+	
+	var baseLayers = {
+       		"OpenStreetMap_DE": OpenStreetMap_DE,
+			"OSM/Mapnik": osm, /**/
+			"ESRI-Luftbild": Esri_WorldImagery
+		};
+	
+
+
+
+
+	var layerCRNS = new L.LayerGroup(); //layer containing CRNS-stations
+	var layerSoilNet = new L.LayerGroup(); //layer containing Soilnet
+	//var layerplannedSM = new L.LayerGroup(); //layer containing CRNS-stations
+
+var overlays = {
+			"CRNS": layerCRNS,
+			"SoilNet": layerSoilNet,
+//			"planned_SM": layerplannedSM
+		};
+
+  var map = L.map('map',
+                  {center: [47.828, 11.06474],
+                   zoom: 16,
+                   layers: [OpenStreetMap_DE, layerCRNS],
+                   worldCopyJump: false,
+                   crs: L.CRS.EPSG3857
+                  });
+	
+	L.control.layers(baseLayers,overlays).addTo(map);
+	
+    var myStyle = {
+    	"color": "white",
+    	"weight": 4,
+    	"opacity": 0.65
+    };
+
+		var ownersStyle = {
+    	"color": "red",
+    	"weight": 0.5,
+    	"fill": false,
+			"opacity": 0.65
+    };
+
+		var nogoStyle = {
+    	"color": "red",
+    	"weight": 0,
+    	"fill": "red",
+    };
+
+		var catchjson;
+    $.getJSON("fendt_catchment.geojson", function(data) {
+	    json = L.geoJSON(data, {
+		style: myStyle
+		}).addTo(map);
+    });
+
+
+		var owners1json;
+    $.getJSON("owners1.geojson", function(data) {
+	    json = L.geoJSON(data, {
+		style: ownersStyle
+		}).addTo(map);
+    });
+
+		var owners2json;
+    $.getJSON("owners2.geojson", function(data) {
+	    json = L.geoJSON(data, {
+		style: ownersStyle
+		}).addTo(map);
+    });
+
+		var nogo2json;
+    $.getJSON("nogo.geojson", function(data) {
+	    json = L.geoJSON(data, {
+		style: nogoStyle
+		}).addTo(map);
+    });
+
+		var soilnetStyle = {
+			radius: 3,
+			fillColor: "black",
+			color: false,
+			weight: 1,
+			opacity: 1,
+			fillOpacity: 0.8
+    };
+
+
+    var soilnetjson;
+		$.getJSON("soilnet.geojson", function(data) {
+	    soilnetjson = L.geoJSON(data, {
+         pointToLayer: function (feature, latlng) {
+		        return L.circleMarker(latlng, soilnetStyle);
+					}}).addTo(layerSoilNet);
+			    });
+
+
+   
+
+		function pointstyler(feature) {
+			return {
+	        radius: 5,
+	        fillColor: "grey", //getColor(feature.properties.Inst),
+	        color: false,
+	        weight: 1,
+	        opacity: 1,
+	        fillOpacity: 0.8
+	    };
+		}
+
+
+
+    function highlightGauge(e) {
+  		var layer = e.target;
+
+  		layer.setStyle({
+          weight: 4
+  		});
+	    info.update(layer.feature.properties);
+  	}
+
+    function resetHighlightGauge(e) {
+      var layer = e.target;
+      gaugesjson.resetStyle(e.target);
+      info.update();
+      }
+
+    function onEachGauge(feature, layer) {
+        layer.bindPopup("<iframe srcdoc='<p>"+
+           "ID: "          +feature.properties.Id    + "<br>"+
+					 "Institution: " +feature.properties.Inst    + "<br>"+
+					 "Type: "        +feature.properties.Type  + "<br>"+
+					 "Bare counter: "+feature.properties.Bare  + "<br>"+
+					 "Modem: "+feature.properties.Modem  + "<br>"+
+					 "Date of installation: "+feature.properties.startdate  + "<br>"+
+//					 "Date of deinstallation: "+feature.properties.enddate  + "<br>"+
+					 "Planned location: " + Number((feature.properties.xcoord).toFixed(6)) + ", " + Number((feature.properties.ycoord).toFixed(6)) + "<br>"+
+//					 "Actual location: " + feature.properties.lat1 + ", " + feature.properties.lon1 +
+					 "Comments: " + feature.properties.Comment + "<br>"+
+					 "</p>' height='300px' width='250px'</iframe>")
+        layer.on({
+   //         mouseover: highlightGauge,
+   //         mouseout: resetHighlightGauge
+        });
+    }
+
+    var gaugesjson;
+
+    $.getJSON("fendt_crns_20190418.geojson", function(data) {
+	    gaugesjson = L.geoJSON(data, {
+		pointToLayer: function (feature, latlng) {
+			  label = String(feature.properties.Id)
+		    return L.circleMarker(latlng, pointstyler(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
+		} ,
+		onEachFeature: onEachGauge
+            }).addTo(layerCRNS);
+    });
+
+   /*		
+   
+	function circlestyler(feature) {
+			return {
+				radius: 100,
+        color: "white",//getColor(feature.properties.Inst),
+        weight: 1,
+        opacity: 1,
+        fill: false
+	    };
+		}
+
+ 
+    var gaugescircles;
+    $.getJSON("fendt_crns_20190418.geojson", function(data) {
+	    gaugescircles = L.geoJSON(data, {
+		pointToLayer: function (feature, latlng) {
+		    return L.circle(latlng, circlestyler(feature));
+		},
+            }).addTo(map);
+    });
+	*/
+
+
+    /*
+	function style(feature) {
+        return {
+            weight: 1.5,
+            opacity: 1,
+            fillOpacity: 1,
+            radius: 6,
+            fillColor: "grey",
+            color: "grey"
+
+        };
+    }
+	*/
+	
+//create geojson from Google-spreadsheet
+	var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1o6jmBm064FfnHwkcdE1FuCrE6YQlTzZxNaTEGLb0FYc/edit#gid=0'; //URL of Google Spreadsheet 
+																							//don't forget to make public, see http://jlord.us/sheetsee.js/docs/basics.html, "Publishing Your Spreadsheet"
+	var mygeojson; //strangely, this object does not seem to work outside the following function
+	var sm_sites;
+
+function getColor_sm(d) {
+        group=d[0]; //extract first letter
+		return group === 'A' ? "#c0392b" :
+               group === 'B' ? "#9b59b6" :
+               group === 'C' ? "#2980b9" :
+               group === 'D' ? "#1abc9c" :
+                            "#bbbbbb";
+    }
+
+ 
+function getBorder_sm(d) {
+        return d === 'yes' ? "black" :
+               d === 'no' ? false :
+                        false;
+    }
+
+ 
+
+	function pointstyler_forest(feature) {
+			return {
+	        radius: 15, //getSize_forest(feature.opts.detailed_survey),
+	        fillColor: getColor_sm(feature.opts.id), //"grey",
+	        color:  getBorder_sm(feature.opts.cylinder), //false,
+	        weight: 1,
+	        opacity: 1,
+	        fillOpacity: 1
+	    };
+		}
+	
+    function onEachSM(feature, layer) {
+        layer.bindPopup("<iframe srcdoc='<p>"+
+           "ID: "          +feature.opts.id    + "<br>"+
+					 "contributor: "        +feature.opts.contributor  + "<br>"+
+					 "date: "+feature.opts.date  + "<br>"+
+					 "FDR: " +feature.opts.FDR    + "<br>"+
+					 "cylinder: "+feature.opts.cylinder  + "<br>"+
+					 "remarks: "+feature.opts.remarks  + "<br>"+
+					 "</p>' height='300px' width='250px'</iframe>")
+        layer.on({
+   //         mouseover: highlightGauge,
+   //         mouseout: resetHighlightGauge
+        });
+    }
+
+				
+
+	function init() {
+	Tabletop.init( { key: publicSpreadsheetUrl,
+					 callback: showInfo,
+					 simpleSheet: true } );
+	}
+
+	function showInfo(data, tabletop) {
+		//alert('Successfully processed!')
+		//    console.log(data);
+		mygeojson = Sheetsee.createGeoJSON(data);
+		
+		//plot points
+		sm_sites = L.geoJSON(mygeojson, {
+		pointToLayer: function (feature, latlng) {
+			 label = String(feature.opts.id);
+		    return L.circleMarker(latlng, pointstyler_forest(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
+		} ,
+		onEachFeature: onEachSM
+            }).addTo(map);
+	}
+	window.addEventListener('DOMContentLoaded', init);	
+	
+	
+		
+		
+	
+
+var legend = L.control({position: 'bottomright'});
+    legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend');
+    labels = ['<strong>Forest sample plots</strong>'],
+    categories = ['A', 'B', 'C', 'D'];
+	
+    for (var i = 0; i < categories.length; i++) {
+
+            div.innerHTML +=
+            labels.push(
+                '<i class="circle" style="background:' + getColor_sm(categories[i]) + '"></i> ' +
+            (categories[i] ? categories[i] : '+'));
+//	    div.innerHTML +=
+//		'<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
+//		 (categories[i] ? categories[i] + '<br>' : '+');
+
+        }
+				labels.push(
+						'<i class="smallcircle" style="background:black" ></i> CRNS-Probes');
+				
+        div.innerHTML = labels.join('<br>');
+    return div;
+    };
+    legend.addTo(map);
+
+
+//add current user position	
+   // placeholders for the L.marker and L.circle representing user's current position and accuracy    
+    var current_position, current_accuracy;
+	
+    function onLocationFound(e) {
+      // if position defined, then remove the existing position marker and accuracy circle from the map
+      if (current_position) {
+          map.removeLayer(current_position);
+          map.removeLayer(current_accuracy);
+      }
+
+      var radius = e.accuracy / 2;
+
+      current_position = L.marker(e.latlng).addTo(map)
+        .bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+      current_accuracy = L.circle(e.latlng, radius).addTo(map);
+	  //coords_div.innerHTML = e.latlng; //update display
+	  coords_str = e.latlng.lat+"\t"+e.latlng.lng
+	  document.getElementById("curr_coords").value = coords_str;
+    }
+
+    function onLocationError(e) {
+      alert(e.message);
+    }
+
+    map.on('locationfound', onLocationFound);
+    map.on('locationerror', onLocationError);
+
+    // wrap map.locate in a function    
+    function locate() {
+	  document.getElementById("curr_coords").value = "refreshing...";
+      map.locate({setView: false, maxZoom: 16});
+	  var copyText = document.getElementById("curr_coords");
+    }
+
+    //// call locate every 3 seconds... forever
+ //var AutoUpd_hd=setInterval(locate, 3000); //automatically update position
+    
+  
+function copy2clip()
+{  
+  var copyText = document.getElementById("curr_coords");
+  
+	   /* Select the text field */
+	  copyText.select();
+	  /* Copy the text inside the text field */
+	  document.execCommand("copy");
+
+	  /* Alert the copied text */
+	  alert("Coords copied to clipboard: \'" + copyText.value+"\'");
+}	
+
+
+
+
+function toggle_auto_upd()
+{
+
+	c=document.getElementById('auto_upd');
+    if (c.checked) 
+		AutoUpd_hd=setInterval(locate, 3000); //automatically update position
+	else
+		clearInterval(AutoUpd_hd);
+
+}
+
+</script>
+
+
+
+</body>
+</html>
