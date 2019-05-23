@@ -65,8 +65,8 @@ title: cosmic pages
 <a href="https://cosmic-sense.github.io/misc/fendt/index.html"> Instrumentation </a><br>
 <a href="https://cosmic-sense.github.io/misc/fendt/forest.html"> Biomass in Forests </a><br>
 <a href="https://cosmic-sense.github.io/misc/fendt/theta_instant.html"> Instantaneous SM </a><br>
-<p> State of biomass-mapping in forest...
-<a href="https://docs.google.com/spreadsheets/d/1wvKDDDxSzxDyqmcPecvjHvDbBlpdj2IfbE_zTowrMYA/edit#gid=0" target="_blank">Enter new plots here</a>
+<p> State of soil-moisture-mapping
+<a href="https://docs.google.com/spreadsheets/d/1o6jmBm064FfnHwkcdE1FuCrE6YQlTzZxNaTEGLb0FYc/edit#gid=0" target="_blank">Enter new plots here</a>
 </p>
 <p>
 Current pos:<input type="text" value="NA" id="curr_coords">
@@ -298,23 +298,22 @@ var overlays = {
 	*/
 	
 //create geojson from Google-spreadsheet
-	var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1wvKDDDxSzxDyqmcPecvjHvDbBlpdj2IfbE_zTowrMYA/edit#gid=0'; //URL of Google Spreadsheet 
+	var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1o6jmBm064FfnHwkcdE1FuCrE6YQlTzZxNaTEGLb0FYc/edit#gid=0'; //URL of Google Spreadsheet 
 																							//don't forget to make public, see http://jlord.us/sheetsee.js/docs/basics.html, "Publishing Your Spreadsheet"
 	var mygeojson; //strangely, this object does not seem to work outside the following function
-	var forestplots;
+	var sm_sites;
 
-function getColor_forest(d) {
-        return d === 'oak' ? "#c0392b" :
-               d === 'beech' ? "#9b59b6" :
-               d === 'fir' ? "#2980b9" :
-               d === 'pine' ? "#1abc9c" :
-               d === 'spruce'  ? "#2F4F4F" :
-               d === 'elder' ? "#e67e22" :
+function getColor_sm(d) {
+        group=d[0]; //extract first letter
+		return group === 'A' ? "#c0392b" :
+               group === 'B' ? "#9b59b6" :
+               group === 'C' ? "#2980b9" :
+               group === 'D' ? "#1abc9c" :
                             "#bbbbbb";
     }
 
  
-function getBorder_forest(d) {
+function getBorder_sm(d) {
         return d === 'yes' ? "black" :
                d === 'no' ? false :
                         false;
@@ -325,32 +324,21 @@ function getBorder_forest(d) {
 	function pointstyler_forest(feature) {
 			return {
 	        radius: 15, //getSize_forest(feature.opts.detailed_survey),
-	        fillColor: getColor_forest(feature.opts.species), //"grey",
-	        color:  getBorder_forest(feature.opts.detailed_survey), //false,
+	        fillColor: getColor_sm(feature.opts.id), //"grey",
+	        color:  getBorder_sm(feature.opts.cylinder), //false,
 	        weight: 1,
 	        opacity: 1,
 	        fillOpacity: 1
 	    };
 		}
 	
-	function circlestyler_forest(feature) {
-			return {
-				radius: feature.opts.diameter/2,
-        color: "white",
-        weight: 1,
-        opacity: 1,
-        fill: false
-	    };
-		}	
-
-    function onEachForest(feature, layer) {
+    function onEachSM(feature, layer) {
         layer.bindPopup("<iframe srcdoc='<p>"+
            "ID: "          +feature.opts.id    + "<br>"+
-					 "diameter: " +feature.opts.diameter    + "<br>"+
 					 "contributor: "        +feature.opts.contributor  + "<br>"+
 					 "date: "+feature.opts.date  + "<br>"+
-					 "species: "+feature.opts.species  + "<br>"+
-					 "detailed_survey: "+feature.opts.detailed_survey  + "<br>"+
+					 "FDR: " +feature.opts.FDR    + "<br>"+
+					 "cylinder: "+feature.opts.cylinder  + "<br>"+
 					 "remarks: "+feature.opts.remarks  + "<br>"+
 					 "</p>' height='300px' width='250px'</iframe>")
         layer.on({
@@ -372,20 +360,13 @@ function getBorder_forest(d) {
 		//    console.log(data);
 		mygeojson = Sheetsee.createGeoJSON(data);
 		
-		//plot circles denoting diameter
-		gaugescircles = L.geoJSON(mygeojson, {
-		pointToLayer: function (feature, latlng) {
-		    return L.circle(latlng, circlestyler_forest(feature));
-		},
-            }).addTo(map);
-		
 		//plot points
-		forestplots = L.geoJSON(mygeojson, {
+		sm_sites = L.geoJSON(mygeojson, {
 		pointToLayer: function (feature, latlng) {
 			 label = String(feature.opts.id);
 		    return L.circleMarker(latlng, pointstyler_forest(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
 		} ,
-		onEachFeature: onEachForest
+		onEachFeature: onEachSM
             }).addTo(map);
 	}
 	window.addEventListener('DOMContentLoaded', init);	
@@ -400,13 +381,13 @@ var legend = L.control({position: 'bottomright'});
 
     var div = L.DomUtil.create('div', 'info legend');
     labels = ['<strong>Forest sample plots</strong>'],
-    categories = ['oak', 'beech', 'fir', 'pine', 'spruce', 'elder' ];
+    categories = ['A', 'B', 'C', 'D'];
 	
     for (var i = 0; i < categories.length; i++) {
 
             div.innerHTML +=
             labels.push(
-                '<i class="circle" style="background:' + getColor_forest(categories[i]) + '"></i> ' +
+                '<i class="circle" style="background:' + getColor_sm(categories[i]) + '"></i> ' +
             (categories[i] ? categories[i] : '+'));
 //	    div.innerHTML +=
 //		'<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
