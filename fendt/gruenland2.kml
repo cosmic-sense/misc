@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="gruenland2" id="gruenland2">
+	<SimpleField name="OID" type="float"></SimpleField>
+	<SimpleField name="ID" type="string"></SimpleField>
+</Schema>
+<Folder><name>gruenland2</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">17</SimpleData>
+		<SimpleData name="ID">17</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.062856631,47.8243115450001,0 11.0629857214016,47.8236810534733,0 11.0632344871603,47.8230324641797,0 11.0632067120001,47.8226685070001,0 11.0630358770001,47.8225142150001,0 11.0620588620001,47.8226321540001,0 11.061288415,47.8238850120001,0 11.062856631,47.8243115450001,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">15</SimpleData>
+		<SimpleData name="ID">15</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.059322819,47.8254968320001,0 11.0621973620001,47.8268064820001,0 11.06496995,47.827107907,0 11.0644512010001,47.825502757,0 11.064144293,47.8247447630001,0 11.0639460757246,47.824484762215,0 11.0632684770001,47.8244318270001,0 11.062856631,47.8243115450001,0 11.061288415,47.8238850120001,0 11.059322819,47.8254968320001,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">21</SimpleData>
+		<SimpleData name="ID">21</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.0671500022983,47.8254722114884,0 11.067274757721,47.8258639060202,0 11.0690355140001,47.825686171,0 11.068915831,47.8252838450001,0 11.0671500022983,47.8254722114884,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">25</SimpleData>
+		<SimpleData name="ID">25</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.0705779335871,47.827968350452,0 11.0698070670001,47.828100555,0 11.0699600080001,47.8285110190001,0 11.0714239460433,47.8282612074139,0 11.0713857627249,47.8281698952428,0 11.0712915737296,47.8280495232427,0 11.0711109120078,47.8280026174021,0 11.0708975259235,47.8279445962953,0 11.0705779335871,47.827968350452,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">16</SimpleData>
+		<SimpleData name="ID">16</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.0595896180001,47.8232954970001,0 11.0610044330001,47.8240805570001,0 11.06122938,47.8238260690001,0 11.0619112530001,47.8226714210001,0 11.061141768,47.822759568,0 11.060829789,47.8230268350001,0 11.060162715,47.8229898980001,0 11.0595896180001,47.8232954970001,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">14</SimpleData>
+		<SimpleData name="ID">14</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.0557002740001,47.8260427100001,0 11.055958794,47.8261482660001,0 11.055922394,47.8263143550001,0 11.0561182160001,47.826563299,0 11.056102498,47.8266935820001,0 11.0563357820001,47.826717984,0 11.0567557740001,47.8267574110001,0 11.057469875,47.826781263,0 11.058007694,47.8269520650001,0 11.058134474,47.826957602,0 11.0581261620001,47.8266787210001,0 11.0583676590001,47.826248992,0 11.0586683490001,47.8258692140001,0 11.060982698,47.824068497,0 11.0595896180001,47.8232954970001,0 11.0586647850001,47.8238500410001,0 11.0581114620001,47.8245380380001,0 11.057467907,47.8250454130001,0 11.0563614450001,47.825670399,0 11.0557002740001,47.8260427100001,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">5</SimpleData>
+		<SimpleData name="ID">5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.0577912150001,47.8343249550001,0 11.059496036,47.834599756,0 11.0597658400001,47.8329740620001,0 11.0579762200001,47.8329593930001,0 11.057657658,47.8343238590001,0 11.0577912150001,47.8343249550001,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">2</SimpleData>
+		<SimpleData name="ID">2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.0611841620001,47.8335792670001,0 11.0624459750001,47.8339763170001,0 11.0626497100001,47.8337891080001,0 11.0625605930001,47.8335455430001,0 11.061245693,47.8331300730001,0 11.0611841620001,47.8335792670001,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">1</SimpleData>
+		<SimpleData name="ID">1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.0637062678708,47.8332467079558,0 11.0627133690001,47.83322101,0 11.06261389,47.833552974,0 11.062637524,47.833724052,0 11.062459367,47.833974428,0 11.062112352,47.834700103,0 11.0620361490001,47.83670513,0 11.0644480770001,47.840007594,0 11.0647233054104,47.8397427686683,0 11.0649239908089,47.83890797447,0 11.0648586806868,47.8387289007018,0 11.0639226238179,47.8377269412211,0 11.0635232072774,47.8367545101978,0 11.0636050758548,47.8364709092162,0 11.0634021984042,47.8360513640078,0 11.0632702903754,47.8344863530977,0 11.0639320164975,47.8344431059681,0 11.0637062678708,47.8332467079558,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">3</SimpleData>
+		<SimpleData name="ID">3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.05946705,47.8347254340001,0 11.0594887570001,47.8357419270001,0 11.059817174,47.8367879140001,0 11.059858617,47.838191308,0 11.063574305,47.838824265,0 11.0620748860001,47.836779397,0 11.0620678490001,47.8364285750001,0 11.0621126400001,47.8346841160001,0 11.062432619,47.8339762080001,0 11.061171131,47.8335611730001,0 11.0605456930001,47.8334301420001,0 11.059636545,47.833476664,0 11.05946705,47.8347254340001,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">11</SimpleData>
+		<SimpleData name="ID">11</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.058536126,47.8300659350001,0 11.0603475647888,47.8304808430799,0 11.0614521138382,47.8308014493109,0 11.062092095,47.8306346740001,0 11.0629565130001,47.830102094,0 11.063686236,47.829631368,0 11.0636262560001,47.8292531330001,0 11.06330275,47.828674881,0 11.063138215,47.8296538800001,0 11.062312825,47.8295032390001,0 11.05974028,47.829212382,0 11.0586058050001,47.8291671110001,0 11.058536126,47.8300659350001,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">7</SimpleData>
+		<SimpleData name="ID">7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.0585301312851,47.8300860949348,0 11.0584333740001,47.8305777470001,0 11.0593155010758,47.8307682821999,0 11.061836962,47.8314510390001,0 11.06295506,47.8316670300001,0 11.0631666370001,47.8317856780001,0 11.063302938,47.8316338920001,0 11.0634748470001,47.8309877300001,0 11.062427584,47.8305474740001,0 11.061422302816,47.8308635543107,0 11.0604335605494,47.8304792990494,0 11.0592734834421,47.8302502228472,0 11.0585301312851,47.8300860949348,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">6</SimpleData>
+		<SimpleData name="ID">6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.0596130645916,47.8308462418125,0 11.0595532257775,47.830829207111,0 11.0590362478208,47.8307112709644,0 11.0584320576802,47.8305980659232,0 11.0583544091686,47.831048553671,0 11.0596529644459,47.8312937152148,0 11.060795872,47.8315229340001,0 11.0607761900001,47.831873537,0 11.0621914170001,47.8326495900001,0 11.0628443700001,47.8327358670001,0 11.0631415010001,47.8318119150001,0 11.062970798,47.8316486310001,0 11.0618921180001,47.8314689380001,0 11.0596130645916,47.8308462418125,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">4</SimpleData>
+		<SimpleData name="ID">4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.057976093,47.8329663870001,0 11.059792912,47.8329542970001,0 11.059676972,47.833457008,0 11.06058612,47.833410486,0 11.06115765,47.833568058,0 11.0612183690001,47.8331638270001,0 11.06261389,47.833552974,0 11.062855827,47.832727506,0 11.0621621600001,47.832676872,0 11.0607611,47.831855965,0 11.0607532610001,47.8315501070001,0 11.0598229426842,47.8313246180294,0 11.0583446250001,47.8310536990001,0 11.057976093,47.8329663870001,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">8</SimpleData>
+		<SimpleData name="ID">8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.06246987,47.830538286,0 11.0634640370001,47.830960121,0 11.063686933,47.8304492840001,0 11.0638298600001,47.8299288,0 11.0637643800001,47.829856315,0 11.063550868,47.82984558,0 11.0623895800001,47.8305466250001,0 11.06246987,47.830538286,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">9</SimpleData>
+		<SimpleData name="ID">9-S</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.0637460061786,47.8297083070395,0 11.0639772827212,47.8296596542007,0 11.0654663260525,47.8299787906263,0 11.065630232,47.828594373,0 11.064467602,47.828629875,0 11.064024809,47.828743188,0 11.0632914550001,47.8286742500001,0 11.063707634,47.829298227,0 11.0637277120001,47.8296671430001,0 11.0637460061786,47.8297083070395,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">12</SimpleData>
+		<SimpleData name="ID">12</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.0586479441593,47.828896222649,0 11.05863048169,47.8291585623212,0 11.0595219910001,47.8292100560001,0 11.06233524,47.8294848950001,0 11.063134082,47.829626325,0 11.063270776,47.8287100570001,0 11.062726164,47.8285437220001,0 11.0623775660072,47.8284913197149,0 11.0622176925068,47.8291781183203,0 11.0586479441593,47.828896222649,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">19</SimpleData>
+		<SimpleData name="ID">19</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.0635252498393,47.8226740841554,0 11.0642216273844,47.8225634910942,0 11.0641876399704,47.8226601048533,0 11.0641595442884,47.8227585718517,0 11.0641550936099,47.8228664096768,0 11.0642582838047,47.8229742704369,0 11.0645062753793,47.8230489503964,0 11.0658227230001,47.822752779,0 11.06573603,47.822374327,0 11.0655697060001,47.8219682450001,0 11.0637096560001,47.8221779410001,0 11.0635252498393,47.8226740841554,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">26</SimpleData>
+		<SimpleData name="ID">26</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.0724014150001,47.829416672,0 11.072262127,47.828988334,0 11.072155746,47.8285872440001,0 11.070105793,47.8289484060001,0 11.0702122390001,47.829345002,0 11.070331961,47.8297462020001,0 11.070437527,47.8301922570001,0 11.0725209140001,47.8298313590001,0 11.0724014150001,47.829416672,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">24</SimpleData>
+		<SimpleData name="ID">24</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.069452637,47.827007166,0 11.0692997850001,47.8265922050001,0 11.0676188940001,47.8268573810001,0 11.0676310150001,47.8270281630001,0 11.0676973810001,47.8273223310001,0 11.0677890430001,47.827781988,0 11.0695782220001,47.8274533850001,0 11.069452637,47.827007166,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">13</SimpleData>
+		<SimpleData name="ID">13-W</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.058365053829,47.8271634050526,0 11.058472486,47.8274685330001,0 11.058561614099,47.8277391244773,0 11.0585610860001,47.827739078,0 11.0585748577725,47.8277793320573,0 11.058574865,47.827779354,0 11.0585748652881,47.8277793540251,0 11.0586752560001,47.8280727900001,0 11.0585951320001,47.828072133,0 11.0607163290001,47.8282064270001,0 11.0624682889438,47.8285146328942,0 11.0626340674335,47.8275268337637,0 11.0622828856442,47.8274735515289,0 11.0620904929001,47.8274571442699,0 11.0620900874636,47.8274524092136,0 11.058365053829,47.8271634050526,0</coordinates></LinearRing></outerBoundaryIs><innerBoundaryIs><LinearRing><coordinates>11.0607199554686,47.828204448138,0 11.0607226500395,47.8282032174126,0 11.0607219474858,47.8282045644469,0 11.0607199554686,47.828204448138,0</coordinates></LinearRing></innerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">20</SimpleData>
+		<SimpleData name="ID">20</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.0666145236341,47.8255295131144,0 11.0689075000608,47.8252862312226,0 11.0685639014692,47.8239950635538,0 11.0662796582479,47.8243288941852,0 11.0664791280723,47.8251280234978,0 11.0666145236341,47.8255295131144,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">23</SimpleData>
+		<SimpleData name="ID">23</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.0694631309693,47.8268517045157,0 11.0715379066707,47.8264890728013,0 11.0712568776827,47.8256862896676,0 11.070898140507,47.8257406879068,0 11.0707646139711,47.8251953985323,0 11.0690685320319,47.8254929959603,0 11.0694580513737,47.8268517961215,0 11.0694580513737,47.8268517961215,0 11.0694581874057,47.8268552167861,0 11.069462994937,47.8268482838511,0 11.0694581874057,47.8268552167861,0 11.0694631309693,47.8268517045157,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">10</SimpleData>
+		<SimpleData name="ID">10</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.0673174032612,47.830429736355,0 11.0673211453769,47.8304277518725,0 11.067321211,47.8304278100001,0 11.068274146,47.8301702260001,0 11.0682648837795,47.8301321775569,0 11.0682173340122,47.8300497645032,0 11.0681415159931,47.8299541421663,0 11.0679939319696,47.8298648297637,0 11.0677923097861,47.8297279965241,0 11.0675659394838,47.8295932810497,0 11.0673009026178,47.8295478893982,0 11.0670420698021,47.829522693922,0 11.0672083100001,47.8291114040001,0 11.0670643120001,47.828948343,0 11.0666265200001,47.828782894,0 11.0660814120001,47.8286435520001,0 11.0656543970001,47.8286220900001,0 11.0652145562253,47.8323615091283,0 11.0660636024368,47.8325047863309,0 11.0661941822664,47.8325690490886,0 11.0662870753692,47.8332962098068,0 11.0663723504823,47.8333672742871,0 11.0674117560001,47.833412164,0 11.0675195810001,47.8326125780001,0 11.067584773,47.8312100520001,0 11.067527984,47.8306519660001,0 11.0673174032612,47.830429736355,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">22</SimpleData>
+		<SimpleData name="ID">22</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.0676248785662,47.8268515127405,0 11.0677967694466,47.8268278767748,0 11.0692921681375,47.8265955335932,0 11.0690377061036,47.8256929956243,0 11.0667747821591,47.8259254693316,0 11.066856575204,47.8263210778013,0 11.0675627685334,47.8263117792514,0 11.0676248785662,47.8268515127405,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">18</SimpleData>
+		<SimpleData name="ID">18</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.0638838519994,47.8239428868748,0 11.063720152,47.823643938,0 11.063623652,47.823247521,0 11.0635269429082,47.8226740537096,0 11.063697319,47.8222214210001,0 11.0630358770001,47.8225142150001,0 11.0632067120001,47.8226685070001,0 11.0632353563016,47.8230330190723,0 11.0629857214016,47.8236810534733,0 11.062856631,47.8243115450001,0 11.0632684770001,47.8244318270001,0 11.0639460757246,47.824484762215,0 11.064023525346,47.8245792164706,0 11.0641184943952,47.8247112060599,0 11.0648799718775,47.824472194489,0 11.0647825916372,47.8243642297888,0 11.0646791644161,47.8242504961128,0 11.0646603121758,47.8240686267621,0 11.0647314268473,47.8238812201715,0 11.0642085690891,47.8239748738951,0 11.064069835535,47.823924470198,0 11.0638958712942,47.8239393546472,0 11.0638965338578,47.8239430855447,0 11.0638838519994,47.8239428868748,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">9</SimpleData>
+		<SimpleData name="ID">9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.0654663260525,47.8299787906263,0 11.0639772827212,47.8296596542007,0 11.0637460061786,47.8297083070395,0 11.063791898,47.8298115690001,0 11.063784136,47.830243216,0 11.0634630660001,47.8310140770001,0 11.0632779640001,47.831651138,0 11.0631418250001,47.8317939300001,0 11.062871081,47.8327360850001,0 11.062783987,47.833122114,0 11.0650791840001,47.8332487530001,0 11.0654663260525,47.8299787906263,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#gruenland2">
+		<SimpleData name="OID">13</SimpleData>
+		<SimpleData name="ID">13</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>11.0618525509736,47.8270331157334,0 11.0619228529444,47.8270727955329,0 11.0620630372472,47.8271364921404,0 11.0620904929001,47.8274571442699,0 11.0622828856442,47.8274735515289,0 11.0626340674335,47.8275268337637,0 11.0624682889438,47.8285146328942,0 11.06270011,47.828555415,0 11.063244884,47.8287127580001,0 11.0642060710001,47.8287385830001,0 11.064515482,47.8286151890001,0 11.065864587,47.8286081850001,0 11.0659029120001,47.8279609320001,0 11.064934683,47.8275842990001,0 11.06496995,47.827107907,0 11.0621973620001,47.8268064820001,0 11.0618525509736,47.8270331157334,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>
