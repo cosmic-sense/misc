@@ -34,7 +34,7 @@ title: cosmic pages
 	<style>
 		#map { width: 100%; height: 900px; }
 .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
-.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
+.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 1.0; }
 .legend .circle {
   border-radius: 50%;
   width: 10px;
@@ -304,12 +304,12 @@ var overlays = {
 	var forestplots;
 
 function getColor_forest(d) {
-        return d === 'oak' ? "#c0392b" :
+        return d === 'spruce'  ? "#2F4F4F" :
+               d === 'alder' ? "#e67e22" :
+			   d === 'oak' ? "#c0392b" :
                d === 'beech' ? "#9b59b6" :
-               d === 'fir' ? "#2980b9" :
-               d === 'pine' ? "#1abc9c" :
-               d === 'spruce'  ? "#2F4F4F" :
-               d === 'elder' ? "#e67e22" :
+               d === 'birch' ? "#2980b9" :
+               d === 'ash' ? "#1abc9c" :
                             "#bbbbbb";
     }
 
@@ -372,13 +372,6 @@ function getBorder_forest(d) {
 		//    console.log(data);
 		mygeojson = Sheetsee.createGeoJSON(data);
 		
-		//plot circles denoting diameter
-		gaugescircles = L.geoJSON(mygeojson, {
-		pointToLayer: function (feature, latlng) {
-		    return L.circle(latlng, circlestyler_forest(feature));
-		},
-            }).addTo(map);
-		
 		//plot points
 		forestplots = L.geoJSON(mygeojson, {
 		pointToLayer: function (feature, latlng) {
@@ -387,6 +380,14 @@ function getBorder_forest(d) {
 		} ,
 		onEachFeature: onEachForest
             }).addTo(map);
+			
+		//plot circles denoting diameter
+		gaugescircles = L.geoJSON(mygeojson, {
+		pointToLayer: function (feature, latlng) {
+		    return L.circle(latlng, circlestyler_forest(feature));
+		},
+            }).addTo(map);
+		
 	}
 	window.addEventListener('DOMContentLoaded', init);	
 	
@@ -400,7 +401,7 @@ var legend = L.control({position: 'bottomright'});
 
     var div = L.DomUtil.create('div', 'info legend');
     labels = ['<strong>Forest sample plots</strong>'],
-    categories = ['oak', 'beech', 'fir', 'pine', 'spruce', 'elder' ];
+    categories = ['spruce', 'alder', 'oak', 'beech', 'birch', 'ash' ];
 	
     for (var i = 0; i < categories.length; i++) {
 
