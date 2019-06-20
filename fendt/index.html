@@ -107,7 +107,7 @@ title: cosmic pages
 		'<b> Type:</b> '        +props.Type  + '<br>'+
 		'<b> Bare counter:</b> '+props.Bare  + '<br>'+
 		'<b> Modem:</b> '+props.Modem  + '<br>'+
-		'<b> Planned location:</b> ' + Number((props.xcoord).toFixed(6)) + ', ' + Number((props.ycoord).toFixed(6)) + '<br>' +
+//		'<b> Planned location:</b> ' + Number((props.xcoord).toFixed(6)) + ', ' + Number((props.ycoord).toFixed(6)) + '<br>' +
 		'<b> Date of installation:</b> '+ props.startdate  + '<br>'+
 		'<b> Comments:</b> '+ props.Comment  + '<br>'
 //		'<b> Date of deinstallation:</b> '+props.enddate  + '<br>'+
@@ -220,7 +220,7 @@ title: cosmic pages
 					 "Modem: "+feature.properties.Modem  + "<br>"+
 					 "Date of installation: "+feature.properties.startdate  + "<br>"+
 //					 "Date of deinstallation: "+feature.properties.enddate  + "<br>"+
-					 "Planned location: " + Number((feature.properties.xcoord).toFixed(6)) + ", " + Number((feature.properties.ycoord).toFixed(6)) + "<br>"+
+//					 "Planned location: " + Number((feature.properties.xcoord).toFixed(6)) + ", " + Number((feature.properties.ycoord).toFixed(6)) + "<br>"+
 //					 "Actual location: " + feature.properties.lat1 + ", " + feature.properties.lon1 +
 					 "Comments: " + feature.properties.Comment + "<br>"+
 					 "</p>' height='300px' width='250px'</iframe>")
@@ -232,7 +232,7 @@ title: cosmic pages
 
     var gaugesjson;
 
-    $.getJSON("fendt_crns_20190418.geojson", function(data) {
+    $.getJSON("fendt_crns_20190620.geojson", function(data) {
 	    gaugesjson = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
 			  label = String(feature.properties.Id)
@@ -253,7 +253,7 @@ title: cosmic pages
 		}
 
     var gaugescircles;
-    $.getJSON("fendt_crns_20190418.geojson", function(data) {
+    $.getJSON("fendt_crns_201900620.geojson", function(data) {
 	    gaugescircles = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
 		    return L.circle(latlng, circlestyler(feature));
