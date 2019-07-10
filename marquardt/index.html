@@ -5,7 +5,7 @@ title: cosmic pages
 <!DOCTYPE html>
 <html>
 <div class="blurb">
-	<h1>JFC Site at Fendt</h1>
+	<h1>JFC Site at Marquardt</h1>
 </div><!-- /.blurb -->
 
 <head>
@@ -27,7 +27,7 @@ title: cosmic pages
 		}
 		#map {
 			width: 100%;
-			height: 900px;
+			height: 700px;
 		}
 	</style>
 
@@ -61,10 +61,9 @@ title: cosmic pages
 	</style>
 </head>
 <body>
+
 <h3> Further links </h3>
-<a href="https://cosmic-sense.github.io/misc/fendt/crnsmonitor.html"> CRNS status monitor </a><br>
-<a href="https://cosmic-sense.github.io/misc/fendt/merged_crns.html"> Processed neutron counts </a><br>
-<a href="https://cosmic-sense.github.io/misc/fendt/forest.html"> Forest mapping </a><br>
+Field campaign in Marqurdt is intended to launch in August 2019 in cooperation with <a href="https://www.atb-potsdam.de/institut/ueber-uns/forschungsinfrastruktur/forschungsstandorte/ausstattung-und-standorteigenschaften.html"> ATB Marquardt </a>.<br>
 
 <div id='map'></div>
 
@@ -73,8 +72,8 @@ title: cosmic pages
 <script type="text/javascript">
 
   var map = L.map('map',
-                  {center: [47.828, 11.06474],
-                   zoom: 16,
+                  {center: [52.4662, 12.95813],
+                   zoom: 17,
                    layers: [],
                    worldCopyJump: false,
                    crs: L.CRS.EPSG3857
@@ -83,7 +82,7 @@ title: cosmic pages
     {
       "attribution": 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
       "detectRetina": false,
-      "maxZoom": 18,
+      "maxZoom": 20,
       "minZoom": 1,
       "noWrap": false,
       "subdomains": "abc"
@@ -101,15 +100,15 @@ title: cosmic pages
 
 	info.update = function (props) {
 		this._div.innerHTML = '<h4>Massive Coverage CRNS Network</h4>' +  (props ?
-		'<b> ID:</b> ' + props.Id + '<br>' +
+		'<b> ID:</b> ' + props.IdJFC + '<br>' +
 		'<b> Institution:</b> ' +props.Inst    + '<br>'+
 //		'<b> Logger ID:</b> ' +props.loggerid    + '<br>'+
-		'<b> Type:</b> '        +props.Type  + '<br>'+
-		'<b> Bare counter:</b> '+props.Bare  + '<br>'+
-		'<b> Modem:</b> '+props.Modem  + '<br>'+
+		'<b> Type:</b> '        +props.Type  + '<br>'
+//		'<b> Bare counter:</b> '+props.Bare  + '<br>'+
+//		'<b> Modem:</b> '+props.Modem  + '<br>'+
 //		'<b> Planned location:</b> ' + Number((props.xcoord).toFixed(6)) + ', ' + Number((props.ycoord).toFixed(6)) + '<br>' +
-		'<b> Date of installation:</b> '+ props.startdate  + '<br>'+
-		'<b> Comments:</b> '+ props.Comment  + '<br>'
+//		'<b> Date of installation:</b> '+ props.startdate  + '<br>'+
+//		'<b> Comments:</b> '+ props.Comment  + '<br>'
 //		'<b> Date of deinstallation:</b> '+props.enddate  + '<br>'+
 //		'<b> Actual location:</b> ' + props.lat1 + ', ' + props.lon1 + '<br>'
 			: 'Hover over a sensor');
@@ -136,51 +135,51 @@ title: cosmic pages
     	"fill": "red",
     };
 
-		var catchjson;
-    $.getJSON("fendt_catchment.geojson", function(data) {
-	    json = L.geoJSON(data, {
-		style: myStyle
-		}).addTo(map);
-    });
+//		var catchjson;
+//    $.getJSON("fendt_catchment.geojson", function(data) {
+//	    json = L.geoJSON(data, {
+//		style: myStyle
+//		}).addTo(map);
+//    });
 
 
-		var owners1json;
-    $.getJSON("owners1.geojson", function(data) {
-	    json = L.geoJSON(data, {
-		style: ownersStyle
-		}).addTo(map);
-    });
+//		var owners1json;
+//    $.getJSON("owners1.geojson", function(data) {
+//	    json = L.geoJSON(data, {
+//		style: ownersStyle
+//		}).addTo(map);
+//    });
 
-		var owners2json;
-    $.getJSON("owners2.geojson", function(data) {
-	    json = L.geoJSON(data, {
-		style: ownersStyle
-		}).addTo(map);
-    });
+//		var owners2json;
+//    $.getJSON("owners2.geojson", function(data) {
+//	    json = L.geoJSON(data, {
+//		style: ownersStyle
+//		}).addTo(map);
+//    });
 
-		var nogo2json;
-    $.getJSON("nogo.geojson", function(data) {
-	    json = L.geoJSON(data, {
-		style: nogoStyle
-		}).addTo(map);
-    });
+//		var nogo2json;
+//    $.getJSON("nogo.geojson", function(data) {
+//	    json = L.geoJSON(data, {
+//		style: nogoStyle
+//		}).addTo(map);
+//    });
 
-		var soilnetStyle = {
-			radius: 3,
-			fillColor: "black",
-			color: false,
-			weight: 1,
-			opacity: 1,
-			fillOpacity: 0.8
-    };
+//		var soilnetStyle = {
+//			radius: 3,
+//			fillColor: "black",
+//			color: false,
+//			weight: 1,
+//			opacity: 1,
+//			fillOpacity: 0.8
+//    };
 
-    var soilnetjson;
-		$.getJSON("soilnet.geojson", function(data) {
-	    soilnetjson = L.geoJSON(data, {
-         pointToLayer: function (feature, latlng) {
-		        return L.circleMarker(latlng, soilnetStyle);
-					}}).addTo(map);
-			    });
+//    var soilnetjson;
+//		$.getJSON("soilnet.geojson", function(data) {
+//	    soilnetjson = L.geoJSON(data, {
+//         pointToLayer: function (feature, latlng) {
+//		        return L.circleMarker(latlng, soilnetStyle);
+//					}}).addTo(map);
+//			    });
 
 		function pointstyler(feature) {
 			return {
@@ -213,17 +212,17 @@ title: cosmic pages
     function onEachGauge(feature, layer) {
         //layer.bindPopup('<p>Hello world!<br />This is a nice popup.</p>');
         layer.bindPopup("<iframe srcdoc='<p>"+
-           "ID: "          +feature.properties.Id    + "<br>"+
+           "ID: "          +feature.properties.IdJFC    + "<br>"+
 					 "Institution: " +feature.properties.Inst    + "<br>"+
-					 "Type: "        +feature.properties.Type  + "<br>"+
-					 "Bare counter: "+feature.properties.Bare  + "<br>"+
-					 "Modem: "+feature.properties.Modem  + "<br>"+
-					 "Date of installation: "+feature.properties.startdate  + "<br>"+
+					 "Type: "        +feature.properties.Type  + "<br>" +
+//					 "Bare counter: "+feature.properties.Bare  + "<br>"+
+//					 "Modem: "+feature.properties.Modem  + "<br>"+
+//					 "Date of installation: "+feature.properties.startdate  + "<br>"+
 //					 "Date of deinstallation: "+feature.properties.enddate  + "<br>"+
 //					 "Planned location: " + Number((feature.properties.xcoord).toFixed(6)) + ", " + Number((feature.properties.ycoord).toFixed(6)) + "<br>"+
 //					 "Actual location: " + feature.properties.lat1 + ", " + feature.properties.lon1 +
-					 "Comments: " + feature.properties.Comment + "<br>"+
-					 "</p>' height='300px' width='250px'</iframe>")
+//					 "Comments: " + feature.properties.Comment + "<br>"+
+					 "</p>' height='100px' width='250px'</iframe>")
         layer.on({
             mouseover: highlightGauge,
             mouseout: resetHighlightGauge
@@ -232,10 +231,10 @@ title: cosmic pages
 
     var gaugesjson;
 
-    $.getJSON("fendt_crns_20190620.geojson", function(data) {
+    $.getJSON("crns_locations.geojson", function(data) {
 	    gaugesjson = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
-			  label = String(feature.properties.Id)
+			  label = String(feature.properties.IdJFC)
 		    return L.circleMarker(latlng, pointstyler(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
 		},
 		onEachFeature: onEachGauge
@@ -244,7 +243,7 @@ title: cosmic pages
 
 		function circlestyler(feature) {
 			return {
-				radius: 100,
+				radius: 50,
         color: "white",//getColor(feature.properties.Inst),
         weight: 1,
         opacity: 1,
@@ -253,7 +252,7 @@ title: cosmic pages
 		}
 
     var gaugescircles;
-    $.getJSON("fendt_crns_201900620.geojson", function(data) {
+    $.getJSON("crns_locations.geojson", function(data) {
 	    gaugescircles = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
 		    return L.circle(latlng, circlestyler(feature));
