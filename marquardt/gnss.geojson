@@ -1,0 +1,20 @@
+
+{
+    "type": "FeatureCollection",
+    "generator": "JOSM",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "GFZ Bodenfeuchte / GNSS Marquardt"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.95955060000,
+                    52.46692880000
+                ]
+            }
+        }
+    ]
+}
