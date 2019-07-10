@@ -304,11 +304,11 @@ var overlays = {
 	var sm_sites;
 
 function getColor_sm(d) {
-        group=d[0]; //extract first letter
-		return group === 'A' ? "#c0392b" :
-               group === 'B' ? "#9b59b6" :
-               group === 'C' ? "#2980b9" :
-               group === 'D' ? "#1abc9c" :
+        group= Math.floor(d/100); //extract hundred-digit
+		return group === 1 ? "#c0392b" :
+               group === 2 ? "#9b59b6" :
+               group === 3 ? "#2980b9" :
+               group === 4 ? "#1abc9c" :
                             "#bbbbbb";
     }
 
@@ -380,14 +380,14 @@ var legend = L.control({position: 'bottomright'});
     legend.onAdd = function (map) {
 
     var div = L.DomUtil.create('div', 'info legend');
-    labels = ['<strong>Forest sample plots</strong>'],
-    categories = ['A', 'B', 'C', 'D'];
+    labels = ['<strong>Soil sampling group</strong>'],
+    categories = ['1', '2', '3', '4'];
 	
     for (var i = 0; i < categories.length; i++) {
 
             div.innerHTML +=
             labels.push(
-                '<i class="circle" style="background:' + getColor_sm(categories[i]) + '"></i> ' +
+                '<i class="circle" style="background:' + getColor_sm(categories[i]*100) + '"></i> ' +
             (categories[i] ? categories[i] : '+'));
 //	    div.innerHTML +=
 //		'<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
