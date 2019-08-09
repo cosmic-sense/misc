@@ -71,14 +71,19 @@ Field campaign in Marqurdt is intended to launch in August 2019 in cooperation w
 
 <script type="text/javascript">
 
-  var map = L.map('map',
-                  {center: [52.4662, 12.95813],
-                   zoom: 17,
-                   layers: [],
-                   worldCopyJump: false,
-                   crs: L.CRS.EPSG3857
-                  });
-  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+var layerCRNS = new L.LayerGroup(); //layer containing CRNS-stations
+var layerGNSS = new L.LayerGroup(); //layer containing GNSS
+
+
+var OpenStreetMap_DE = L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+		});
+					 
+var osm = L.tileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {
+	attribution: '&copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+});
+
+var Esri_WorldImagery =  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
     {
       "attribution": 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
       "detectRetina": false,
@@ -86,7 +91,34 @@ Field campaign in Marqurdt is intended to launch in August 2019 in cooperation w
       "minZoom": 1,
       "noWrap": false,
       "subdomains": "abc"
-    }).addTo(map);
+    });
+	
+	var baseLayers = {
+       		"OpenStreetMap_DE": OpenStreetMap_DE,
+			"OSM/Mapnik": osm, /**/
+			"ESRI-Luftbild": Esri_WorldImagery
+		};
+
+	
+	
+var overlays = {
+			"CRNS": layerCRNS,
+			"GNSS": layerGNSS,
+//			"planned_SM": layerplannedSM
+		};
+		
+		
+  var map = L.map('map',
+                  {center: [52.4662, 12.95813],
+                   zoom: 17,
+                   layers: [Esri_WorldImagery, layerCRNS, layerGNSS],
+                   worldCopyJump: false,
+                   crs: L.CRS.EPSG3857
+                  });
+				  
+				  
+	L.control.layers(baseLayers,overlays).addTo(map);			  
+
 
 
 	// control that shows state info on hover
@@ -238,7 +270,7 @@ Field campaign in Marqurdt is intended to launch in August 2019 in cooperation w
 		    return L.circleMarker(latlng, pointstyler(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
 		},
 		onEachFeature: onEachGauge
-            }).addTo(map);
+            }).addTo(layerCRNS);
     });
 
 		function circlestyler(feature) {
@@ -257,7 +289,7 @@ Field campaign in Marqurdt is intended to launch in August 2019 in cooperation w
 		pointToLayer: function (feature, latlng) {
 		    return L.circle(latlng, circlestyler(feature));
 		},
-            }).addTo(map);
+            }).addTo(layerCRNS);
     });
 
 function getColor(d) {
@@ -301,12 +333,31 @@ var legend = L.control({position: 'bottomright'});
 
         }
 				labels.push(
-						'<i class="smallcircle" style="background:black" ></i> SoilNet');
+						'<i class="smallcircle" style="background:white" ></i> GNSS');
         div.innerHTML = labels.join('<br>');
     return div;
     };
     legend.addTo(map);
 
+
+	var gnssStyle = {
+			radius: 5,
+			fillColor: "white",
+			color: false,
+			weight: 1,
+			opacity: 1,
+			fillOpacity: 0.8
+    };
+
+
+//GNSS
+ var gnssjson;
+    $.getJSON("gnss.geojson", function(data) {
+	    gnssjson = L.geoJSON(data, {
+		 pointToLayer: function (feature, latlng) {
+		        return L.circleMarker(latlng, gnssStyle);
+					}}).addTo(layerGNSS);
+    });
 
 </script>
 

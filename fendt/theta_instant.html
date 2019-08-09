@@ -88,11 +88,11 @@ Current pos:<input type="text" value="NA" id="curr_coords">
 
 <script type="text/javascript">
 
-
+				  
 	var OpenStreetMap_DE = L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
 			attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
 		});
-
+					 
 		var osm = L.tileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {
 			attribution: '&copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
 		});
@@ -100,37 +100,37 @@ Current pos:<input type="text" value="NA" id="curr_coords">
 		var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 			attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 		});
-
+	
 	var baseLayers = {
        		"OpenStreetMap_DE": OpenStreetMap_DE,
 			"OSM/Mapnik": osm, /**/
 			"ESRI-Luftbild": Esri_WorldImagery
 		};
-
+	
 
 
 
 
 	var layerCRNS = new L.LayerGroup(); //layer containing CRNS-stations
 	var layerSoilNet = new L.LayerGroup(); //layer containing Soilnet
-	var layerplannedSM = new L.LayerGroup(); //layer containing CRNS-stations
+	//var layerplannedSM = new L.LayerGroup(); //layer containing CRNS-stations
 
 var overlays = {
 			"CRNS": layerCRNS,
 			"SoilNet": layerSoilNet,
-			"planned_SM": layerplannedSM
+//			"planned_SM": layerplannedSM
 		};
 
   var map = L.map('map',
                   {center: [47.828, 11.06474],
                    zoom: 16,
-                   layers: [OpenStreetMap_DE, layerCRNS, layerplannedSM],
+                   layers: [OpenStreetMap_DE, layerCRNS],
                    worldCopyJump: false,
                    crs: L.CRS.EPSG3857
                   });
-
+	
 	L.control.layers(baseLayers,overlays).addTo(map);
-
+	
     var myStyle = {
     	"color": "white",
     	"weight": 4,
@@ -173,7 +173,7 @@ var overlays = {
     });
 
 		var nogo2json;
-    $.getJSON("nogo_fdr.geojson", function(data) {
+    $.getJSON("nogo.geojson", function(data) {
 	    json = L.geoJSON(data, {
 		style: nogoStyle
 		}).addTo(map);
@@ -198,7 +198,7 @@ var overlays = {
 			    });
 
 
-
+   
 
 		function pointstyler(feature) {
 			return {
@@ -237,7 +237,7 @@ var overlays = {
 					 "Modem: "+feature.properties.Modem  + "<br>"+
 					 "Date of installation: "+feature.properties.startdate  + "<br>"+
 //					 "Date of deinstallation: "+feature.properties.enddate  + "<br>"+
-//					 "Planned location: " + Number((feature.properties.xcoord).toFixed(6)) + ", " + Number((feature.properties.ycoord).toFixed(6)) + "<br>"+
+					 "Planned location: " + Number((feature.properties.xcoord).toFixed(6)) + ", " + Number((feature.properties.ycoord).toFixed(6)) + "<br>"+
 //					 "Actual location: " + feature.properties.lat1 + ", " + feature.properties.lon1 +
 					 "Comments: " + feature.properties.Comment + "<br>"+
 					 "</p>' height='300px' width='250px'</iframe>")
@@ -249,7 +249,7 @@ var overlays = {
 
     var gaugesjson;
 
-    $.getJSON("fendt_crns_20190620.geojson", function(data) {
+    $.getJSON("fendt_crns_20190418.geojson", function(data) {
 	    gaugesjson = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
 			  label = String(feature.properties.Id)
@@ -259,36 +259,8 @@ var overlays = {
             }).addTo(layerCRNS);
     });
 
-
-
-	function pointstyler_sm_planned(feature) {
-			return {
-	        radius: 4, //getSize_forest(feature.opts.detailed_survey),
-	        fillColor: getColor_sm(feature.properties.gruppe*100), //"grey",
-	        weight: 1,
-			color: false,
-	        fillOpacity: 1
-	    };
-		}
-
-
-
-    var sm_locations;
-
-    $.getJSON("sm_fdr.geojson", function(data) {
-	    sm_locations = L.geoJSON(data, {
-		pointToLayer: function (feature, latlng) {
-			  return L.circleMarker(latlng, pointstyler_sm_planned(feature));
-		} ,
-		//onEachFeature: onEachGauge
-            }).addTo(layerplannedSM);
-    });
-
-
-
-
-   /*
-
+   /*		
+   
 	function circlestyler(feature) {
 			return {
 				radius: 100,
@@ -299,7 +271,7 @@ var overlays = {
 	    };
 		}
 
-
+ 
     var gaugescircles;
     $.getJSON("fendt_crns_20190418.geojson", function(data) {
 	    gaugescircles = L.geoJSON(data, {
@@ -324,9 +296,9 @@ var overlays = {
         };
     }
 	*/
-
+	
 //create geojson from Google-spreadsheet
-	var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1o6jmBm064FfnHwkcdE1FuCrE6YQlTzZxNaTEGLb0FYc/edit#gid=0'; //URL of Google Spreadsheet
+	var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1o6jmBm064FfnHwkcdE1FuCrE6YQlTzZxNaTEGLb0FYc/edit#gid=0'; //URL of Google Spreadsheet 
 																							//don't forget to make public, see http://jlord.us/sheetsee.js/docs/basics.html, "Publishing Your Spreadsheet"
 	var mygeojson; //strangely, this object does not seem to work outside the following function
 	var sm_sites;
@@ -340,14 +312,14 @@ function getColor_sm(d) {
                             "#bbbbbb";
     }
 
-
+ 
 function getBorder_sm(d) {
         return d === 'yes' ? "black" :
                d === 'no' ? false :
                         false;
     }
 
-
+ 
 
 	function pointstyler_forest(feature) {
 			return {
@@ -359,7 +331,7 @@ function getBorder_sm(d) {
 	        fillOpacity: 1
 	    };
 		}
-
+	
     function onEachSM(feature, layer) {
         layer.bindPopup("<iframe srcdoc='<p>"+
            "ID: "          +feature.opts.id    + "<br>"+
@@ -375,7 +347,7 @@ function getBorder_sm(d) {
         });
     }
 
-
+				
 
 	function init() {
 	Tabletop.init( { key: publicSpreadsheetUrl,
@@ -387,7 +359,7 @@ function getBorder_sm(d) {
 		//alert('Successfully processed!')
 		//    console.log(data);
 		mygeojson = Sheetsee.createGeoJSON(data);
-
+		
 		//plot points
 		sm_sites = L.geoJSON(mygeojson, {
 		pointToLayer: function (feature, latlng) {
@@ -397,12 +369,12 @@ function getBorder_sm(d) {
 		onEachFeature: onEachSM
             }).addTo(map);
 	}
-	window.addEventListener('DOMContentLoaded', init);
-
-
-
-
-
+	window.addEventListener('DOMContentLoaded', init);	
+	
+	
+		
+		
+	
 
 var legend = L.control({position: 'bottomright'});
     legend.onAdd = function (map) {
@@ -410,7 +382,7 @@ var legend = L.control({position: 'bottomright'});
     var div = L.DomUtil.create('div', 'info legend');
     labels = ['<strong>Soil sampling group</strong>'],
     categories = ['1', '2', '3', '4'];
-
+	
     for (var i = 0; i < categories.length; i++) {
 
             div.innerHTML +=
@@ -424,17 +396,17 @@ var legend = L.control({position: 'bottomright'});
         }
 				labels.push(
 						'<i class="smallcircle" style="background:black" ></i> CRNS-Probes');
-
+				
         div.innerHTML = labels.join('<br>');
     return div;
     };
     legend.addTo(map);
 
 
-//add current user position
-   // placeholders for the L.marker and L.circle representing user's current position and accuracy
+//add current user position	
+   // placeholders for the L.marker and L.circle representing user's current position and accuracy    
     var current_position, current_accuracy;
-
+	
     function onLocationFound(e) {
       // if position defined, then remove the existing position marker and accuracy circle from the map
       if (current_position) {
@@ -460,7 +432,7 @@ var legend = L.control({position: 'bottomright'});
     map.on('locationfound', onLocationFound);
     map.on('locationerror', onLocationError);
 
-    // wrap map.locate in a function
+    // wrap map.locate in a function    
     function locate() {
 	  document.getElementById("curr_coords").value = "refreshing...";
       map.locate({setView: false, maxZoom: 16});
@@ -469,12 +441,12 @@ var legend = L.control({position: 'bottomright'});
 
     //// call locate every 3 seconds... forever
  //var AutoUpd_hd=setInterval(locate, 3000); //automatically update position
-
-
+    
+  
 function copy2clip()
-{
+{  
   var copyText = document.getElementById("curr_coords");
-
+  
 	   /* Select the text field */
 	  copyText.select();
 	  /* Copy the text inside the text field */
@@ -482,7 +454,7 @@ function copy2clip()
 
 	  /* Alert the copied text */
 	  alert("Coords copied to clipboard: \'" + copyText.value+"\'");
-}
+}	
 
 
 
@@ -491,7 +463,7 @@ function toggle_auto_upd()
 {
 
 	c=document.getElementById('auto_upd');
-    if (c.checked)
+    if (c.checked) 
 		AutoUpd_hd=setInterval(locate, 3000); //automatically update position
 	else
 		clearInterval(AutoUpd_hd);
