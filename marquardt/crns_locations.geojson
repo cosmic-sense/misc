@@ -5,14 +5,14 @@
 "features": [
 { "type": "Feature", "properties": { "id": 1, "Comment": "Forsythie", "Mobil": 0, "Inst": "UFZ", "Type": "Styx N.", "IdJFC": 12 }, "geometry": { "type": "Point", "coordinates": [ 12.958399482774498, 52.467489132174734 ] } },
 { "type": "Feature", "properties": { "id": 2, "Comment": "KUP, in der Reihe", "Mobil": 0, "Inst": "UP", "Type": "Lab-C", "IdJFC": 4 }, "geometry": { "type": "Point", "coordinates": [ 12.957888274941569, 52.467120370973554 ] } },
-{ "type": "Feature", "properties": { "id": 3, "Comment": "Neben Kirschen (West)", "Mobil": 1, "Inst": "UP", "Type": "CRS-1000", "IdJFC": 99 }, "geometry": { "type": "Point", "coordinates": [ 12.957014827685638, 52.466723666949278 ] } },
+{ "type": "Feature", "properties": { "id": 3, "Comment": "Neben Kirschen (West)", "Mobil": 1, "Inst": "UP", "Type": "CRS-1000+Lab-C", "IdJFC": 27 }, "geometry": { "type": "Point", "coordinates": [ 12.957014827685638, 52.466723666949278 ] } },
 { "type": "Feature", "properties": { "id": 4, "Comment": "Haselnusssträucher", "Mobil": 0, "Inst": "UFZ", "Type": "Styx N.", "IdJFC": 9 }, "geometry": { "type": "Point", "coordinates": [ 12.957435060408004, 52.465384425390049 ] } },
-{ "type": "Feature", "properties": { "id": 5, "Comment": "Ehem. Wildobst", "Mobil": 0, "Inst": "UP", "Type": "CRS-1000", "IdJFC": 3 }, "geometry": { "type": "Point", "coordinates": [ 12.957948594906027, 52.46499768800706 ] } },
+{ "type": "Feature", "properties": { "id": 5, "Comment": "Ehem. Wildobst", "Mobil": 0, "Inst": "UP", "Type": "CRS-1000", "IdJFC": 28 }, "geometry": { "type": "Point", "coordinates": [ 12.957948594906027, 52.46499768800706 ] } },
 { "type": "Feature", "properties": { "id": 7, "Comment": "Am Wasserspeicher", "Mobil": 0, "Inst": "UP", "Type": "CRS-1000", "IdJFC": 2 }, "geometry": { "type": "Point", "coordinates": [ 12.956212991583843, 52.466191592474253 ] } },
 { "type": "Feature", "properties": { "id": 6, "Comment": "Bereits installiert", "Mobil": 0, "Inst": "UFZ", "Type": "Styx N.", "IdJFC": 11 }, "geometry": { "type": "Point", "coordinates": [ 12.959235849511947, 52.466483315357991 ] } },
 { "type": "Feature", "properties": { "id": 9, "Comment": "Forsythienreihe (Nord)", "Mobil": 0, "Inst": "UP", "Type": "CRS-2000-B", "IdJFC": 1 }, "geometry": { "type": "Point", "coordinates": [ 12.958331740002125, 52.466406208661716 ] } },
 { "type": "Feature", "properties": { "id": 11, "Comment": "Walnussbäume", "Mobil": 0, "Inst": "UFZ", "Type": "Styx N.", "IdJFC": 13 }, "geometry": { "type": "Point", "coordinates": [ 12.959449823560727, 52.465777951552447 ] } },
-{ "type": "Feature", "properties": { "id": 10, "Comment": "Kirschen (Hauptweg)", "Mobil": 1, "Inst": "UP", "Type": "CRS-1000", "IdJFC": 26 }, "geometry": { "type": "Point", "coordinates": [ 12.957461908258177, 52.466452983224144 ] } },
+{ "type": "Feature", "properties": { "id": 10, "Comment": "Kirschen (Hauptweg)", "Mobil": 1, "Inst": "UP", "Type": "CRS-1000+Lab-C", "IdJFC": 26 }, "geometry": { "type": "Point", "coordinates": [ 12.957461908258177, 52.466452983224144 ] } },
 { "type": "Feature", "properties": { "id": 12, "Comment": "Forsythienreihe (Sued)", "Mobil": 0, "Inst": "GFZ", "Type": "CRS-2000-B", "IdJFC": 22 }, "geometry": { "type": "Point", "coordinates": [ 12.95857997181548, 52.465514778511597 ] } },
 { "type": "Feature", "properties": { "id": 8, "Comment": "Zw. Apfel & Kamille", "Mobil": 0, "Inst": "GFZ", "Type": "CRS-2000-B", "IdJFC": 21 }, "geometry": { "type": "Point", "coordinates": [ 12.957427008180735, 52.465822820689475 ] } }
 ]
