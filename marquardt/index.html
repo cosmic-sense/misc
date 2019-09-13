@@ -78,7 +78,7 @@ var layerGNSS = new L.LayerGroup(); //layer containing GNSS
 var OpenStreetMap_DE = L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
 			attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
 		});
-					 
+
 var osm = L.tileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {
 	attribution: '&copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
 });
@@ -92,22 +92,22 @@ var Esri_WorldImagery =  L.tileLayer('https://server.arcgisonline.com/ArcGIS/res
       "noWrap": false,
       "subdomains": "abc"
     });
-	
+
 	var baseLayers = {
        		"OpenStreetMap_DE": OpenStreetMap_DE,
 			"OSM/Mapnik": osm, /**/
 			"ESRI-Luftbild": Esri_WorldImagery
 		};
 
-	
-	
+
+
 var overlays = {
 			"CRNS": layerCRNS,
 			"GNSS": layerGNSS,
 //			"planned_SM": layerplannedSM
 		};
-		
-		
+
+
   var map = L.map('map',
                   {center: [52.4662, 12.95813],
                    zoom: 17,
@@ -115,9 +115,9 @@ var overlays = {
                    worldCopyJump: false,
                    crs: L.CRS.EPSG3857
                   });
-				  
-				  
-	L.control.layers(baseLayers,overlays).addTo(map);			  
+
+
+	L.control.layers(baseLayers,overlays).addTo(map);
 
 
 
@@ -263,7 +263,7 @@ var overlays = {
 
     var gaugesjson;
 
-    $.getJSON("crns_locations.geojson", function(data) {
+    $.getJSON("crns_locations2.geojson", function(data) {
 	    gaugesjson = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
 			  label = String(feature.properties.IdJFC)
@@ -284,7 +284,7 @@ var overlays = {
 		}
 
     var gaugescircles;
-    $.getJSON("crns_locations.geojson", function(data) {
+    $.getJSON("crns_locations2.geojson", function(data) {
 	    gaugescircles = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
 		    return L.circle(latlng, circlestyler(feature));
