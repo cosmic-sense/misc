@@ -73,6 +73,8 @@ Field campaign in Marquardt has been running since in August 2019 in cooperation
 
 var layerCRNS = new L.LayerGroup(); //layer containing CRNS-stations
 var layerGNSS = new L.LayerGroup(); //layer containing GNSS
+var layerTheta = new L.LayerGroup(); //layer containing ThetaProbes / PR2s
+var layerTubes = new L.LayerGroup(); //layer containing empty tubes
 
 
 var OpenStreetMap_DE = L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
@@ -104,6 +106,8 @@ var Esri_WorldImagery =  L.tileLayer('https://server.arcgisonline.com/ArcGIS/res
 var overlays = {
 			"CRNS": layerCRNS,
 			"GNSS": layerGNSS,
+			"Theta": layerTheta,
+			"tubes": layerTubes,
 //			"planned_SM": layerplannedSM
 		};
 
@@ -111,7 +115,7 @@ var overlays = {
   var map = L.map('map',
                   {center: [52.4662, 12.95813],
                    zoom: 17,
-                   layers: [Esri_WorldImagery, layerCRNS, layerGNSS],
+                   layers: [Esri_WorldImagery, layerCRNS, layerGNSS, layerTheta, layerTubes],
                    worldCopyJump: false,
                    crs: L.CRS.EPSG3857
                   });
@@ -340,6 +344,7 @@ var legend = L.control({position: 'bottomright'});
     legend.addTo(map);
 
 
+//GNSS
 	var gnssStyle = {
 			radius: 5,
 			fillColor: "white",
@@ -349,8 +354,6 @@ var legend = L.control({position: 'bottomright'});
 			fillOpacity: 0.8
     };
 
-
-//GNSS
  var gnssjson;
     $.getJSON("gnss.geojson", function(data) {
 	    gnssjson = L.geoJSON(data, {
@@ -358,6 +361,51 @@ var legend = L.control({position: 'bottomright'});
 		        return L.circleMarker(latlng, gnssStyle);
 					}}).addTo(layerGNSS);
     });
+
+   var gaugesjson;
+
+//theta stations
+function thetastyler(feature) {
+			return {
+	        radius: 5,
+	        fillColor: "blue",
+	        color: false,
+	        weight: 1,
+	        opacity: 1,
+	        fillOpacity: 0.8
+	    };
+		}
+
+    $.getJSON("theta_stations.geojson", function(data) {
+	    thetajson = L.geoJSON(data, {
+		pointToLayer: function (feature, latlng) {
+			  label = String(feature.properties.ID)
+		    return L.circleMarker(latlng, thetastyler(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
+		},
+            }).addTo(layerTheta);
+    });
+
+//PR2 tubes fpr campaign
+function tubestyler(feature) {
+			return {
+	        radius: 5,
+	        fillColor: "cyan",
+	        color: false,
+	        weight: 1,
+	        opacity: 1,
+	        fillOpacity: 0.8
+	    };
+		}
+
+    $.getJSON("profilsondenrohre.geojson", function(data) {
+	    thetajson = L.geoJSON(data, {
+		pointToLayer: function (feature, latlng) {
+			  label = String(feature.properties.Name)
+		    return L.circleMarker(latlng, tubestyler(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
+		},
+            }).addTo(layerTubes);
+    });
+
 
 </script>
 
