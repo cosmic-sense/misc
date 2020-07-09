@@ -280,7 +280,7 @@ function getColor(d) {
                d === 'HZM' ? "#2980b9" :
                d === 'KIT' ? "#1abc9c" :
                d === 'UP'  ? "#2F4F4F" :
-               d === 'UH' ? "#e67e22" :
+               d === 'UH,UFZ' ? "#e67e22" :
                             "grey";
     }
 
@@ -301,7 +301,7 @@ var legend = L.control({position: 'bottomright'});
 
     var div = L.DomUtil.create('div', 'info legend');
     labels = ['<strong>CRNS Locations</strong>'],
-    categories = ['FZJ','GFZ','KIT','UP','UH/UFZ'];
+    categories = ['FZJ','GFZ','KIT','UP','UH,UFZ'];
 
     for (var i = 0; i < categories.length; i++) {
 
