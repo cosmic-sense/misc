@@ -246,7 +246,7 @@ L.control.layers(baseLayers,overlays).addTo(map);
     $.getJSON("crns_locations.geojson", function(data) {
 	    gaugesjson = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
-			  label = String(feature.properties.Id)
+			  label = String(feature.properties.id)
 		    return L.circleMarker(latlng, pointstyler(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
 		},
 		onEachFeature: onEachGauge
