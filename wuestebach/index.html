@@ -72,7 +72,7 @@ title: cosmic pages
 <script type="text/javascript">
 
   var map = L.map('map',
-                  {center: [47.828, 11.06474],
+                  {center: [50.5060, 6.3333],
                    zoom: 16,
                    layers: [],
                    worldCopyJump: false,
@@ -199,7 +199,7 @@ title: cosmic pages
 
     var gaugesjson;
 
-    $.getJSON("wuestebach_crns_20190620.geojson", function(data) {
+    $.getJSON("wuestebach_crns.geojson", function(data) {
 	    gaugesjson = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
 			  label = String(feature.properties.Id)
@@ -220,7 +220,7 @@ title: cosmic pages
 		}
 
     var gaugescircles;
-    $.getJSON("wuestebach_crns_201900620.geojson", function(data) {
+    $.getJSON("wuestebach_crns.geojson", function(data) {
 	    gaugescircles = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
 		    return L.circle(latlng, circlestyler(feature));
