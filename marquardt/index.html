@@ -382,10 +382,20 @@ function thetastyler(feature) {
 			  label = String(feature.properties.ID)
 		    return L.circleMarker(latlng, thetastyler(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
 		},
-            }).addTo(layerTheta);
+//            }).addTo(layerTheta);
+            }).addTo(map);
     });
 
 //PR2 tubes for campaign
+	var tubestyle2 = {
+			radius: 5,
+			fillColor: "cyan",
+			color: false,
+			weight: 1,
+			opacity: 1,
+			fillOpacity: 0.8
+    };
+
 function tubestyler(feature) {
 			return {
 	        radius: 5,
@@ -403,7 +413,15 @@ function tubestyler(feature) {
 			  label = String(feature.properties.Name)
 		    return L.circleMarker(latlng, tubestyler(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
 		},
-            }).addTo(layerTubes);
+//            }).addTo(layerTubes);
+            }).addTo(map);
+    });
+
+    $.getJSON("profilsondenrohre.geojson", function(data) {
+	    tubejson2 = L.geoJSON(data, {
+		 pointToLayer: function (feature, latlng) {
+		        return L.circleMarker(latlng, tubestyle2);
+					}}).addTo(map);
     });
 
 
