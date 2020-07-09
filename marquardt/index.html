@@ -318,30 +318,6 @@ function getColor(d) {
         };
     }
 
-var legend = L.control({position: 'bottomright'});
-    legend.onAdd = function (map) {
-
-    var div = L.DomUtil.create('div', 'info legend');
-    labels = ['<strong>CRNS Locations</strong>'],
-    categories = ['FZJ','GFZ','HZM','KIT','UP','UFZ'];
-
-    for (var i = 0; i < categories.length; i++) {
-
-            div.innerHTML +=
-            labels.push(
-                '<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
-            (categories[i] ? categories[i] : '+'));
-//	    div.innerHTML +=
-//		'<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
-//		 (categories[i] ? categories[i] + '<br>' : '+');
-
-        }
-				labels.push(
-						'<i class="smallcircle" style="background:white" ></i> GNSS');
-        div.innerHTML = labels.join('<br>');
-    return div;
-    };
-    legend.addTo(map);
 
 
 //GNSS
@@ -377,7 +353,7 @@ var legend = L.control({position: 'bottomright'});
 	    tubejson2 = L.geoJSON(data, {
 		 pointToLayer: function (feature, latlng) {
 		        return L.circleMarker(latlng, tubestyle2);
-					}}).addTo(map);
+					}}).addTo(layerGNSS);
     });
 
 function tubestyler(feature) {
@@ -425,6 +401,30 @@ function thetastyler(feature) {
             }).addTo(map);
     });
 
+var legend = L.control({position: 'bottomright'});
+    legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend');
+    labels = ['<strong>CRNS Locations</strong>'],
+    categories = ['FZJ','GFZ','HZM','KIT','UP','UFZ'];
+
+    for (var i = 0; i < categories.length; i++) {
+
+            div.innerHTML +=
+            labels.push(
+                '<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
+            (categories[i] ? categories[i] : '+'));
+//	    div.innerHTML +=
+//		'<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
+//		 (categories[i] ? categories[i] + '<br>' : '+');
+
+        }
+				labels.push(
+						'<i class="smallcircle" style="background:white" ></i> GNSS');
+        div.innerHTML = labels.join('<br>');
+    return div;
+    };
+    legend.addTo(map);
 
 </script>
 
