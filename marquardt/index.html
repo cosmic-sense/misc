@@ -318,6 +318,90 @@ function getColor(d) {
         };
     }
 
+
+
+//GNSS
+	var gnssStyle = {
+			radius: 5,
+			fillColor: "white",
+			color: false,
+			weight: 1,
+			opacity: 1,
+			fillOpacity: 0.8
+    };
+
+ var gnssjson;
+    $.getJSON("gnss.geojson", function(data) {
+        gnssjson = L.geoJSON(data, {
+		 pointToLayer: function (feature, latlng) {
+		        return L.circleMarker(latlng, gnssStyle);
+					}}).addTo(layerGNSS);
+    });
+
+
+//PR2 tubes for campaign
+/*
+	var tubestyle2 = {
+			radius: 5,
+			fillColor: "cyan",
+			color: false,
+			weight: 1,
+			opacity: 1,
+			fillOpacity: 0.8
+    };
+ var tubejson2;
+    $.getJSON("profilsondenrohre.geojson", function(data) {
+	    tubejson2 = L.geoJSON(data, {
+		 pointToLayer: function (feature, latlng) {
+		        return L.circleMarker(latlng, tubestyle2);
+					}}).addTo(layerGNSS);
+    });
+*/
+function tubestyler(feature) {
+			return {
+	        radius: 5,
+	        fillColor: "cyan",
+	        color: false,
+	        weight: 1,
+	        opacity: 1,
+	        fillOpacity: 0.8
+	    };
+		}
+
+ var tubejson;
+    $.getJSON("profilsondenrohre.geojson", function(data) {
+	    tubejson = L.geoJSON(data, {
+		pointToLayer: function (feature, latlng) {
+			  label = String(feature.properties.Name)
+		    return L.circleMarker(latlng, tubestyler(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
+		},
+            }).addTo(layerTubes);
+//            }).addTo(map);
+    });
+
+
+//theta stations
+function thetastyler(feature) {
+			return {
+	        radius: 5,
+	        fillColor: "blue",
+	        color: false,
+	        weight: 1,
+	        opacity: 1,
+	        fillOpacity: 0.8
+	    };
+		}
+
+    $.getJSON("theta_stations.geojson", function(data) {
+	    thetajson = L.geoJSON(data, {
+		pointToLayer: function (feature, latlng) {
+			  label = String(feature.properties.ID)
+		    return L.circleMarker(latlng, thetastyler(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
+		},
+            }).addTo(layerTheta);
+//            }).addTo(map);
+    });
+
 var legend = L.control({position: 'bottomright'});
     legend.onAdd = function (map) {
 
@@ -342,88 +426,6 @@ var legend = L.control({position: 'bottomright'});
     return div;
     };
     legend.addTo(map);
-
-
-//GNSS
-	var gnssStyle = {
-			radius: 5,
-			fillColor: "white",
-			color: false,
-			weight: 1,
-			opacity: 1,
-			fillOpacity: 0.8
-    };
-
- var gnssjson;
-    $.getJSON("gnss.geojson", function(data) {
-	    gnssjson = L.geoJSON(data, {
-		 pointToLayer: function (feature, latlng) {
-		        return L.circleMarker(latlng, gnssStyle);
-					}}).addTo(layerGNSS);
-    });
-
-   var gaugesjson;
-
-//theta stations
-function thetastyler(feature) {
-			return {
-	        radius: 5,
-	        fillColor: "blue",
-	        color: false,
-	        weight: 1,
-	        opacity: 1,
-	        fillOpacity: 0.8
-	    };
-		}
-
-    $.getJSON("theta_stations.geojson", function(data) {
-	    thetajson = L.geoJSON(data, {
-		pointToLayer: function (feature, latlng) {
-			  label = String(feature.properties.ID)
-		    return L.circleMarker(latlng, thetastyler(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
-		},
-//            }).addTo(layerTheta);
-            }).addTo(map);
-    });
-
-//PR2 tubes for campaign
-	var tubestyle2 = {
-			radius: 5,
-			fillColor: "cyan",
-			color: false,
-			weight: 1,
-			opacity: 1,
-			fillOpacity: 0.8
-    };
-
-function tubestyler(feature) {
-			return {
-	        radius: 5,
-	        fillColor: "cyan",
-	        color: false,
-	        weight: 1,
-	        opacity: 1,
-	        fillOpacity: 0.8
-	    };
-		}
-
-    $.getJSON("profilsondenrohre.geojson", function(data) {
-	    tubejson = L.geoJSON(data, {
-		pointToLayer: function (feature, latlng) {
-			  label = String(feature.properties.Name)
-		    return L.circleMarker(latlng, tubestyler(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
-		},
-//            }).addTo(layerTubes);
-            }).addTo(map);
-    });
-
-    $.getJSON("profilsondenrohre.geojson", function(data) {
-	    tubejson2 = L.geoJSON(data, {
-		 pointToLayer: function (feature, latlng) {
-		        return L.circleMarker(latlng, tubestyle2);
-					}}).addTo(map);
-    });
-
 
 </script>
 
