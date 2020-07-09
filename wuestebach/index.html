@@ -118,10 +118,10 @@ var overlays = {
                    worldCopyJump: false,
                    crs: L.CRS.EPSG3857
                   });
-				  
+
 L.control.layers(baseLayers,overlays).addTo(map);
 
-				  
+
   L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
     {
       "attribution": 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
@@ -144,15 +144,15 @@ L.control.layers(baseLayers,overlays).addTo(map);
 
 	info.update = function (props) {
 		this._div.innerHTML = '<h4>Massive Coverage CRNS Network</h4>' +  (props ?
-		'<b> ID:</b> ' + props.Id + '<br>' +
-		'<b> Institution:</b> ' +props.Inst    + '<br>'+
+		'<b> ID:</b> ' + props.id + '<br>' +
+		'<b> Institution:</b> ' +props.inst    + '<br>'
 //		'<b> Logger ID:</b> ' +props.loggerid    + '<br>'+
-		'<b> Type:</b> '        +props.Type  + '<br>'+
-		'<b> Bare counter:</b> '+props.Bare  + '<br>'+
-		'<b> Modem:</b> '+props.Modem  + '<br>'+
+//		'<b> Type:</b> '        +props.Type  + '<br>'+
+//		'<b> Bare counter:</b> '+props.Bare  + '<br>'+
+//		'<b> Modem:</b> '+props.Modem  + '<br>'+
 //		'<b> Planned location:</b> ' + Number((props.xcoord).toFixed(6)) + ', ' + Number((props.ycoord).toFixed(6)) + '<br>' +
-		'<b> Date of installation:</b> '+ props.startdate  + '<br>'+
-		'<b> Comments:</b> '+ props.Comment  + '<br>'
+//		'<b> Date of installation:</b> '+ props.startdate  + '<br>'+
+//		'<b> Comments:</b> '+ props.Comment  + '<br>'
 //		'<b> Date of deinstallation:</b> '+props.enddate  + '<br>'+
 //		'<b> Actual location:</b> ' + props.lat1 + ', ' + props.lon1 + '<br>'
 			: 'Hover over a sensor');
@@ -166,7 +166,7 @@ L.control.layers(baseLayers,overlays).addTo(map);
     	"opacity": 0.65
     };
 
-	
+
 		var catchjson;
     $.getJSON("wuestebach_catchment.geojson", function(data) {
 	    json = L.geoJSON(data, {
@@ -224,16 +224,16 @@ L.control.layers(baseLayers,overlays).addTo(map);
     function onEachGauge(feature, layer) {
         //layer.bindPopup('<p>Hello world!<br />This is a nice popup.</p>');
         layer.bindPopup("<iframe srcdoc='<p>"+
-           "ID: "          +feature.properties.Id    + "<br>"+
-					 "Institution: " +feature.properties.Inst    + "<br>"+
-					 "Type: "        +feature.properties.Type  + "<br>"+
-					 "Bare counter: "+feature.properties.Bare  + "<br>"+
-					 "Modem: "+feature.properties.Modem  + "<br>"+
-					 "Date of installation: "+feature.properties.startdate  + "<br>"+
+           "ID: "          +feature.properties.id    + "<br>"+
+					 "Institution: " +feature.properties.inst    + "<br>"+
+//					 "Type: "        +feature.properties.Type  + "<br>"+
+					 "SoilNetID: "+feature.properties.soilnetid  + "<br>"+
+//					 "Modem: "+feature.properties.Modem  + "<br>"+
+//					 "Date of installation: "+feature.properties.startdate  + "<br>"+
 //					 "Date of deinstallation: "+feature.properties.enddate  + "<br>"+
 //					 "Planned location: " + Number((feature.properties.xcoord).toFixed(6)) + ", " + Number((feature.properties.ycoord).toFixed(6)) + "<br>"+
 //					 "Actual location: " + feature.properties.lat1 + ", " + feature.properties.lon1 +
-					 "Comments: " + feature.properties.Comment + "<br>"+
+//					 "Comments: " + feature.properties.Comment + "<br>"+
 					 "</p>' height='300px' width='250px'</iframe>")
         layer.on({
             mouseover: highlightGauge,
@@ -243,7 +243,7 @@ L.control.layers(baseLayers,overlays).addTo(map);
 
     var gaugesjson;
 
-    $.getJSON("wuestebach_crns.geojson", function(data) {
+    $.getJSON("crns_locations.geojson", function(data) {
 	    gaugesjson = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
 			  label = String(feature.properties.Id)
@@ -264,7 +264,7 @@ L.control.layers(baseLayers,overlays).addTo(map);
 		}
 
     var gaugescircles;
-    $.getJSON("wuestebach_crns.geojson", function(data) {
+    $.getJSON("crns_locations.geojson", function(data) {
 	    gaugescircles = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
 		    return L.circle(latlng, circlestyler(feature));
@@ -278,7 +278,7 @@ function getColor(d) {
                d === 'HZM' ? "#2980b9" :
                d === 'KIT' ? "#1abc9c" :
                d === 'UP'  ? "#2F4F4F" :
-               d === 'UFZ' ? "#e67e22" :
+               d === 'UH/UFZ' ? "#e67e22" :
                             "grey";
     }
 
