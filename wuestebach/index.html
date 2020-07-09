@@ -71,13 +71,57 @@ title: cosmic pages
 
 <script type="text/javascript">
 
+var layerCRNS = new L.LayerGroup(); //layer containing CRNS-stations
+var layerGNSS = new L.LayerGroup(); //layer containing GNSS
+var layerTheta = new L.LayerGroup(); //layer containing ThetaProbes / PR2s
+var layerSoilnet = new L.LayerGroup(); //layer containing SoilNet
+
+var OpenStreetMap_DE = L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+		});
+
+var osm = L.tileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {
+	attribution: '&copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+});
+
+var Esri_WorldImagery =  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    {
+      "attribution": 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+      "detectRetina": false,
+      "maxZoom": 20,
+      "minZoom": 1,
+      "noWrap": false,
+      "subdomains": "abc"
+    });
+
+	var baseLayers = {
+       		"OpenStreetMap_DE": OpenStreetMap_DE,
+			"OSM/Mapnik": osm, /**/
+			"ESRI-Luftbild": Esri_WorldImagery
+		};
+
+
+
+var overlays = {
+			"CRNS": layerCRNS,
+			"GNSS": layerGNSS,
+			"Theta": layerTheta,
+			"SoilNet": layerSoilnet,
+//			"planned_SM": layerplannedSM
+		};
+
+
   var map = L.map('map',
-                  {center: [50.5060, 6.3333],
+                  {center: [50.5035, 6.3333],
                    zoom: 16,
-                   layers: [],
+                   layers: [Esri_WorldImagery, layerCRNS, layerGNSS, layerTheta, layerSoilnet],
                    worldCopyJump: false,
                    crs: L.CRS.EPSG3857
                   });
+				  
+L.control.layers(baseLayers,overlays).addTo(map);
+
+				  
   L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
     {
       "attribution": 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
@@ -146,7 +190,7 @@ title: cosmic pages
 	    soilnetjson = L.geoJSON(data, {
          pointToLayer: function (feature, latlng) {
 		        return L.circleMarker(latlng, soilnetStyle);
-					}}).addTo(map);
+					}}).addTo(layerSoilnet);
 			    });
 
 		function pointstyler(feature) {
@@ -206,7 +250,7 @@ title: cosmic pages
 		    return L.circleMarker(latlng, pointstyler(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
 		},
 		onEachFeature: onEachGauge
-            }).addTo(map);
+            }).addTo(layerCRNS);
     });
 
 		function circlestyler(feature) {
@@ -225,7 +269,7 @@ title: cosmic pages
 		pointToLayer: function (feature, latlng) {
 		    return L.circle(latlng, circlestyler(feature));
 		},
-            }).addTo(map);
+            }).addTo(layerCRNS);
     });
 
 function getColor(d) {

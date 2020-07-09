@@ -3,8 +3,17 @@
 "name": "wuestebach_crns",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
-{ "type": "Feature", "properties": { "Name": "Wüstebach_1", "Lat": 50.5034, "Lon": 6.333, "Installati": "(seit 2011)", "Typ": "CRNS1000" }, "geometry": { "type": "Point", "coordinates": [ 6.333, 50.5034 ] } },
-{ "type": "Feature", "properties": { "Name": "EC-Station auf der Kahlschlagfläche", "Lat": 50.503, "Lon": 6.336, "Installati": "(seit März 2020)", "Typ": "CRNS2000\/B" }, "geometry": { "type": "Point", "coordinates": [ 6.336, 50.503 ] } },
-{ "type": "Feature", "properties": { "Name": "EC-Turm", "Lat": 50.5046, "Lon": 6.3303, "Installati": "(seit 2014)", "Typ": "CRNS2000\/B" }, "geometry": { "type": "Point", "coordinates": [ 6.3303, 50.5046 ] } }
+{ "type": "Feature", "properties": { "id": 1 }, "geometry": { "type": "Point", "coordinates": [ 6.32885619127403, 50.501499372098742 ] } },
+{ "type": "Feature", "properties": { "id": 2 }, "geometry": { "type": "Point", "coordinates": [ 6.328229328163395, 50.502828129548817 ] } },
+{ "type": "Feature", "properties": { "id": 3 }, "geometry": { "type": "Point", "coordinates": [ 6.333251929225584, 50.501229549645444 ] } },
+{ "type": "Feature", "properties": { "id": 4 }, "geometry": { "type": "Point", "coordinates": [ 6.333991908564671, 50.502294582836868 ] } },
+{ "type": "Feature", "properties": { "id": 5 }, "geometry": { "type": "Point", "coordinates": [ 6.333450418940464, 50.504356276900452 ] } },
+{ "type": "Feature", "properties": { "id": 6 }, "geometry": { "type": "Point", "coordinates": [ 6.335770293464338, 50.501783232596743 ] } },
+{ "type": "Feature", "properties": { "id": 7 }, "geometry": { "type": "Point", "coordinates": [ 6.338355788557715, 50.50217327148377 ] } },
+{ "type": "Feature", "properties": { "id": 8 }, "geometry": { "type": "Point", "coordinates": [ 6.329873230651995, 50.503777972189212 ] } },
+{ "type": "Feature", "properties": { "id": 9 }, "geometry": { "type": "Point", "coordinates": [ 6.331427887202555, 50.502796896285787 ] } },
+{ "type": "Feature", "properties": { "id": 10 }, "geometry": { "type": "Point", "coordinates": [ 6.335529315443474, 50.503945470874939 ] } },
+{ "type": "Feature", "properties": { "id": 11 }, "geometry": { "type": "Point", "coordinates": [ 6.331414507928491, 50.501804451125892 ] } },
+{ "type": "Feature", "properties": { "id": 12 }, "geometry": { "type": "Point", "coordinates": [ 6.335859867697354, 50.501151052652403 ] } }
 ]
 }
