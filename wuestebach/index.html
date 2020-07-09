@@ -147,9 +147,10 @@ L.control.layers(baseLayers,overlays).addTo(map);
 	info.update = function (props) {
 		this._div.innerHTML = '<h4>Massive Coverage CRNS Network</h4>' +  (props ?
 		'<b> ID:</b> ' + props.id + '<br>' +
-		'<b> Institution:</b> ' +props.inst    + '<br>'
+		'<b> Institution:</b> ' +props.inst    + '<br>' +
+		'<b> Type:</b> '        +props.type  + '<br>'+
+		'<b> Nearby SoilNet Node:</b> ' +props.soilnetid    + '<br>'
 //		'<b> Logger ID:</b> ' +props.loggerid    + '<br>'+
-//		'<b> Type:</b> '        +props.Type  + '<br>'+
 //		'<b> Bare counter:</b> '+props.Bare  + '<br>'+
 //		'<b> Modem:</b> '+props.Modem  + '<br>'+
 //		'<b> Planned location:</b> ' + Number((props.xcoord).toFixed(6)) + ', ' + Number((props.ycoord).toFixed(6)) + '<br>' +
@@ -228,8 +229,8 @@ L.control.layers(baseLayers,overlays).addTo(map);
         layer.bindPopup("<iframe srcdoc='<p>"+
            "ID: "          +feature.properties.id    + "<br>"+
 					 "Institution: " +feature.properties.inst    + "<br>"+
-//					 "Type: "        +feature.properties.Type  + "<br>"+
-					 "SoilNetID: "+feature.properties.soilnetid  + "<br>"+
+					 "Type: "        +feature.properties.type  + "<br>"+
+					 "Nearby SoilNet Node: "+feature.properties.soilnetid  + "<br>"+
 //					 "Modem: "+feature.properties.Modem  + "<br>"+
 //					 "Date of installation: "+feature.properties.startdate  + "<br>"+
 //					 "Date of deinstallation: "+feature.properties.enddate  + "<br>"+
@@ -301,7 +302,7 @@ var legend = L.control({position: 'bottomright'});
 
     var div = L.DomUtil.create('div', 'info legend');
     labels = ['<strong>CRNS Locations</strong>'],
-    categories = ['FZJ','GFZ','HZM','KIT','UP','UH'];
+    categories = ['FZJ','GFZ','KIT','UP','UH'];
 
     for (var i = 0; i < categories.length; i++) {
 
