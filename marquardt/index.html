@@ -107,7 +107,7 @@ var overlays = {
 			"CRNS": layerCRNS,
 			"GNSS": layerGNSS,
 			"Theta": layerTheta,
-			"tubes": layerTubes,
+			"tubes": layerTubes
 //			"planned_SM": layerplannedSM
 		};
 
@@ -385,7 +385,7 @@ function thetastyler(feature) {
             }).addTo(layerTheta);
     });
 
-//PR2 tubes fpr campaign
+//PR2 tubes for campaign
 function tubestyler(feature) {
 			return {
 	        radius: 5,
@@ -398,7 +398,7 @@ function tubestyler(feature) {
 		}
 
     $.getJSON("profilsondenrohre.geojson", function(data) {
-	    thetajson = L.geoJSON(data, {
+	    tubejson = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
 			  label = String(feature.properties.Name)
 		    return L.circleMarker(latlng, tubestyler(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
