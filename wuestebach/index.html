@@ -75,6 +75,7 @@ var layerCRNS = new L.LayerGroup(); //layer containing CRNS-stations
 var layerGNSS = new L.LayerGroup(); //layer containing GNSS
 var layerTheta = new L.LayerGroup(); //layer containing ThetaProbes / PR2s
 var layerSoilnet = new L.LayerGroup(); //layer containing SoilNet
+var layerCatchm = new L.LayerGroup(); //layer containing Catchment
 
 var OpenStreetMap_DE = L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
 			attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
@@ -106,7 +107,8 @@ var overlays = {
 			"CRNS": layerCRNS,
 			"GNSS": layerGNSS,
 			"Theta": layerTheta,
-			"SoilNet": layerSoilnet
+			"SoilNet": layerSoilnet,
+			"Catchment": layerCatchm
 //			"planned_SM": layerplannedSM
 		};
 
@@ -114,7 +116,7 @@ var overlays = {
   var map = L.map('map',
                   {center: [50.503, 6.3333],
                    zoom: 16,
-                   layers: [Esri_WorldImagery, layerCRNS, layerGNSS, layerTheta, layerSoilnet],
+                   layers: [Esri_WorldImagery, layerCRNS, layerGNSS, layerTheta, layerSoilnet, layerCatchm],
                    worldCopyJump: false,
                    crs: L.CRS.EPSG3857
                   });
@@ -171,7 +173,7 @@ L.control.layers(baseLayers,overlays).addTo(map);
     $.getJSON("wuestebach_catchment.geojson", function(data) {
 	    json = L.geoJSON(data, {
 		style: myStyle
-		}).addTo(map);
+		}).addTo(layerCatchm);
     });
 
 
