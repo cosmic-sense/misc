@@ -340,7 +340,6 @@ function getColor(d) {
 
 
 //PR2 tubes for campaign
-/*
 	var tubestyle2 = {
 			radius: 5,
 			fillColor: "cyan",
@@ -356,7 +355,7 @@ function getColor(d) {
 		        return L.circleMarker(latlng, tubestyle2);
 					}}).addTo(layerGNSS);
     });
-*/
+
 function tubestyler(feature) {
 			return {
 	        radius: 5,
@@ -392,6 +391,7 @@ function thetastyler(feature) {
 	    };
 		}
 
+ var thetajson;
     $.getJSON("theta_stations.geojson", function(data) {
 	    thetajson = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
