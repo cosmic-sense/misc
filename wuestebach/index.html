@@ -1,0 +1,284 @@
+---
+layout: default
+title: cosmic pages
+---
+<!DOCTYPE html>
+<html>
+<div class="blurb">
+	<h1>JFC Site at Wuestebach</h1>
+</div><!-- /.blurb -->
+
+<head>
+
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
+
+
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+		#map {
+			width: 100%;
+			height: 900px;
+		}
+	</style>
+
+	<style>
+		#map { width: 100%; height: 900px; }
+.info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
+.legend .circle {
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  margin-top: 5px;
+}
+.legend .smallcircle {
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  margin-top: 5px;
+	margin-left: 2px;
+}
+
+/* remove label background elements */
+.leaflet-tooltip.my-labels {
+  background-color: transparent;
+  border: transparent;
+  box-shadow: none;
+  font-weight: bold;
+  font-size: 15px;
+	color: white;
+  }
+	</style>
+</head>
+<body>
+<h3> Further links </h3>
+<a href="https://cosmic-sense.github.io/misc/wuestebach/crnsmonitor.html"> CRNS status monitor </a><br>
+<a href="https://cosmic-sense.github.io/misc/wuestebach/merged_crns.html"> Processed neutron counts </a><br>
+
+<div id='map'></div>
+
+<script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+
+<script type="text/javascript">
+
+  var map = L.map('map',
+                  {center: [47.828, 11.06474],
+                   zoom: 16,
+                   layers: [],
+                   worldCopyJump: false,
+                   crs: L.CRS.EPSG3857
+                  });
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    {
+      "attribution": 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+      "detectRetina": false,
+      "maxZoom": 18,
+      "minZoom": 1,
+      "noWrap": false,
+      "subdomains": "abc"
+    }).addTo(map);
+
+
+	// control that shows state info on hover
+	var info = L.control();
+
+	info.onAdd = function (map) {
+		this._div = L.DomUtil.create('div', 'info');
+		this.update();
+		return this._div;
+	};
+
+	info.update = function (props) {
+		this._div.innerHTML = '<h4>Massive Coverage CRNS Network</h4>' +  (props ?
+		'<b> ID:</b> ' + props.Id + '<br>' +
+		'<b> Institution:</b> ' +props.Inst    + '<br>'+
+//		'<b> Logger ID:</b> ' +props.loggerid    + '<br>'+
+		'<b> Type:</b> '        +props.Type  + '<br>'+
+		'<b> Bare counter:</b> '+props.Bare  + '<br>'+
+		'<b> Modem:</b> '+props.Modem  + '<br>'+
+//		'<b> Planned location:</b> ' + Number((props.xcoord).toFixed(6)) + ', ' + Number((props.ycoord).toFixed(6)) + '<br>' +
+		'<b> Date of installation:</b> '+ props.startdate  + '<br>'+
+		'<b> Comments:</b> '+ props.Comment  + '<br>'
+//		'<b> Date of deinstallation:</b> '+props.enddate  + '<br>'+
+//		'<b> Actual location:</b> ' + props.lat1 + ', ' + props.lon1 + '<br>'
+			: 'Hover over a sensor');
+	};
+
+	info.addTo(map);
+
+    var myStyle = {
+    	"color": "white",
+    	"weight": 4,
+    	"opacity": 0.65
+    };
+
+	
+		var catchjson;
+    $.getJSON("wuestebach_catchment.geojson", function(data) {
+	    json = L.geoJSON(data, {
+		style: myStyle
+		}).addTo(map);
+    });
+
+
+
+		var soilnetStyle = {
+			radius: 3,
+			fillColor: "black",
+			color: false,
+			weight: 1,
+			opacity: 1,
+			fillOpacity: 0.8
+    };
+
+    var soilnetjson;
+		$.getJSON("soilnet.geojson", function(data) {
+	    soilnetjson = L.geoJSON(data, {
+         pointToLayer: function (feature, latlng) {
+		        return L.circleMarker(latlng, soilnetStyle);
+					}}).addTo(map);
+			    });
+
+		function pointstyler(feature) {
+			return {
+	        radius: 10,
+	        fillColor: getColor(feature.properties.Inst),
+	        color: false,
+	        weight: 1,
+	        opacity: 1,
+	        fillOpacity: 1
+	    };
+		}
+
+
+
+    function highlightGauge(e) {
+  		var layer = e.target;
+
+  		layer.setStyle({
+          weight: 4
+  		});
+	    info.update(layer.feature.properties);
+  	}
+
+    function resetHighlightGauge(e) {
+      var layer = e.target;
+      gaugesjson.resetStyle(e.target);
+      info.update();
+      }
+
+    function onEachGauge(feature, layer) {
+        //layer.bindPopup('<p>Hello world!<br />This is a nice popup.</p>');
+        layer.bindPopup("<iframe srcdoc='<p>"+
+           "ID: "          +feature.properties.Id    + "<br>"+
+					 "Institution: " +feature.properties.Inst    + "<br>"+
+					 "Type: "        +feature.properties.Type  + "<br>"+
+					 "Bare counter: "+feature.properties.Bare  + "<br>"+
+					 "Modem: "+feature.properties.Modem  + "<br>"+
+					 "Date of installation: "+feature.properties.startdate  + "<br>"+
+//					 "Date of deinstallation: "+feature.properties.enddate  + "<br>"+
+//					 "Planned location: " + Number((feature.properties.xcoord).toFixed(6)) + ", " + Number((feature.properties.ycoord).toFixed(6)) + "<br>"+
+//					 "Actual location: " + feature.properties.lat1 + ", " + feature.properties.lon1 +
+					 "Comments: " + feature.properties.Comment + "<br>"+
+					 "</p>' height='300px' width='250px'</iframe>")
+        layer.on({
+            mouseover: highlightGauge,
+            mouseout: resetHighlightGauge
+        });
+    }
+
+    var gaugesjson;
+
+    $.getJSON("wuestebach_crns_20190620.geojson", function(data) {
+	    gaugesjson = L.geoJSON(data, {
+		pointToLayer: function (feature, latlng) {
+			  label = String(feature.properties.Id)
+		    return L.circleMarker(latlng, pointstyler(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
+		},
+		onEachFeature: onEachGauge
+            }).addTo(map);
+    });
+
+		function circlestyler(feature) {
+			return {
+				radius: 100,
+        color: "white",//getColor(feature.properties.Inst),
+        weight: 1,
+        opacity: 1,
+        fill: false
+	    };
+		}
+
+    var gaugescircles;
+    $.getJSON("wuestebach_crns_201900620.geojson", function(data) {
+	    gaugescircles = L.geoJSON(data, {
+		pointToLayer: function (feature, latlng) {
+		    return L.circle(latlng, circlestyler(feature));
+		},
+            }).addTo(map);
+    });
+
+function getColor(d) {
+        return d === 'FZJ' ? "#c0392b" :
+               d === 'GFZ' ? "#9b59b6" :
+               d === 'HZM' ? "#2980b9" :
+               d === 'KIT' ? "#1abc9c" :
+               d === 'UP'  ? "#2F4F4F" :
+               d === 'UFZ' ? "#e67e22" :
+                            "grey";
+    }
+
+    function style(feature) {
+        return {
+            weight: 1.5,
+            opacity: 1,
+            fillOpacity: 1,
+            radius: 6,
+            fillColor: getColor(feature.properties.TypeOfIssue),
+            color: "grey"
+
+        };
+    }
+
+var legend = L.control({position: 'bottomright'});
+    legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend');
+    labels = ['<strong>CRNS Locations</strong>'],
+    categories = ['FZJ','GFZ','HZM','KIT','UP','UFZ'];
+
+    for (var i = 0; i < categories.length; i++) {
+
+            div.innerHTML +=
+            labels.push(
+                '<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
+            (categories[i] ? categories[i] : '+'));
+//	    div.innerHTML +=
+//		'<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
+//		 (categories[i] ? categories[i] + '<br>' : '+');
+
+        }
+				labels.push(
+						'<i class="smallcircle" style="background:black" ></i> SoilNet');
+        div.innerHTML = labels.join('<br>');
+    return div;
+    };
+    legend.addTo(map);
+
+
+</script>
+
+
+
+</body>
+</html>
