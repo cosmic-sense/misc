@@ -331,7 +331,8 @@ function getColor(d) {
     };
 
  var gnssjson;
-    $.getJSON("gnss.geojson", function(data) {
+    //$.getJSON("gnss.geojson", function(data) {
+    $.getJSON("profilsondenrohre.geojson", function(data) {
 	    gnssjson = L.geoJSON(data, {
 		 pointToLayer: function (feature, latlng) {
 		        return L.circleMarker(latlng, gnssStyle);
