@@ -288,7 +288,7 @@ function getColor(d) {
             opacity: 1,
             fillOpacity: 1,
             radius: 6,
-            fillColor: getColor(feature.properties.TypeOfIssue),
+            fillColor: getColor(feature.properties.inst),
             color: "grey"
 
         };
@@ -299,7 +299,7 @@ var legend = L.control({position: 'bottomright'});
 
     var div = L.DomUtil.create('div', 'info legend');
     labels = ['<strong>CRNS Locations</strong>'],
-    categories = ['FZJ','GFZ','HZM','KIT','UP','UFZ'];
+    categories = ['FZJ','GFZ','HZM','KIT','UP','UH'];
 
     for (var i = 0; i < categories.length; i++) {
 
