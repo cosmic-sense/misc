@@ -5,7 +5,7 @@
 "features": [
 { "type": "Feature", "properties": { "id": 1, "inst": "FZJ", "soilnetid": 75, "type": " CRS 2000-B" }, "geometry": { "type": "Point", "coordinates": [ 6.333016999781636, 50.50348700013167 ] } },
 { "type": "Feature", "properties": { "id": 2, "inst": "FZJ", "soilnetid": 0, "type": "CRS 2000-B" }, "geometry": { "type": "Point", "coordinates": [ 6.33092000009407, 50.50490000001102 ] } },
-{ "type": "Feature", "properties": { "id": 3, "inst": "FZJ", "soilnetid": 95, "type": "CRS 1000" }, "geometry": { "type": "Point", "coordinates": [ 6.336067999851591, 50.503072999804829 ] } },
+{ "type": "Feature", "properties": { "id": 3, "inst": "FZJ", "soilnetid": 95, "type": "CRS 1000" }, "geometry": { "type": "Point", "coordinates": [ 6.336075, 50.503069 ] } },
 { "type": "Feature", "properties": { "id": 4, "inst": "FZJ", "soilnetid": 13, "type": "CRS 2000-B" }, "geometry": { "type": "Point", "coordinates": [ 6.3298118333778, 50.503840953722289 ] } },
 { "type": "Feature", "properties": { "id": 5, "inst": "FZJ", "soilnetid": 36, "type": "CRS 2000-B" }, "geometry": { "type": "Point", "coordinates": [ 6.331498815520929, 50.5027871998183 ] } },
 { "type": "Feature", "properties": { "id": 6, "inst": "FZJ", "soilnetid": 0, "type": "CRS 2000-B" }, "geometry": { "type": "Point", "coordinates": [ 6.329248482638009, 50.501488140717065 ] } },
