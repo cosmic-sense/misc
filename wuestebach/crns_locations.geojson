@@ -17,6 +17,6 @@
 { "type": "Feature", "properties": { "id": 12, "inst": "GFZ", "soilnetid": 100, "type": "CRS 2000-B" }, "geometry": { "type": "Point", "coordinates": [ 6.328229328163307, 50.502828129535807 ] } },
 { "type": "Feature", "properties": { "id": 13, "inst": "GFZ", "soilnetid": 133, "type": "CRS 2000-B" }, "geometry": { "type": "Point", "coordinates": [ 6.335803970591999, 50.501688194015962 ] } },
 { "type": "Feature", "properties": { "id": 14, "inst": "GFZ", "soilnetid": 49, "type": "CRS 2000-B" }, "geometry": { "type": "Point", "coordinates": [ 6.333979977982002, 50.50222669761596 ] } },
-{ "type": "Feature", "properties": { "id": 15, "inst": "UH,UFZ", "soilnetid": 148, "type": "StyX" }, "geometry": { "type": "Point", "coordinates": [ 6.335934618671759, 50.50121465633147 ] } }
+{ "type": "Feature", "properties": { "id": 15, "inst": "FZJ,UH", "soilnetid": 148, "type": "CRS 2000-B+StyX" }, "geometry": { "type": "Point", "coordinates": [ 6.335934618671759, 50.50121465633147 ] } }
 ]
 }
