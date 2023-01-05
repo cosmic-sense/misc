@@ -14,7 +14,7 @@ title: cosmic pages
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+	<link rel="shortcut icon" type="image/x-icon" href="../_layouts/favicon.ico" />
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
@@ -74,7 +74,7 @@ Field campaign in Marquardt has been running since in August 2019 in cooperation
 var layerCRNS = new L.LayerGroup(); //layer containing CRNS-stations
 var layerGNSS = new L.LayerGroup(); //layer containing GNSS
 var layerTheta = new L.LayerGroup(); //layer containing ThetaProbes / PR2s
-var layerTubes = new L.LayerGroup(); //layer containing empty tubes
+//var layerTubes = new L.LayerGroup(); //layer containing empty tubes
 
 
 var OpenStreetMap_DE = L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
@@ -106,8 +106,8 @@ var Esri_WorldImagery =  L.tileLayer('https://server.arcgisonline.com/ArcGIS/res
 var overlays = {
 			"CRNS": layerCRNS,
 			"GNSS": layerGNSS,
-			"Theta": layerTheta,
-			"tubes": layerTubes
+			"Theta": layerTheta
+//			"tubes": layerTubes
 //			"planned_SM": layerplannedSM
 		};
 
@@ -115,7 +115,7 @@ var overlays = {
   var map = L.map('map',
                   {center: [52.4662, 12.95813],
                    zoom: 17,
-                   layers: [Esri_WorldImagery, layerCRNS, layerGNSS, layerTheta, layerTubes],
+                   layers: [Esri_WorldImagery, layerCRNS, layerGNSS],  // layerTubes, layerTheta
                    worldCopyJump: false,
                    crs: L.CRS.EPSG3857
                   });
@@ -136,10 +136,11 @@ var overlays = {
 
 	info.update = function (props) {
 		this._div.innerHTML = '<h4>Massive Coverage CRNS Network</h4>' +  (props ?
-		'<b> ID:</b> ' + props.IdJFC + '<br>' +
+		'<b> ID:</b> ' + props.ID + '<br>' +
 		'<b> Institution:</b> ' +props.Inst    + '<br>'+
 //		'<b> Logger ID:</b> ' +props.loggerid    + '<br>'+
-		'<b> Type:</b> '        +props.Type  + '<br>'
+		'<b> Type:</b> '        +props.Type  + '<br>' +
+		'<b> Location:</b> '        +props.Name  + '<br>' 
 //		'<b> Bare counter:</b> '+props.Bare  + '<br>'+
 //		'<b> Modem:</b> '+props.Modem  + '<br>'+
 //		'<b> Planned location:</b> ' + Number((props.xcoord).toFixed(6)) + ', ' + Number((props.ycoord).toFixed(6)) + '<br>' +
@@ -248,9 +249,10 @@ var overlays = {
     function onEachGauge(feature, layer) {
         //layer.bindPopup('<p>Hello world!<br />This is a nice popup.</p>');
         layer.bindPopup("<iframe srcdoc='<p>"+
-           "ID: "          +feature.properties.IdJFC    + "<br>"+
-					 "Institution: " +feature.properties.Inst    + "<br>"+
-					 "Type: "        +feature.properties.Type  + "<br>" +
+           "ID: "          +feature.properties.ID    + "<br>"+
+					 "Institution: " +feature.properties.Inst    + "<br>" +
+					 "Type: "        +feature.properties.Type    + "<br>" +
+					 "Location:"     +feature.properties.Name    + "<br>" +
 //					 "Bare counter: "+feature.properties.Bare  + "<br>"+
 //					 "Modem: "+feature.properties.Modem  + "<br>"+
 //					 "Date of installation: "+feature.properties.startdate  + "<br>"+
@@ -267,10 +269,10 @@ var overlays = {
 
     var gaugesjson;
 
-    $.getJSON("crns_locations2.geojson", function(data) {
+    $.getJSON("CRNS_Mq.geojson", function(data) {
 	    gaugesjson = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
-			  label = String(feature.properties.IdJFC)
+			  label = String(feature.properties.ID)
 		    return L.circleMarker(latlng, pointstyler(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
 		},
 		onEachFeature: onEachGauge
@@ -288,7 +290,7 @@ var overlays = {
 		}
 
     var gaugescircles;
-    $.getJSON("crns_locations2.geojson", function(data) {
+    $.getJSON("CRNS_Mq.geojson", function(data) {
 	    gaugescircles = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
 		    return L.circle(latlng, circlestyler(feature));
@@ -338,7 +340,7 @@ function getColor(d) {
 					}}).addTo(layerGNSS);
     });
 
-
+/*
 //PR2 tubes for campaign
 	var tubestyle2 = {
 			radius: 5,
@@ -353,7 +355,7 @@ function getColor(d) {
 	    tubejson2 = L.geoJSON(data, {
 		 pointToLayer: function (feature, latlng) {
 		        return L.circleMarker(latlng, tubestyle2);
-					}}).addTo(layerGNSS);
+					}}).addTo(layerTubes);
     });
 
 function tubestyler(feature) {
@@ -377,7 +379,7 @@ function tubestyler(feature) {
             }).addTo(layerTubes);
 //            }).addTo(map);
     });
-
+*/
 
 //theta stations
 function thetastyler(feature) {
@@ -392,7 +394,7 @@ function thetastyler(feature) {
 		}
 
  var thetajson;
-    $.getJSON("theta_stations.geojson", function(data) {
+    $.getJSON("theta_stations2.geojson", function(data) {
 	    thetajson = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
 			  label = String(feature.properties.ID)
