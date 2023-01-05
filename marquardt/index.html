@@ -397,7 +397,7 @@ function thetastyler(feature) {
     $.getJSON("theta_stations2.geojson", function(data) {
 	    thetajson = L.geoJSON(data, {
 		pointToLayer: function (feature, latlng) {
-			  label = String(feature.properties.ID)
+			  label = String(feature.properties.name)
 		    return L.circleMarker(latlng, thetastyler(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
 		},
             }).addTo(layerTheta);
