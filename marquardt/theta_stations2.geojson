@@ -20,6 +20,7 @@
 { "type": "Feature", "properties": { "latitude": null, "longitude": null, "accuracy (": null, "altitude (": null, "geoid_heig": null, "name": "32 (survey needed)", "ID": null }, "geometry": { "type": "Point", "coordinates": [ 12.959597521823197, 52.463470455035917, 0.0 ] } },
 { "type": "Feature", "properties": { "latitude": null, "longitude": null, "accuracy (": null, "altitude (": null, "geoid_heig": null, "name": "35 (survey needed)", "ID": null }, "geometry": { "type": "Point", "coordinates": [ 12.967099864242606, 52.464998685219378, 0.0 ] } },
 { "type": "Feature", "properties": { "latitude": null, "longitude": null, "accuracy (": null, "altitude (": null, "geoid_heig": null, "name": "33 (survey needed)", "ID": null }, "geometry": { "type": "Point", "coordinates": [ 12.954589372809517, 52.468806534175926, 0.0 ] } },
-{ "type": "Feature", "properties": { "latitude": 52.46643387, "longitude": 12.95919355, "accuracy (": null, "altitude (": 83.547, "geoid_heig": null, "name": "identical to 11", "ID": "11.3" }, "geometry": { "type": "Point", "coordinates": [ 12.95919355, 52.46643387, 83.547 ] } }
+{ "type": "Feature", "properties": { "latitude": 52.46643387, "longitude": 12.95919355, "accuracy (": null, "altitude (": 83.547, "geoid_heig": null, "name": "identical to 11", "ID": "11.3" }, "geometry": { "type": "Point", "coordinates": [ 12.95919355, 52.46643387, 83.547 ] } },
+{ "type": "Feature", "properties": { "latitude": null, "longitude": null, "accuracy (": null, "altitude (": null, "geoid_heig": null, "name": "36 (survey needed)", "ID": "36" }, "geometry": { "type": "Point", "coordinates": [ 12.958307990647143, 52.468542398509712, 0.0 ] } }
 ]
 }
