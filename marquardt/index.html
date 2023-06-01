@@ -113,8 +113,8 @@ var overlays = {
 
 
   var map = L.map('map',
-                  {center: [52.4662, 12.95813],
-                   zoom: 17,
+                  {center: [52.4662, 12.96],
+                   zoom: 16,
                    layers: [Esri_WorldImagery, layerCRNS, layerGNSS],  // layerTubes, layerTheta
                    worldCopyJump: false,
                    crs: L.CRS.EPSG3857
@@ -221,7 +221,7 @@ var overlays = {
 		function pointstyler(feature) {
 			return {
 	        radius: 10,
-	        fillColor: getColor(feature.properties.Inst),
+	        fillColor: getColor(feature.properties.Inst, feature.properties.status),
 	        color: false,
 	        weight: 1,
 	        opacity: 1,
@@ -253,6 +253,7 @@ var overlays = {
 					 "Institution: " +feature.properties.Inst    + "<br>" +
 					 "Type: "        +feature.properties.Type    + "<br>" +
 					 "Location:"     +feature.properties.Name    + "<br>" +
+					 "Status:"     +feature.properties.status    + "<br>" +
 //					 "Bare counter: "+feature.properties.Bare  + "<br>"+
 //					 "Modem: "+feature.properties.Modem  + "<br>"+
 //					 "Date of installation: "+feature.properties.startdate  + "<br>"+
@@ -279,10 +280,17 @@ var overlays = {
             }).addTo(layerCRNS);
     });
 
+	function getColor_circle(d) {
+        return d === 'active' ? "white" :
+            //   d === 'Harz' ? "red" :
+               d === 'removed' ? "" :
+                            "grey";
+    }
+
 		function circlestyler(feature) {
 			return {
 				radius: 50,
-        color: "white",//getColor(feature.properties.Inst),
+        color: getColor_circle(feature.properties.status),
         weight: 1,
         opacity: 1,
         fill: false
@@ -298,8 +306,9 @@ var overlays = {
             }).addTo(layerCRNS);
     });
 
-function getColor(d) {
-        return d === 'FZJ' ? "#c0392b" :
+function getColor(d, status) {
+        if (status  === "removed") return "grey"
+		return d === 'FZJ' ? "#c0392b" :
                d === 'GFZ' ? "#9b59b6" :
                d === 'HZM' ? "#2980b9" :
                d === 'KIT' ? "#1abc9c" :
@@ -415,7 +424,7 @@ var legend = L.control({position: 'bottomright'});
 
             div.innerHTML +=
             labels.push(
-                '<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
+                '<i class="circle" style="background:' + getColor(categories[i], "active") + '"></i> ' +
             (categories[i] ? categories[i] : '+'));
 //	    div.innerHTML +=
 //		'<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
