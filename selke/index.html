@@ -1,0 +1,448 @@
+---
+layout: default
+title: cosmic pages
+---
+<!DOCTYPE html>
+<html>
+<div class="blurb">
+	<h1>JFC in Selke catchment</h1>
+</div><!-- /.blurb -->
+
+<head>
+
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="shortcut icon" type="image/x-icon" href="../_layouts/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
+
+
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+		#map {
+			width: 100%;
+			height: 700px;
+		}
+	</style>
+
+	<style>
+		#map { width: 100%; height: 900px; }
+.info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
+.legend .circle {
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  margin-top: 5px;
+}
+.legend .smallcircle {
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  margin-top: 5px;
+	margin-left: 2px;
+}
+
+/* remove label background elements */
+.leaflet-tooltip.my-labels {
+  background-color: transparent;
+  border: transparent;
+  box-shadow: none;
+  font-weight: bold;
+  font-size: 15px;
+	color: white;
+  }
+	</style>
+</head>
+<body>
+
+<h3> Further links </h3>
+The joint field campaign in in the Selke catchment started in May, 2023. It comprises the operation of 16 + 2 CRNS and gravimetric station plus multiple mobile campaigns.<br>
+
+<div id='map'></div>
+
+<script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+
+<script type="text/javascript">
+
+var layerCRNS = new L.LayerGroup(); //layer containing CRNS-stations
+var layerGNSS = new L.LayerGroup(); //layer containing GNSS
+var layerTheta = new L.LayerGroup(); //layer containing ThetaProbes / PR2s
+//var layerTubes = new L.LayerGroup(); //layer containing empty tubes
+
+
+var OpenStreetMap_DE = L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+		});
+
+var osm = L.tileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {
+	attribution: '&copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+});
+
+var Esri_WorldImagery =  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    {
+      "attribution": 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+      "detectRetina": false,
+      "maxZoom": 19,
+      "minZoom": 1,
+      "noWrap": false,
+      "subdomains": "abc"
+    });
+
+	var baseLayers = {
+       		"OpenStreetMap_DE": OpenStreetMap_DE,
+			"OSM/Mapnik": osm, /**/
+			"ESRI-Luftbild": Esri_WorldImagery
+		};
+
+
+
+var overlays = {
+			"CRNS": layerCRNS,
+		//  "GNSS": layerGNSS,
+//			"Theta": layerTheta
+//			"tubes": layerTubes
+//			"planned_SM": layerplannedSM
+		};
+
+
+
+  var map = L.map('map',
+                  {center: [51.72, 11.3],
+                   zoom: 12,
+                   layers: [Esri_WorldImagery, layerCRNS],  //, layerGNSS layerTubes, layerTheta
+                   worldCopyJump: false,
+                   crs: L.CRS.EPSG3857
+                  });
+
+
+	L.control.layers(baseLayers,overlays).addTo(map);
+
+
+
+	// control that shows state info on hover
+	var info = L.control();
+
+	info.onAdd = function (map) {
+		this._div = L.DomUtil.create('div', 'info');
+		this.update();
+		return this._div;
+	};
+
+	info.update = function (props) {
+		this._div.innerHTML = '<h4>Massive Coverage CRNS Network</h4>' +  (props ?
+		'<b> ID:</b> ' + props.ID + '<br>' +
+		'<b> Institution:</b> ' +props.Inst    + '<br>'+
+//		'<b> Logger ID:</b> ' +props.loggerid    + '<br>'+
+		'<b> Type:</b> '        +props.Type  + '<br>' +
+		'<b> Location:</b> '        +props.Name  + '<br>' 
+//		'<b> Bare counter:</b> '+props.Bare  + '<br>'+
+//		'<b> Modem:</b> '+props.Modem  + '<br>'+
+//		'<b> Planned location:</b> ' + Number((props.xcoord).toFixed(6)) + ', ' + Number((props.ycoord).toFixed(6)) + '<br>' +
+//		'<b> Date of installation:</b> '+ props.startdate  + '<br>'+
+//		'<b> Comments:</b> '+ props.Comment  + '<br>'
+//		'<b> Date of deinstallation:</b> '+props.enddate  + '<br>'+
+//		'<b> Actual location:</b> ' + props.lat1 + ', ' + props.lon1 + '<br>'
+			: 'Hover over a sensor');
+	};
+
+	info.addTo(map);
+
+    var myStyle = {
+    	"color": "white",
+    	"weight": 4,
+    	"opacity": 0.65
+    };
+
+		var ownersStyle = {
+    	"color": "red",
+    	"weight": 0.5,
+    	"fill": false,
+			"opacity": 0.65
+    };
+
+		var nogoStyle = {
+    	"color": "red",
+    	"weight": 0,
+    	"fill": "red",
+    };
+
+//		var catchjson;
+//    $.getJSON("fendt_catchment.geojson", function(data) {
+//	    json = L.geoJSON(data, {
+//		style: myStyle
+//		}).addTo(map);
+//    });
+
+
+//		var owners1json;
+//    $.getJSON("owners1.geojson", function(data) {
+//	    json = L.geoJSON(data, {
+//		style: ownersStyle
+//		}).addTo(map);
+//    });
+
+//		var owners2json;
+//    $.getJSON("owners2.geojson", function(data) {
+//	    json = L.geoJSON(data, {
+//		style: ownersStyle
+//		}).addTo(map);
+//    });
+
+//		var nogo2json;
+//    $.getJSON("nogo.geojson", function(data) {
+//	    json = L.geoJSON(data, {
+//		style: nogoStyle
+//		}).addTo(map);
+//    });
+
+//		var soilnetStyle = {
+//			radius: 3,
+//			fillColor: "black",
+//			color: false,
+//			weight: 1,
+//			opacity: 1,
+//			fillOpacity: 0.8
+//    };
+
+//    var soilnetjson;
+//		$.getJSON("soilnet.geojson", function(data) {
+//	    soilnetjson = L.geoJSON(data, {
+//         pointToLayer: function (feature, latlng) {
+//		        return L.circleMarker(latlng, soilnetStyle);
+//					}}).addTo(map);
+//			    });
+
+		function pointstyler(feature) {
+			return {
+	        radius: 10,
+	        fillColor: getColor(feature.properties.Inst, feature.properties.status),
+	        color: false,
+	        weight: 1,
+	        opacity: 1,
+	        fillOpacity: 1
+	    };
+		}
+
+
+
+    function highlightGauge(e) {
+  		var layer = e.target;
+
+  		layer.setStyle({
+          weight: 4
+  		});
+	    info.update(layer.feature.properties);
+  	}
+
+    function resetHighlightGauge(e) {
+      var layer = e.target;
+      gaugesjson.resetStyle(e.target);
+      info.update();
+      }
+
+    function onEachGauge(feature, layer) {
+        //layer.bindPopup('<p>Hello world!<br />This is a nice popup.</p>');
+        layer.bindPopup("<iframe srcdoc='<p>"+
+           "ID: "          +feature.properties.ID    + "<br>"+
+					 "Institution: " +feature.properties.Inst    + "<br>" +
+					 "Type: "        +feature.properties.Type    + "<br>" +
+					 "Location:"     +feature.properties.Name    + "<br>" +
+					 "Status:"     +feature.properties.status    + "<br>" +
+//					 "Bare counter: "+feature.properties.Bare  + "<br>"+
+//					 "Modem: "+feature.properties.Modem  + "<br>"+
+//					 "Date of installation: "+feature.properties.startdate  + "<br>"+
+//					 "Date of deinstallation: "+feature.properties.enddate  + "<br>"+
+//					 "Planned location: " + Number((feature.properties.xcoord).toFixed(6)) + ", " + Number((feature.properties.ycoord).toFixed(6)) + "<br>"+
+//					 "Actual location: " + feature.properties.lat1 + ", " + feature.properties.lon1 +
+//					 "Comments: " + feature.properties.Comment + "<br>"+
+					 "</p>' height='100px' width='250px'</iframe>")
+        layer.on({
+            mouseover: highlightGauge,
+            mouseout: resetHighlightGauge
+        });
+    }
+
+    var gaugesjson;
+
+    $.getJSON("crns_implemented.geojson", function(data) {
+	    gaugesjson = L.geoJSON(data, {
+		pointToLayer: function (feature, latlng) {
+			  label = String(feature.properties.ID)
+		    return L.circleMarker(latlng, pointstyler(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
+		},
+		onEachFeature: onEachGauge
+            }).addTo(layerCRNS);
+    });
+
+	function getColor_circle(d) {
+        return d === 'active' ? "white" :
+            //   d === 'Harz' ? "red" :
+               d === 'removed' ? "" :
+                            "grey";
+    }
+
+		function circlestyler(feature) {
+			return {
+				radius: 50,
+        color: getColor_circle(feature.properties.status),
+        weight: 1,
+        opacity: 1,
+        fill: false
+	    };
+		}
+
+    var gaugescircles;
+    $.getJSON("crns_implemented.geojson", function(data) {
+	    gaugescircles = L.geoJSON(data, {
+		pointToLayer: function (feature, latlng) {
+		    return L.circle(latlng, circlestyler(feature));
+		},
+            }).addTo(layerCRNS);
+    });
+
+function getColor(d, status) {
+        if (status  === "removed") return "grey"
+		return d === 'FZJ' ? "#c0392b" :
+               d === 'GFZ' ? "#9b59b6" :
+               d === 'UH' ? "#2980b9" :
+               d === 'KIT' ? "#1abc9c" :
+               d === 'UI'  ? "#3F4F9F" :
+			   d === 'UP'  ? "#2F4F4F" :
+               d === 'UFZ' ? "#e67e22" :
+                            "grey";
+    }
+
+    function style(feature) {
+        return {
+            weight: 1.5,
+            opacity: 1,
+            fillOpacity: 1,
+            radius: 6,
+            fillColor: getColor(feature.properties.TypeOfIssue),
+            color: "grey"
+
+        };
+    }
+
+
+
+//GNSS
+	var gnssStyle = {
+			radius: 5,
+			fillColor: "white",
+			color: false,
+			weight: 1,
+			opacity: 1,
+			fillOpacity: 0.8
+    };
+
+ var gnssjson;
+    $.getJSON("gnss.geojson", function(data) {
+        gnssjson = L.geoJSON(data, {
+		 pointToLayer: function (feature, latlng) {
+		        return L.circleMarker(latlng, gnssStyle);
+					}}).addTo(layerGNSS);
+    });
+
+/*
+//PR2 tubes for campaign
+	var tubestyle2 = {
+			radius: 5,
+			fillColor: "cyan",
+			color: false,
+			weight: 1,
+			opacity: 1,
+			fillOpacity: 0.8
+    };
+ var tubejson2;
+    $.getJSON("profilsondenrohre.geojson", function(data) {
+	    tubejson2 = L.geoJSON(data, {
+		 pointToLayer: function (feature, latlng) {
+		        return L.circleMarker(latlng, tubestyle2);
+					}}).addTo(layerTubes);
+    });
+
+function tubestyler(feature) {
+			return {
+	        radius: 5,
+	        fillColor: "cyan",
+	        color: false,
+	        weight: 1,
+	        opacity: 1,
+	        fillOpacity: 0.8
+	    };
+		}
+
+ var tubejson;
+    $.getJSON("profilsondenrohre.geojson", function(data) {
+	    tubejson = L.geoJSON(data, {
+		pointToLayer: function (feature, latlng) {
+			  label = String(feature.properties.Name)
+		    return L.circleMarker(latlng, tubestyler(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
+		},
+            }).addTo(layerTubes);
+//            }).addTo(map);
+    });
+*/
+
+//theta stations
+function thetastyler(feature) {
+			return {
+	        radius: 5,
+	        fillColor: "blue",
+	        color: false,
+	        weight: 1,
+	        opacity: 1,
+	        fillOpacity: 0.8
+	    };
+		}
+
+ var thetajson;
+    $.getJSON("theta_stations2.geojson", function(data) {
+	    thetajson = L.geoJSON(data, {
+		pointToLayer: function (feature, latlng) {
+			  label = String(feature.properties.name)
+		    return L.circleMarker(latlng, thetastyler(feature)).bindTooltip(label, {permanent: true, direction: "center", className: "my-labels"}).openTooltip();
+		},
+            }).addTo(layerTheta);
+//            }).addTo(map);
+    });
+
+var legend = L.control({position: 'bottomright'});
+    legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend');
+    labels = ['<strong>CRNS Locations</strong>'],
+    categories = ['FZJ','GFZ','HZM','KIT','UP','UFZ'];
+
+    for (var i = 0; i < categories.length; i++) {
+
+            div.innerHTML +=
+            labels.push(
+                '<i class="circle" style="background:' + getColor(categories[i], "active") + '"></i> ' +
+            (categories[i] ? categories[i] : '+'));
+//	    div.innerHTML +=
+//		'<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
+//		 (categories[i] ? categories[i] + '<br>' : '+');
+
+        }
+				labels.push(
+						'<i class="smallcircle" style="background:white" ></i> GNSS');
+        div.innerHTML = labels.join('<br>');
+    return div;
+    };
+    legend.addTo(map);
+
+</script>
+
+
+
+</body>
+</html>
