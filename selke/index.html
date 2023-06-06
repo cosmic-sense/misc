@@ -136,7 +136,7 @@ var overlays = {
 	};
 
 	info.update = function (props) {
-		this._div.innerHTML = '<h4>Massive Coverage CRNS Network</h4>' +  (props ?
+		this._div.innerHTML = '<h4>Selke JFC 2023 CRNS Network</h4>' +  (props ?
 		'<b> ID:</b> ' + props.ID + '<br>' +
 		'<b> Institution:</b> ' +props.Inst    + '<br>'+
 //		'<b> Logger ID:</b> ' +props.loggerid    + '<br>'+
@@ -314,7 +314,7 @@ function getColor(d, status) {
                d === 'UH' ? "#2980b9" :
                d === 'KIT' ? "#1abc9c" :
                d === 'UI'  ? "#3F4F9F" :
-			   d === 'UP'  ? "#2F4F4F" :
+               d === 'UP'  ? "#2F4F4F" :
                d === 'UFZ' ? "#e67e22" :
                             "grey";
     }
@@ -420,7 +420,7 @@ var legend = L.control({position: 'bottomright'});
 
     var div = L.DomUtil.create('div', 'info legend');
     labels = ['<strong>CRNS Locations</strong>'],
-    categories = ['FZJ','GFZ','HZM','KIT','UP','UFZ'];
+    categories = ['FZJ','GFZ','UH','KIT','UI','UP','UFZ'];
 
     for (var i = 0; i < categories.length; i++) {
 
