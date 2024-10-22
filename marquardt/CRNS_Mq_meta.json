@@ -1,0 +1,37 @@
+{
+   "Description": "Coordinates of the CRNS in Marquardt, measured by dGPS",
+
+   "Provider": {
+      "Name": "Veronika Döpper, Till Francke",
+      "Institution": "Uni Potsdam",
+      "Email": "francke@uni-potsdam.de",
+      "Comment": ""
+   },
+
+   "SpaceTimeCoverage": {
+      "StartDate": "2023-02-2",
+      "EndDate": "2024-10-21",
+      "RegionName": "ATB Marquardt",
+      "BBox": ""
+   },
+
+   "Source": {
+      "Name": "Till Francke",
+      "Institution": "measurements from TU Berlin, and UP"
+   },
+
+   "Units": "meters a.m.s.l.",
+
+   "SpatialReferenceSystem": {
+      "Name": "wgs84",
+      "EPSG": "4326"
+   },
+
+   "TemporalReferenceSystem": {
+      "TimeZone": "",
+      "IntervalLength": "",
+      "TimestampAtEndOfInterval": ""
+   },
+
+   "Remarks": "Converted to geojson by Till"
+}
